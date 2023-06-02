@@ -1,7 +1,23 @@
 package org.dndoop.game.tile;
 
-public class Tile {
+public abstract class Tile {
+    protected Character character;
+    protected Position position;
+    public Tile(Character character, Position position) {
+        this.character = character;
+        this.position = position;
+    }
 
-    private Character character;
-    private Position position;
+    protected Character getCharacter() {
+        return this.character;
+    }
+    protected Position getPosition() {
+        return this.position;
+    }
+    protected void setCharacter(Character character) {
+        this.character = character;
+    }
+    protected void setPosition(Position position) {
+        this.position = position;
+    }
 }
