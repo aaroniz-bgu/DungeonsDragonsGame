@@ -17,7 +17,7 @@ public class PlayerEventNotifier {
         this.listeners = new ArrayList<>();
     }
 
-    public PlayerEventNotifier getInstance() {
+    public static PlayerEventNotifier getInstance() {
         if(instance == null) {
             instance = new PlayerEventNotifier();
         }
