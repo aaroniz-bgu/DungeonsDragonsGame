@@ -1,4 +1,4 @@
-package org.dndoop.game.tile;
+package org.dndoop.game.tile.tile_utils;
 
 public class Health {
 
