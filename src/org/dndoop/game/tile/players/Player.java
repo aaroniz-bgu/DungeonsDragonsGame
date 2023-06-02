@@ -1,6 +1,11 @@
-package org.dndoop.game.tile;
+package org.dndoop.game.tile.players;
 
-public abstract class Player extends Unit{
+import org.dndoop.game.tile.tile_utils.Health;
+import org.dndoop.game.tile.tile_utils.Position;
+import org.dndoop.game.tile.Unit;
+import org.dndoop.game.tile.tile_utils.UnitStats;
+
+public abstract class Player extends Unit {
     protected int xp;
     protected int level;
 
