@@ -23,6 +23,11 @@ public class Position {
         return y;
     }
 
+    /**
+     * Used to calculate the distance to another position
+     * @param to - The position we want to calculate distance to
+     * @return the distance value
+     */
     public double range(Position to) {
         return Math.sqrt(Math.pow(x - to.getX(), 2) + Math.pow(y - to.getY(), 2));
     }
