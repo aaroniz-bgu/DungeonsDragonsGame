@@ -37,5 +37,7 @@ public abstract class Unit extends Tile{
         this.stats = stats;
     }
 
+    //These implementations are temporary! should be changed!
     public abstract void onTick();
+    public abstract void onDeath();
 }
