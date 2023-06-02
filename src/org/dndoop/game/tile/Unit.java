@@ -1,5 +1,9 @@
 package org.dndoop.game.tile;
 
+import org.dndoop.game.tile.tile_utils.Health;
+import org.dndoop.game.tile.tile_utils.Position;
+import org.dndoop.game.tile.tile_utils.UnitStats;
+
 public abstract class Unit extends Tile{
 
     protected String name;

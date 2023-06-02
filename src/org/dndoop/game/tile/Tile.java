@@ -1,5 +1,7 @@
 package org.dndoop.game.tile;
 
+import org.dndoop.game.tile.tile_utils.Position;
+
 public abstract class Tile {
     protected Character character;
     protected Position position;

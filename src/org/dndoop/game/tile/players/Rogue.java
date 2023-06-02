@@ -1,9 +1,8 @@
 package org.dndoop.game.tile.players;
 
-import org.dndoop.game.tile.Health;
-import org.dndoop.game.tile.Player;
-import org.dndoop.game.tile.Position;
-import org.dndoop.game.tile.UnitStats;
+import org.dndoop.game.tile.tile_utils.Health;
+import org.dndoop.game.tile.tile_utils.Position;
+import org.dndoop.game.tile.tile_utils.UnitStats;
 
 public class Rogue extends Player {
 
