@@ -3,8 +3,9 @@ package org.dndoop.game.tile;
 import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
 import org.dndoop.game.tile.tile_utils.UnitStats;
+import org.dndoop.game.utils.events.PlayerEventListener;
 
-public abstract class Unit extends Tile{
+public abstract class Unit extends Tile implements PlayerEventListener {
 
     protected String name;
     protected Health health;
@@ -41,7 +42,5 @@ public abstract class Unit extends Tile{
         this.stats = stats;
     }
 
-    //These implementations are temporary! should be changed!
-    public abstract void onTick();
     public abstract void onDeath();
 }
