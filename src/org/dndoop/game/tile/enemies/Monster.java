@@ -6,6 +6,7 @@ import org.dndoop.game.tile.tile_utils.Position;
 import org.dndoop.game.tile.tile_utils.UnitStats;
 import org.dndoop.game.utils.GameRandomizer;
 import org.dndoop.game.utils.events.PlayerEvent;
+import org.dndoop.game.utils.events.PlayerEventNotifier;
 
 public class Monster extends Enemy {
 
@@ -17,6 +18,8 @@ public class Monster extends Enemy {
 
         //Add legality check on this: TODO
         this.range = range;
+
+        PlayerEventNotifier.getInstance().addListener(this);
     }
 
     @Override
@@ -68,6 +71,6 @@ public class Monster extends Enemy {
 
     @Override
     public void onDeath() {
-
+        PlayerEventNotifier.getInstance().removeListener(this);
     }
 }
