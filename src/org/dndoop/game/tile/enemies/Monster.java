@@ -5,6 +5,7 @@ import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
 import org.dndoop.game.tile.tile_utils.UnitStats;
 import org.dndoop.game.utils.GameRandomizer;
+import org.dndoop.game.utils.events.PlayerEvent;
 
 public class Monster extends Enemy {
 
@@ -19,12 +20,12 @@ public class Monster extends Enemy {
     }
 
     @Override
-    public void onTick() {
-        //THIS METHOD SYSTEM IS GOING TO CHANGE!
-        /* But for starters good to know:
-         * if player in range
-         * else do random move
-         */
+    public void onTick(PlayerEvent event) {
+        if(position.range(event.getPosition()) <= range) {
+            playerInRange(event.getPlayer());
+        } else {
+            randomMove();
+        }
     }
 
     public void playerInRange(Player player){
