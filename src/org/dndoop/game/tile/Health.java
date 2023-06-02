@@ -10,6 +10,10 @@ public class Health {
         this.healthPool = initPool;
     }
 
+    /**
+     * A function to handle health refill
+     * @param amount - the amount gained/to refill;
+     */
     public void regen(int amount) {
         healthAmount = Math.min(healthPool, healthAmount + amount);
     }
