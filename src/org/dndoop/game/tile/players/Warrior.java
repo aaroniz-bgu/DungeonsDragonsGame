@@ -1,4 +1,4 @@
-package org.dndoop.game.tile.playerClasses;
+package org.dndoop.game.tile.players;
 
 import org.dndoop.game.tile.Health;
 import org.dndoop.game.tile.Position;
@@ -51,10 +51,15 @@ public class Warrior extends Player{
     public void onLevelUp() {
         levelUp();
         cdRemaining = 0;
-        stats.addAttackPoints(ATTACK_POINTS_MULTIPLIER*level);
-        stats.addDefensePoints(DEFENSE_POINTS_MULTIPLIER*level);
+        stats.increaseAttackPoints(ATTACK_POINTS_MULTIPLIER*level);
+        stats.increaseDefensePoints(DEFENSE_POINTS_MULTIPLIER*level);
         health.increasePool(HEALTH_POOL_MULTIPLIER*level);
         health.setHealthAmount(health.getHealthPool());
+    }
+
+    @Override
+    public void onDeath() {
+        //TODO
     }
 
     /**
