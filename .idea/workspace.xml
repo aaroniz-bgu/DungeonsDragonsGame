@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="090fd0be-7951-4436-97d2-9209ed3b9587" name="Changes" comment="changed onTick signature according to the new event system">
+    <list default="true" id="090fd0be-7951-4436-97d2-9209ed3b9587" name="Changes" comment="fixed static getInstance">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/enemies/Trap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/enemies/Trap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/utils/events/PlayerEventNotifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/utils/events/PlayerEventNotifier.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -303,7 +304,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685744559414</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="changed onTick signature to correspond to the new event system">
+      <created>1685744624499</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1685744624499</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -318,8 +326,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="protected" />
-    <MESSAGE value="todo mark" />
     <MESSAGE value="added methods" />
     <MESSAGE value="added contents" />
     <MESSAGE value="added files" />
@@ -343,6 +349,8 @@
     <MESSAGE value="removed onTick()" />
     <MESSAGE value="documentation" />
     <MESSAGE value="changed onTick signature according to the new event system" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed onTick signature according to the new event system" />
+    <MESSAGE value="changed onTick signature to correspond to the new event system" />
+    <MESSAGE value="fixed static getInstance" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed static getInstance" />
   </component>
 </project>

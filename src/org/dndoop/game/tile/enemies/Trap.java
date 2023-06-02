@@ -4,6 +4,7 @@ import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
 import org.dndoop.game.tile.tile_utils.UnitStats;
 import org.dndoop.game.utils.events.PlayerEvent;
+import org.dndoop.game.utils.events.PlayerEventNotifier;
 
 public class Trap extends Enemy {
 
@@ -20,8 +21,14 @@ public class Trap extends Enemy {
         this.invisibilityTime = invisibilityTime;
         this.tickCount = 0;
         this.visible = true;
+
+        PlayerEventNotifier.getInstance().addListener(this);
     }
 
+    /**
+     * Used to control the tickCount field and control visibility of the trap
+     * TODO add visibility control once MVC is implemented
+     */
     public void tickVisibility() {
         tickCount += 1;
 
@@ -66,6 +73,6 @@ public class Trap extends Enemy {
 
     @Override
     public void onDeath() {
-
+        PlayerEventNotifier.getInstance().removeListener(this);
     }
 }
