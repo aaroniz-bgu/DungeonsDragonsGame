@@ -14,16 +14,16 @@ public abstract class Tile {
         this.position = position;
     }
 
-    protected Character getCharacter() {
+    public Character getCharacter() {
         return this.character;
     }
-    protected Position getPosition() {
+    public Position getPosition() {
         return this.position;
     }
-    protected void setCharacter(Character character) {
+    public void setCharacter(Character character) {
         this.character = character;
     }
-    protected void setPosition(Position position) {
+    public void setPosition(Position position) {
         this.position = position;
     }
 }
