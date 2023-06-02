@@ -13,27 +13,29 @@ public abstract class Unit extends Tile{
         this.stats = stats;
     }
 
-    protected String getName() {
+    public String getName() {
         return name;
     }
 
-    protected void setName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    protected Health getHealth() {
+    public Health getHealth() {
         return health;
     }
 
-    protected void setHealth(Health health) {
+    public void setHealth(Health health) {
         this.health = health;
     }
 
-    protected UnitStats getStats() {
+    public UnitStats getStats() {
         return stats;
     }
 
-    protected void setStats(UnitStats stats) {
+    public void setStats(UnitStats stats) {
         this.stats = stats;
     }
+
+    public abstract void onTick();
 }
