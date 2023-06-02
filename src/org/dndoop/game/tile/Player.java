@@ -19,6 +19,7 @@ public abstract class Player extends Unit{
     }
     public abstract void onAbilityCast();
     public abstract void onLevelUp();
+    public abstract void onDeath();
     /**
      * Levels up the player increasing and resetting its stats accordingly.
      */
