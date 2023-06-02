@@ -17,7 +17,5 @@ public abstract class Enemy extends Unit {
     }
 
     @Override
-    public abstract void onTick();
-    @Override
     public abstract void onDeath();
 }
