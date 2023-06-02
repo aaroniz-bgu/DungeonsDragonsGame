@@ -4,6 +4,7 @@ import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
 import org.dndoop.game.tile.tile_utils.UnitStats;
 import org.dndoop.game.utils.events.PlayerEvent;
+import org.dndoop.game.utils.events.PlayerEventNotifier;
 
 public class Mage extends Player {
     private int manaPool;
@@ -27,6 +28,8 @@ public class Mage extends Player {
         this.spellPower = spellPower;
         this.hitsCount = hitsCount;
         this.abilityRange = abilityRange;
+
+        PlayerEventNotifier.getInstance().addListener(this);
     }
 
     /**
@@ -61,6 +64,7 @@ public class Mage extends Player {
 
     @Override
     public void onDeath() {
+        PlayerEventNotifier.getInstance().removeListener(this);
         //TODO
     }
 

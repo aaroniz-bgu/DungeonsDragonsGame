@@ -4,6 +4,7 @@ import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
 import org.dndoop.game.tile.tile_utils.UnitStats;
 import org.dndoop.game.utils.events.PlayerEvent;
+import org.dndoop.game.utils.events.PlayerEventNotifier;
 
 public class Warrior extends Player{
     private int abilityCD;
@@ -24,6 +25,8 @@ public class Warrior extends Player{
      */
     public Warrior(String name, Health health, UnitStats stats, Character character, Position position) {
         super(name, health, stats, character, position);
+
+        PlayerEventNotifier.getInstance().addListener(this);
     }
 
     /**
@@ -59,6 +62,7 @@ public class Warrior extends Player{
 
     @Override
     public void onDeath() {
+        PlayerEventNotifier.getInstance().removeListener(this);
         //TODO
     }
 
