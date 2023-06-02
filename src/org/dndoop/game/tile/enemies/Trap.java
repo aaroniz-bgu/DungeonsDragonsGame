@@ -3,6 +3,7 @@ package org.dndoop.game.tile.enemies;
 import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
 import org.dndoop.game.tile.tile_utils.UnitStats;
+import org.dndoop.game.utils.events.PlayerEvent;
 
 public class Trap extends Enemy {
 
@@ -58,9 +59,9 @@ public class Trap extends Enemy {
     }
 
     @Override
-    public void onTick() {
+    public void onTick(PlayerEvent event) {
         tickVisibility();
-        //This method would be deleted; TODO
+        //rest of that
     }
 
     @Override
