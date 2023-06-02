@@ -1,7 +1,11 @@
 package org.dndoop.game.tile;
 
-public class Tile {
+public abstract class Tile {
+    protected Character character;
+    protected Position position;
 
-    private Character character;
-    private Position position;
+    @Override
+    public String toString() {
+        return character.toString();
+    }
 }
