@@ -2,9 +2,9 @@ package org.dndoop.game.tile;
 
 public abstract class Unit extends Tile{
 
-    private String name;
-    private Health health;
-    private UnitStats stats;
+    protected String name;
+    protected Health health;
+    protected UnitStats stats;
     public Unit(String name, Health health, UnitStats stats, Character character, Position position)
     {
         super(character, position);
