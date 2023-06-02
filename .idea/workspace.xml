@@ -1,21 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="090fd0be-7951-4436-97d2-9209ed3b9587" name="Changes" comment="fixed getInstance static">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/enemies/Trap.java" afterDir="false" />
+    <list default="true" id="090fd0be-7951-4436-97d2-9209ed3b9587" name="Changes" comment="initial">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/enemies/Enemy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/Health.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/tile_utils/Health.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/tile_utils/Position.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/Tile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/Unit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/Unit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/UnitStats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/tile_utils/UnitStats.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/enemies/Monster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/enemies/Monster.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Mage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Mage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Rogue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Rogue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Warrior.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Warrior.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/utils/events/AbilityCastEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/utils/events/GameEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/utils/events/GameTickEvent.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +26,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="aaron" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -224,7 +214,42 @@
       <option name="project" value="LOCAL" />
       <updated>1685736784547</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="changed package, code polished">
+      <created>1685739810805</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1685739810805</updated>
+    </task>
+    <task id="LOCAL-00023" summary="changed package, code polished">
+      <created>1685739831473</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1685739831473</updated>
+    </task>
+    <task id="LOCAL-00024" summary="changed package, code polished">
+      <created>1685739858530</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1685739858530</updated>
+    </task>
+    <task id="LOCAL-00025" summary="dependencies were refactored">
+      <created>1685739917895</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1685739917895</updated>
+    </task>
+    <task id="LOCAL-00026" summary="initial">
+      <created>1685739959019</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1685739959019</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -257,6 +282,9 @@
     <MESSAGE value="created range()" />
     <MESSAGE value="added random movement" />
     <MESSAGE value="fixed getInstance static" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed getInstance static" />
+    <MESSAGE value="changed package, code polished" />
+    <MESSAGE value="dependencies were refactored" />
+    <MESSAGE value="initial" />
+    <option name="LAST_COMMIT_MESSAGE" value="initial" />
   </component>
 </project>
