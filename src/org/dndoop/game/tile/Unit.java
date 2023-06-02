@@ -10,6 +10,7 @@ public abstract class Unit extends Tile implements PlayerEventListener {
     protected String name;
     protected Health health;
     protected UnitStats stats;
+    protected String description;//Tal's recommendation TODO implement in all sub classes
     public Unit(String name, Health health, UnitStats stats, Character character, Position position)
     {
         super(character, position);
