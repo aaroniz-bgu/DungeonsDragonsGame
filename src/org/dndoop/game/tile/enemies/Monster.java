@@ -28,6 +28,10 @@ public class Monster extends Enemy {
         }
     }
 
+    /**
+     * Used only when player is in range onTick, handles the movement.
+     * @param player the player.
+     */
     public void playerInRange(Player player){
         Position playerPos = player.getPosition();
         int dx = position.getX() - playerPos.getX();
@@ -49,6 +53,9 @@ public class Monster extends Enemy {
         }
     }
 
+    /**
+     * Used when player isn't in range.
+     */
     public void randomMove() {
         int move = GameRandomizer.getInstance().getRandomInt(1, 4);
         switch (move) {
