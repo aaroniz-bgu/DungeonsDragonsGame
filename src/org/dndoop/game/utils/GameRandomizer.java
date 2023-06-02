@@ -19,7 +19,7 @@ public class GameRandomizer {
      * A method to get the static instance of the game randomizer.
      * @return - an instance of the game randomizer
      */
-    public GameRandomizer getInstance() {
+    public static GameRandomizer getInstance() {
         if(gameRandomizer == null) {
             gameRandomizer = new GameRandomizer(new Random());
         }
@@ -33,7 +33,7 @@ public class GameRandomizer {
      * @param seed - Seed for the randomizer
      * @return an instance of the game randomizer
      */
-    public GameRandomizer getInstance(long seed) {
+    public static GameRandomizer getInstance(long seed) {
         if(gameRandomizer != null) {
             //TODO - Throw exception
         }
