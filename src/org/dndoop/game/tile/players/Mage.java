@@ -3,6 +3,7 @@ package org.dndoop.game.tile.players;
 import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
 import org.dndoop.game.tile.tile_utils.UnitStats;
+import org.dndoop.game.utils.events.PlayerEvent;
 
 public class Mage extends Player {
     private int manaPool;
@@ -67,7 +68,7 @@ public class Mage extends Player {
      * On game tick event regenerates mana by min(manaPool, currentMana+{@value #MANA_TICK_MULTIPLIER}*level)
      */
     @Override
-    public void onTick() {
+    public void onTick(PlayerEvent event) {
         currentMana = Math.min(manaPool, currentMana+MANA_TICK_MULTIPLIER*level);
     }
 

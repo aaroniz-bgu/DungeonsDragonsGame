@@ -3,6 +3,7 @@ package org.dndoop.game.tile.players;
 import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
 import org.dndoop.game.tile.tile_utils.UnitStats;
+import org.dndoop.game.utils.events.PlayerEvent;
 
 public class Warrior extends Player{
     private int abilityCD;
@@ -65,7 +66,7 @@ public class Warrior extends Player{
      * On game tick event lowers the warriors ability cooldown by 1.
      */
     @Override
-    public void onTick() {
+    public void onTick(PlayerEvent event) {
         if(cdRemaining>0)
             cdRemaining--;
     }

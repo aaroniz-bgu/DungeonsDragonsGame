@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="090fd0be-7951-4436-97d2-9209ed3b9587" name="Changes" comment="initial">
+    <list default="true" id="090fd0be-7951-4436-97d2-9209ed3b9587" name="Changes" comment="removed onTick()">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/utils/events/AbilityCastEvent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/utils/events/GameEvent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/utils/events/GameTickEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/enemies/Monster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/enemies/Monster.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Mage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Mage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Rogue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Rogue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Warrior.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Warrior.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -249,7 +250,49 @@
       <option name="project" value="LOCAL" />
       <updated>1685739959019</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Nobody needs those files">
+      <created>1685740840755</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1685740840755</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Implemented the event system for ticking everyone.">
+      <created>1685743772969</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1685743772969</updated>
+    </task>
+    <task id="LOCAL-00029" summary="implemented the eventListener">
+      <created>1685743788318</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1685743788318</updated>
+    </task>
+    <task id="LOCAL-00030" summary="added player field">
+      <created>1685744193587</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1685744193587</updated>
+    </task>
+    <task id="LOCAL-00031" summary="changed onTick signature &amp; implemented it">
+      <created>1685744214135</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1685744214135</updated>
+    </task>
+    <task id="LOCAL-00032" summary="removed onTick()">
+      <created>1685744227799</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1685744227799</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -264,8 +307,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="game" />
-    <MESSAGE value="written health class" />
     <MESSAGE value="nothing" />
     <MESSAGE value="nm" />
     <MESSAGE value="protected" />
@@ -285,6 +326,12 @@
     <MESSAGE value="changed package, code polished" />
     <MESSAGE value="dependencies were refactored" />
     <MESSAGE value="initial" />
-    <option name="LAST_COMMIT_MESSAGE" value="initial" />
+    <MESSAGE value="Nobody needs those files" />
+    <MESSAGE value="Implemented the event system for ticking everyone." />
+    <MESSAGE value="implemented the eventListener" />
+    <MESSAGE value="added player field" />
+    <MESSAGE value="changed onTick signature &amp; implemented it" />
+    <MESSAGE value="removed onTick()" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed onTick()" />
   </component>
 </project>
