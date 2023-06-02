@@ -23,6 +23,10 @@ public class Position {
         return y;
     }
 
+    public double range(Position to) {
+        return Math.sqrt(Math.pow(x - to.getX(), 2) + Math.pow(y - to.getY(), 2));
+    }
+
     /**
      * These methods are called only within units, after making sure the direction
      * chosen is legal. Would be better to not use them rn.
