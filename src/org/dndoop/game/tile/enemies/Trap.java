@@ -75,4 +75,9 @@ public class Trap extends Enemy {
     public void onDeath() {
         PlayerEventNotifier.getInstance().removeListener(this);
     }
+
+    @Override
+    public String toString() {
+        return visible ? character.toString() : ".";
+    }
 }
