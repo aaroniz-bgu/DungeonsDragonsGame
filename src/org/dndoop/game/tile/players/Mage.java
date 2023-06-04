@@ -1,9 +1,8 @@
-package org.dndoop.game.tile.playerClasses;
+package org.dndoop.game.tile.players;
 
-import org.dndoop.game.tile.Health;
-import org.dndoop.game.tile.Player;
-import org.dndoop.game.tile.Position;
-import org.dndoop.game.tile.UnitStats;
+import org.dndoop.game.tile.tile_utils.Health;
+import org.dndoop.game.tile.tile_utils.Position;
+import org.dndoop.game.tile.tile_utils.UnitStats;
 
 public class Mage extends Player {
     private int manaPool;
@@ -57,6 +56,11 @@ public class Mage extends Player {
         manaPool += MANA_POOL_MULTIPLIER*level;
         currentMana = Math.min(currentMana+manaPool/MANA_DIVISOR, manaPool);
         spellPower += SPELL_POWER_MULTIPLIER*level;
+    }
+
+    @Override
+    public void onDeath() {
+        //TODO
     }
 
     /**

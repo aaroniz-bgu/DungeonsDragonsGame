@@ -1,4 +1,4 @@
-package org.dndoop.game.tile;
+package org.dndoop.game.tile.tile_utils;
 
 public class Position {
 
@@ -21,6 +21,15 @@ public class Position {
 
     public int getY() {
         return y;
+    }
+
+    /**
+     * Used to calculate the distance to another position
+     * @param to - The position we want to calculate distance to
+     * @return the distance value
+     */
+    public double range(Position to) {
+        return Math.sqrt(Math.pow(x - to.getX(), 2) + Math.pow(y - to.getY(), 2));
     }
 
     /**

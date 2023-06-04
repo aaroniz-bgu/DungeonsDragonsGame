@@ -1,6 +1,7 @@
-package org.dndoop.game.tile;
+package org.dndoop.game.tile.tile_utils;
 
 public class Health {
+
     private int healthPool;
     private int healthAmount;
     private static final int HEALTH_POOL_MULTIPLIER = 10;
