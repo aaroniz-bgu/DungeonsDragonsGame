@@ -1,9 +1,8 @@
-package org.dndoop.game.tile.playerClasses;
+package org.dndoop.game.tile.players;
 
-import org.dndoop.game.tile.Health;
-import org.dndoop.game.tile.Player;
-import org.dndoop.game.tile.Position;
-import org.dndoop.game.tile.UnitStats;
+import org.dndoop.game.tile.tile_utils.Health;
+import org.dndoop.game.tile.tile_utils.Position;
+import org.dndoop.game.tile.tile_utils.UnitStats;
 
 public class Rogue extends Player {
 
@@ -40,7 +39,12 @@ public class Rogue extends Player {
     public void onLevelUp() {
         levelUp();
         currentEnergy = ENERGY_CAP;
-        stats.addAttackPoints(ATTACK_POINTS_MULTIPLIER*level);
+        stats.increaseAttackPoints(ATTACK_POINTS_MULTIPLIER*level);
+    }
+
+    @Override
+    public void onDeath() {
+        //TODO
     }
 
     /**
