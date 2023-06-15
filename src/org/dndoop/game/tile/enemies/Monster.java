@@ -1,6 +1,9 @@
 package org.dndoop.game.tile.enemies;
 
+import org.dndoop.game.tile.Empty;
+import org.dndoop.game.tile.Unit;
 import org.dndoop.game.tile.players.Player;
+import org.dndoop.game.tile.tile_utils.Direction;
 import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
 import org.dndoop.game.tile.tile_utils.UnitStats;
@@ -43,15 +46,15 @@ public class Monster extends Enemy {
         //This is disgusting, but it is what it is.
         if(Math.abs(dx) > Math.abs(dy)) {
             if(dx > 0) {
-                position.moveLeft();
+                move(Direction.LEFT);
             } else {
-                position.moveRight();
+                move(Direction.RIGHT);
             }
         } else {
             if(dy > 0) {
-                position.moveUp();
+                move(Direction.UP);
             } else {
-                position.moveDown();
+                move(Direction.DOWN);
             }
         }
     }
@@ -62,11 +65,26 @@ public class Monster extends Enemy {
     public void randomMove() {
         int move = GameRandomizer.getInstance().getRandomInt(1, 4);
         switch (move) {
-            case 1 -> position.moveDown();
-            case 2 -> position.moveUp();
-            case 3 -> position.moveLeft();
-            case 4 -> position.moveRight();
+            case 1 -> move(Direction.DOWN);
+            case 2 -> move(Direction.UP);
+            case 3 -> move(Direction.LEFT);
+            case 4 -> move(Direction.RIGHT);
         }
+    }
+
+    @Override
+    public void visit(Empty empty) {
+        position.swapPositions(empty.getPosition());
+    }
+
+    @Override
+    public void visit(Enemy enemy) {
+        //Do nothing...
+    }
+
+    @Override
+    public void visit(Player player) {
+        //Combat TODO...
     }
 
     @Override
@@ -74,9 +92,12 @@ public class Monster extends Enemy {
         GameEventNotifier.getInstance().removeListener(this);
     }
 
+    /**
+     * Rolls up a damage amount between 0-attackPoints
+     */
     @Override
     public void attack() {
-
+        //Roll attack TODO
     }
 
     @Override
