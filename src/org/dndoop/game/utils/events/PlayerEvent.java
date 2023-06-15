@@ -25,6 +25,7 @@ public class PlayerEvent {
     }
 
     public PlayerEvent(Position position, Player player) {
+        //TODO DEEP COPY OF POS
         this(null, position, player);
     }
 

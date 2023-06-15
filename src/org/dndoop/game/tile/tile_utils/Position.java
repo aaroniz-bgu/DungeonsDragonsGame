@@ -48,6 +48,4 @@ public class Position {
     public void moveLeft() {
         this.x-=1;
     }
-
-
 }
