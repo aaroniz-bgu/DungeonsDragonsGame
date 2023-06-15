@@ -22,6 +22,15 @@ public abstract class Player extends Unit {
         this.xp = 0;
         this.level = 1;
     }
+
+    /**
+     * Visitor design pattern, visits the pattern later.
+     * @param unit self.
+     */
+    public void accept(Unit unit){
+        unit.visit(this);
+    }
+
     public abstract void onAbilityCast();
     public abstract void onLevelUp();
     public abstract void onDeath();

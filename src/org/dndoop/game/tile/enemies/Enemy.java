@@ -16,6 +16,14 @@ public abstract class Enemy extends Unit {
         this.experience = experience;
     }
 
+    /**
+     * Visitor design pattern, visits the pattern later.
+     * @param unit self.
+     */
+    public void accept(Unit unit) {
+        unit.visit(this);
+    }
+
     @Override
     public abstract void onDeath();
 }
