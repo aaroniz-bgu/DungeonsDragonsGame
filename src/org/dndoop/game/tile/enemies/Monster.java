@@ -5,8 +5,8 @@ import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
 import org.dndoop.game.tile.tile_utils.UnitStats;
 import org.dndoop.game.utils.GameRandomizer;
-import org.dndoop.game.utils.events.PlayerEvent;
-import org.dndoop.game.utils.events.PlayerEventNotifier;
+import org.dndoop.game.utils.events.GameEvent;
+import org.dndoop.game.utils.events.GameEventNotifier;
 
 public class Monster extends Enemy {
 
@@ -19,13 +19,13 @@ public class Monster extends Enemy {
         //Add legality check on this: TODO
         this.range = range;
 
-        PlayerEventNotifier.getInstance().addListener(this);
+        GameEventNotifier.getInstance().addListener(this);
     }
 
     @Override
-    public void onTick(PlayerEvent event) {
-        if(position.range(event.getPosition()) <= range) {
-            playerInRange(event.getPlayer());
+    public void onTick(GameEvent event) {
+        if(event.isPlayerEvent() && position.range(event.getPosition()) <= range) {
+            playerInRange(event.getActor());
         } else {
             randomMove();
         }
@@ -33,9 +33,9 @@ public class Monster extends Enemy {
 
     /**
      * Used only when player is in range onTick, handles the movement.
-     * @param player the player.
+     * @param player the player, must check if that's really a player instance using 'isPlayerEvent()'.
      */
-    public void playerInRange(Player player){
+    public void playerInRange(Unit player){
         Position playerPos = player.getPosition();
         int dx = position.getX() - playerPos.getX();
         int dy = position.getY() - playerPos.getY();
@@ -71,7 +71,7 @@ public class Monster extends Enemy {
 
     @Override
     public void onDeath() {
-        PlayerEventNotifier.getInstance().removeListener(this);
+        GameEventNotifier.getInstance().removeListener(this);
     }
 
     @Override
