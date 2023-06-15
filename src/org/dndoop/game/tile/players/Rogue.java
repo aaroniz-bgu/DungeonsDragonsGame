@@ -3,6 +3,8 @@ package org.dndoop.game.tile.players;
 import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
 import org.dndoop.game.tile.tile_utils.UnitStats;
+import org.dndoop.game.utils.events.PlayerEvent;
+import org.dndoop.game.utils.events.PlayerEventNotifier;
 
 public class Rogue extends Player {
 
@@ -17,6 +19,8 @@ public class Rogue extends Player {
         super(name, health, stats, character, position);
         this.abilityCost = abilityCost;
         this.currentEnergy = ENERGY_CAP;
+
+        PlayerEventNotifier.getInstance().addListener(this);
     }
 
     /**
@@ -44,6 +48,7 @@ public class Rogue extends Player {
 
     @Override
     public void onDeath() {
+        PlayerEventNotifier.getInstance().removeListener(this);
         //TODO
     }
 
@@ -51,7 +56,7 @@ public class Rogue extends Player {
      * On game tick event, the rogue regens {@value #ENERGY_TICK_REGEN} but caps at {@value #ENERGY_CAP}.\
      */
     @Override
-    public void onTick() {
+    public void onTick(PlayerEvent event) {
         currentEnergy = Math.min(currentEnergy+ENERGY_TICK_REGEN, ENERGY_CAP);
     }
 
