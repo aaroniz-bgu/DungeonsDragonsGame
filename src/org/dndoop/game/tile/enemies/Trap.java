@@ -1,5 +1,7 @@
 package org.dndoop.game.tile.enemies;
 
+import org.dndoop.game.tile.Empty;
+import org.dndoop.game.tile.players.Player;
 import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
 import org.dndoop.game.tile.tile_utils.UnitStats;
@@ -68,7 +70,22 @@ public class Trap extends Enemy {
     @Override
     public void onTick(GameEvent event) {
         tickVisibility();
-        //rest of that
+        //TODO rest of that
+    }
+
+    @Override
+    public void visit(Empty empty) {
+        //Do nothing
+    }
+
+    @Override
+    public void visit(Enemy enemy) {
+        //Do nothing...
+    }
+
+    @Override
+    public void visit(Player player) {
+        //TODO Combat...
     }
 
     @Override
@@ -76,14 +93,20 @@ public class Trap extends Enemy {
         GameEventNotifier.getInstance().removeListener(this);
     }
 
+    /**
+     * Rolls up a damage amount between 0-attackPoints
+     */
     @Override
     public void attack() {
-
+        //TODO
     }
 
+    /**
+     * Rolls up a defence amount between 0-defensePoints
+     */
     @Override
     public void defend() {
-
+        //TODO
     }
 
     @Override
