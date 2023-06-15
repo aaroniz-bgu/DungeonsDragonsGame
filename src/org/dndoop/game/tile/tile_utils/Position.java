@@ -10,9 +10,23 @@ public class Position {
         this.y = initY;
     }
 
+    /**
+     * Copying constructor (Deep-copy).
+     * @param toCopy
+     */
+    public Position(Position toCopy) {
+        this.x = toCopy.getX();
+        this.y = toCopy.getY();
+    }
+
     public void setX(int x) {
         if(x >= 0)
             this.x = x;
+    }
+
+    public void setY(int y) {
+        if(y >= 0)
+            this.y = y;
     }
 
     public int getX() {
