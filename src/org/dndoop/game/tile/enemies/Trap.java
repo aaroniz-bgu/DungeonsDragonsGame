@@ -3,8 +3,8 @@ package org.dndoop.game.tile.enemies;
 import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
 import org.dndoop.game.tile.tile_utils.UnitStats;
-import org.dndoop.game.utils.events.PlayerEvent;
-import org.dndoop.game.utils.events.PlayerEventNotifier;
+import org.dndoop.game.utils.events.GameEvent;
+import org.dndoop.game.utils.events.GameEventNotifier;
 
 public class Trap extends Enemy {
 
@@ -22,7 +22,7 @@ public class Trap extends Enemy {
         this.tickCount = 0;
         this.visible = true;
 
-        PlayerEventNotifier.getInstance().addListener(this);
+        GameEventNotifier.getInstance().addListener(this);
     }
 
     /**
@@ -66,14 +66,14 @@ public class Trap extends Enemy {
     }
 
     @Override
-    public void onTick(PlayerEvent event) {
+    public void onTick(GameEvent event) {
         tickVisibility();
         //rest of that
     }
 
     @Override
     public void onDeath() {
-        PlayerEventNotifier.getInstance().removeListener(this);
+        GameEventNotifier.getInstance().removeListener(this);
     }
 
     @Override
