@@ -100,8 +100,11 @@ public class Monster extends Enemy {
         //Roll attack TODO
     }
 
+    /**
+     * Rolls up a defence amount between 0-defensePoints
+     */
     @Override
     public void defend() {
-
+        //Roll defence TODO
     }
 }
