@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="090fd0be-7951-4436-97d2-9209ed3b9587" name="Changes" comment="sub upon init and unsub onDeath from notifier for events">
+    <list default="true" id="090fd0be-7951-4436-97d2-9209ed3b9587" name="Changes" comment="Visitor pattern">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/tile_utils/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/tile_utils/Position.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/utils/events/PlayerEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/utils/events/PlayerEvent.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +51,8 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/User/Documents/Eclipse proj/DungeonsDragonsGame"
+    "last_opened_file_path": "C:/Users/User/Documents/Eclipse proj/DungeonsDragonsGame",
+    "node.js.selected.package.tslint": "(autodetect)"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -337,7 +344,42 @@
       <option name="project" value="LOCAL" />
       <updated>1685745353828</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="Initial commit">
+      <created>1686843852718</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1686843852718</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Tal's factory copy paste">
+      <created>1686843870035</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1686843870035</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Initial commit">
+      <created>1686843878129</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1686843878129</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Added attack + defend">
+      <created>1686843937605</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1686843937605</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Visitor pattern">
+      <created>1686843954191</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1686843954191</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -352,10 +394,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added events struct" />
-    <MESSAGE value="fixed" />
-    <MESSAGE value="added on death" />
-    <MESSAGE value="fixed syntax, package name &amp; added on death" />
     <MESSAGE value="added enemy class" />
     <MESSAGE value="created GameRandomizer" />
     <MESSAGE value="created range()" />
@@ -377,6 +415,10 @@
     <MESSAGE value="subscription and removal on death of notifier" />
     <MESSAGE value="subscribed upon init and unsub onDeath from notifier for events" />
     <MESSAGE value="sub upon init and unsub onDeath from notifier for events" />
-    <option name="LAST_COMMIT_MESSAGE" value="sub upon init and unsub onDeath from notifier for events" />
+    <MESSAGE value="Tal's factory copy paste" />
+    <MESSAGE value="Initial commit" />
+    <MESSAGE value="Added attack + defend" />
+    <MESSAGE value="Visitor pattern" />
+    <option name="LAST_COMMIT_MESSAGE" value="Visitor pattern" />
   </component>
 </project>
