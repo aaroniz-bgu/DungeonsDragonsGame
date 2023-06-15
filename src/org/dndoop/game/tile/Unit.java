@@ -5,9 +5,10 @@ import org.dndoop.game.tile.players.Player;
 import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
 import org.dndoop.game.tile.tile_utils.UnitStats;
-import org.dndoop.game.utils.events.PlayerEventListener;
+import org.dndoop.game.utils.events.GameEvent;
+import org.dndoop.game.utils.events.GameEventListener;
 
-public abstract class Unit extends Tile implements PlayerEventListener {
+public abstract class Unit extends Tile implements GameEventListener {
 
     protected String name;
     protected Health health;
