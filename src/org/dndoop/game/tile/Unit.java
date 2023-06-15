@@ -54,7 +54,18 @@ public abstract class Unit extends Tile implements GameEventListener {
 
     public abstract void onDeath();
 
+    /**
+     * Rolls up a damage amount between 0-attackPoints
+     */
     public abstract void attack();
 
+    /**
+     * Rolls up a defence amount between 0-defensePoints
+     */
     public abstract void defend();
+
+
+    public abstract void visit(Empty empty);
+    public abstract void visit(Enemy enemy);
+    public abstract void visit(Player player);
 }
