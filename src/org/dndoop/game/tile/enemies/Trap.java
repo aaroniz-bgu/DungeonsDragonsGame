@@ -77,6 +77,16 @@ public class Trap extends Enemy {
     }
 
     @Override
+    public void attack() {
+
+    }
+
+    @Override
+    public void defend() {
+
+    }
+
+    @Override
     public String toString() {
         return visible ? character.toString() : ".";
     }

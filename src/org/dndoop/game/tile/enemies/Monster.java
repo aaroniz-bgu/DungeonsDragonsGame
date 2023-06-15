@@ -73,4 +73,14 @@ public class Monster extends Enemy {
     public void onDeath() {
         PlayerEventNotifier.getInstance().removeListener(this);
     }
+
+    @Override
+    public void attack() {
+
+    }
+
+    @Override
+    public void defend() {
+
+    }
 }
