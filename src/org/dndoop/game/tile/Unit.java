@@ -1,7 +1,9 @@
 package org.dndoop.game.tile;
 
+import org.dndoop.game.board.GameManager;
 import org.dndoop.game.tile.enemies.Enemy;
 import org.dndoop.game.tile.players.Player;
+import org.dndoop.game.tile.tile_utils.Direction;
 import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
 import org.dndoop.game.tile.tile_utils.UnitStats;
@@ -22,11 +24,12 @@ public abstract class Unit extends Tile implements GameEventListener {
         this.stats = stats;
     }
 
-    public abstract void visit(Empty empty);
-    public abstract void visit(Enemy enemy);
-    public abstract void visit(Player player);
-
-
+    protected void move(Direction direction) {
+        GameManager.getInstance()
+                .getGameBoard()
+                .getAt(position.move(direction))
+                .accept(this);
+    }
 
     public String getName() {
         return name;
