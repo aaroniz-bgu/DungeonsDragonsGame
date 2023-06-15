@@ -7,19 +7,19 @@ import java.util.List;
  * A singleton responsible on notifying all the units that are alive and other objects about
  * various player events, such as 'PlayerMovementEvent'
  */
-public class PlayerEventNotifier {
+public class GameEventNotifier {
 
-    private static PlayerEventNotifier instance = null;
+    private static GameEventNotifier instance = null;
 
-    private List<PlayerEventListener> listeners;
+    private List<GameEventListener> listeners;
 
-    private PlayerEventNotifier() {
+    private GameEventNotifier() {
         this.listeners = new ArrayList<>();
     }
 
-    public static PlayerEventNotifier getInstance() {
+    public static GameEventNotifier getInstance() {
         if(instance == null) {
-            instance = new PlayerEventNotifier();
+            instance = new GameEventNotifier();
         }
 
         return instance;
@@ -30,8 +30,9 @@ public class PlayerEventNotifier {
      * This method should be called only once within the listener.
      * @param listener - the listener that subscribes
      */
-    public void addListener(PlayerEventListener listener) {
+    public GameEventNotifier addListener(GameEventListener listener) {
         listeners.add(listener);
+        return this;
     }
 
     /**
@@ -40,17 +41,19 @@ public class PlayerEventNotifier {
      * @param listener - The listener that listens to the player events.
      * @return true if was in the listeners, false otherwise.
      */
-    public boolean removeListener(PlayerEventListener listener) {
-        return listeners.remove(listener);
+    public GameEventNotifier removeListener(GameEventListener listener) {
+        listeners.remove(listener);
+        return this;
     }
 
     /**
      * Fires up an event and notifies all objects that subscribed and observe player events.
      * @param event event to be sent
      */
-    public void notify(PlayerEvent event) {
-        for(PlayerEventListener listener : listeners) {
+    public GameEventNotifier notify(GameEvent event) {
+        for(GameEventListener listener : listeners) {
             listener.onTick(event);
         }
+        return this;
     }
 }

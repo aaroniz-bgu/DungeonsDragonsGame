@@ -3,8 +3,8 @@ package org.dndoop.game.tile.players;
 import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
 import org.dndoop.game.tile.tile_utils.UnitStats;
-import org.dndoop.game.utils.events.PlayerEvent;
-import org.dndoop.game.utils.events.PlayerEventNotifier;
+import org.dndoop.game.utils.events.GameEvent;
+import org.dndoop.game.utils.events.GameEventNotifier;
 
 public class Mage extends Player {
     private int manaPool;
@@ -29,7 +29,7 @@ public class Mage extends Player {
         this.hitsCount = hitsCount;
         this.abilityRange = abilityRange;
 
-        PlayerEventNotifier.getInstance().addListener(this);
+        GameEventNotifier.getInstance().addListener(this);
     }
 
     /**
@@ -64,7 +64,7 @@ public class Mage extends Player {
 
     @Override
     public void onDeath() {
-        PlayerEventNotifier.getInstance().removeListener(this);
+        GameEventNotifier.getInstance().removeListener(this);
         //TODO
     }
 
@@ -72,7 +72,7 @@ public class Mage extends Player {
      * On game tick event regenerates mana by min(manaPool, currentMana+{@value #MANA_TICK_MULTIPLIER}*level)
      */
     @Override
-    public void onTick(PlayerEvent event) {
+    public void onTick(GameEvent event) {
         currentMana = Math.min(manaPool, currentMana+MANA_TICK_MULTIPLIER*level);
     }
 

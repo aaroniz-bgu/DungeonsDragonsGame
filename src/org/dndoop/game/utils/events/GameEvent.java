@@ -1,12 +1,14 @@
 package org.dndoop.game.utils.events;
 
+import org.dndoop.game.tile.Unit;
 import org.dndoop.game.tile.players.Player;
 import org.dndoop.game.tile.tile_utils.Position;
 
-public class PlayerEvent {
+public class GameEvent {
     private final String NAME;
     private final Position POSITION;
-    private final Player PLAYER;
+    private final Unit ACTOR;
+    private final boolean IS_PLAYER;
 
     /**
      * The default constructor for an event, should be only generated in Player class/ related
@@ -14,19 +16,31 @@ public class PlayerEvent {
      * @param name - Name of event e.g 'PlayerMovementEvent'
      * @param position The position of the player at time of event firing
      */
-    public PlayerEvent(String name, Position position, Player player) {
+    private GameEvent(String name, Position position, Unit actor, boolean isPlayer) {
         if(position == null) {
             //TODO THROW ILLEGAL POSITION EXCEPTION
         }
 
         this.NAME = name;
-        this.POSITION = position;
-        this.PLAYER = player;
+        this.POSITION = new Position(position);
+        this.ACTOR = actor;
+        this.IS_PLAYER = isPlayer;
     }
 
-    public PlayerEvent(Position position, Player player) {
-        //TODO DEEP COPY OF POS
-        this(null, position, player);
+    public GameEvent(String name, Position position, Unit actor) {
+        this(name, position, actor, false);
+    }
+
+    public GameEvent(String name, Position position, Player actor) {
+        this(name, position, actor, true);
+    }
+
+    public GameEvent(Position position, Unit actor) {
+        this(null, position, actor);
+    }
+
+    public GameEvent(Position position, Player actor) {
+        this(null, position, actor);
     }
 
     /**
@@ -46,7 +60,11 @@ public class PlayerEvent {
     /**
      * @return the player which fired up the event
      */
-    public Player getPlayer() {
-        return PLAYER;
+    public Unit getActor() {
+        return ACTOR;
+    }
+
+    public boolean isPlayerEvent() {
+        return IS_PLAYER;
     }
 }
