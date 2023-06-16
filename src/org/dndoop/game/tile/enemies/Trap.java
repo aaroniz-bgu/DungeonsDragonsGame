@@ -79,11 +79,6 @@ public class Trap extends Enemy {
     }
 
     @Override
-    public void visit(Enemy enemy) {
-        //Do nothing...
-    }
-
-    @Override
     public void visit(Player player) {
         //TODO Combat...
     }
