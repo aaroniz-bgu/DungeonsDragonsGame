@@ -63,7 +63,7 @@ public class GameBoard implements GameEventListener, GetAtCallback {
     }
 
     @Override
-    public void onTick(GameEvent event) {
+    public void onGameEvent(GameEvent event) {
 
     }
 }

@@ -52,7 +52,7 @@ public class GameEventNotifier implements Notifier {
      */
     public GameEventNotifier notify(GameEvent event) {
         for(GameEventListener listener : listeners) {
-            listener.onTick(event);
+            listener.onGameEvent(event);
         }
         return this;
     }

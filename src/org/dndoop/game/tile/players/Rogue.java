@@ -74,11 +74,16 @@ public class Rogue extends Player {
         //TODO Combat
     }
 
+    @Override
+    public void onTick() {
+
+    }
+
     /**
      * On game tick event, the rogue regens {@value #ENERGY_TICK_REGEN} but caps at {@value #ENERGY_CAP}.\
      */
     @Override
-    public void onTick(GameEvent event) {
+    public void onGameEvent(GameEvent event) {
         currentEnergy = Math.min(currentEnergy+ENERGY_TICK_REGEN, ENERGY_CAP);
     }
 

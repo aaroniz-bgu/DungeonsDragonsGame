@@ -45,7 +45,7 @@ public class GameManager implements GameEventListener {
     }
 
     @Override
-    public void onTick(GameEvent event) {
+    public void onGameEvent(GameEvent event) {
 
     }
 }

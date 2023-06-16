@@ -91,12 +91,17 @@ public class Mage extends Player {
         //TODO combat
     }
 
+    @Override
+    public void onTick() {
+        currentMana = Math.min(manaPool, currentMana+MANA_TICK_MULTIPLIER*level);
+    }
+
     /**
-     * On game tick event regenerates mana by min(manaPool, currentMana+{@value #MANA_TICK_MULTIPLIER}*level)
+     * On game event regenerates mana by min(manaPool, currentMana+{@value #MANA_TICK_MULTIPLIER}*level)
      */
     @Override
-    public void onTick(GameEvent event) {
-        currentMana = Math.min(manaPool, currentMana+MANA_TICK_MULTIPLIER*level);
+    public void onGameEvent(GameEvent event) {
+
     }
 
     public int getManaPool() {

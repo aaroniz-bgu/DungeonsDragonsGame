@@ -88,11 +88,16 @@ public class Warrior extends Player{
         //TODO Combat
     }
 
+    @Override
+    public void onTick() {
+
+    }
+
     /**
      * On game tick event lowers the warriors ability cooldown by 1.
      */
     @Override
-    public void onTick(GameEvent event) {
+    public void onGameEvent(GameEvent event) {
         if(cdRemaining>0)
             cdRemaining--;
     }
