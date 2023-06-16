@@ -9,13 +9,11 @@ import org.dndoop.game.utils.events.GameEventNotifier;
 
 public abstract class Enemy extends Unit {
 
-    protected int experience;
-
     public Enemy(
             String name, Health health, UnitStats stats,
-            Character character, Position position, int experience, GameEventNotifier gameEventNotifier) {
-        super(name, health, stats, character, position, gameEventNotifier);
-        this.experience = experience;
+            Character character, Position position, int experience,
+            GameEventNotifier gameEventNotifier) {
+        super(name, health, stats, character, experience, position, gameEventNotifier);
     }
 
     /**
