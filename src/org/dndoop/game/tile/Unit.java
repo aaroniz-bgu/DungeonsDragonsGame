@@ -8,12 +8,15 @@ import org.dndoop.game.tile.tile_utils.Direction;
 import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
 import org.dndoop.game.tile.tile_utils.UnitStats;
+import org.dndoop.game.utils.GameRandomizer;
 import org.dndoop.game.utils.events.*;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public abstract class Unit extends Tile implements GameEventListener {
 
+    protected int xp;
     protected String name;
     protected Health health;
     protected UnitStats stats;
@@ -22,14 +25,17 @@ public abstract class Unit extends Tile implements GameEventListener {
     protected Notifier notifier;
     protected GetAtCallback tiles;
     protected Map<GameEventName, EventCallback> events;
-    public Unit(String name, Health health, UnitStats stats, Character character, Position position, GameEventNotifier gameEventNotifier)
+    public Unit(String name, Health health, UnitStats stats, Character character,
+                int xp, Position position, GameEventNotifier gameEventNotifier)
     {
         super(character, position);
         this.name = name;
         this.health = health;
         this.stats = stats;
+        this.xp = xp;
 
         this.notifier = (GameEvent e) -> gameEventNotifier.notify(e);
+        this.events = new HashMap<>();
     }
 
     @Override
@@ -51,6 +57,29 @@ public abstract class Unit extends Tile implements GameEventListener {
         this.tiles = callback;
     }
 
+    /**
+     * Rolls up a damage amount between 0-attackPoints and attacks target.
+     * @param target Unit to be attacked.
+     */
+    public void attack(Unit target) {
+        int attackDamage = GameRandomizer.getInstance().getRandomInt(0, getStats().getAttackPoints());
+        target.defend(attackDamage);
+    }
+
+    /**
+     * Damaging the unit with giving it the ability to defend.
+     * Rolls up a defence amount between 0-defensePoints
+     */
+    public void defend(int attackDamage) {
+        int defenseAttack = GameRandomizer.getInstance().getRandomInt(0, getStats().getDefensePoints());
+        int damage = attackDamage - defenseAttack;
+        if(damage >= 0) {
+            if(getHealth().damage(damage)) {
+                onDeath();
+            }
+        }
+    }
+
     public String getName() {
         return name;
     }
@@ -58,9 +87,15 @@ public abstract class Unit extends Tile implements GameEventListener {
     public void setName(String name) {
         this.name = name;
     }
+    public int getXp() {
+        return xp;
+    }
 
     public Health getHealth() {
         return health;
+    }
+    public boolean isAlive() {
+        return getHealth().getHealthAmount() > 0;
     }
 
     public void setHealth(Health health) {
@@ -77,20 +112,6 @@ public abstract class Unit extends Tile implements GameEventListener {
 
 
     public abstract void onDeath();
-
-    /**
-     * Rolls up a damage amount between 0-attackPoints
-     */
-    public void attack() {
-
-    }
-
-    /**
-     * Rolls up a defence amount between 0-defensePoints
-     */
-    public void defend() {
-
-    }
 
     public abstract void visit(Empty empty);
     public abstract void visit(Enemy enemy);

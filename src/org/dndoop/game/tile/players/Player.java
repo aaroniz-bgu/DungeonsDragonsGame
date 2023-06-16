@@ -5,10 +5,14 @@ import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
 import org.dndoop.game.tile.Unit;
 import org.dndoop.game.tile.tile_utils.UnitStats;
+import org.dndoop.game.utils.events.GameEvent;
+import org.dndoop.game.utils.events.GameEventName;
 import org.dndoop.game.utils.events.GameEventNotifier;
 
 public abstract class Player extends Unit {
-    protected int xp;
+
+    private static int INITIAL_XP = 0;
+
     protected int level;
 
     /**
@@ -22,9 +26,17 @@ public abstract class Player extends Unit {
     public Player(
             String name, Health health, UnitStats stats, Character character, Position position, GameEventNotifier gameEventNotifier
     ) {
-        super(name, health, stats, character, position, gameEventNotifier);
-        this.xp = 0;
+        super(name, health, stats, character, INITIAL_XP, position, gameEventNotifier);
         this.level = 1;
+
+        buildMapEvents();
+    }
+
+    @Override
+    public void buildMapEvents() {
+        events.put(GameEventName.ENEMY_DEATH_EVENT, (GameEvent event) -> {
+            gainXp(event.getActor().getXp());
+        });
     }
 
     /**
@@ -50,9 +62,26 @@ public abstract class Player extends Unit {
         //If this function gets invoked you f*****-up really hard buddy!
     }
 
+    @Override
+    public void onDeath() {
+        this.character = 'X';
+        notifier.notify(new GameEvent(GameEventName.PLAYER_DIED_EVENT, position, this));
+    }
+
+    public abstract void castAbility();
     public abstract void onAbilityCast();
     public abstract void onLevelUp();
-    public abstract void onDeath();
+
+
+    /**
+     * Adding xp to it's bar and taking care of leveling-up in the correct scenario.
+     * @param gain The xp that was gained/ to be added.
+     */
+    public void gainXp(int gain) {
+        this.xp += gain;
+        levelUp();
+    }
+
     /**
      * Levels up the player increasing and resetting its stats accordingly.
      */
@@ -62,6 +91,7 @@ public abstract class Player extends Unit {
             level++;
             this.health.levelUp(level);
             this.stats.levelUp(level);
+            onLevelUp();
         }
     }
 }

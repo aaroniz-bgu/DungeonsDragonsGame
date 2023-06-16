@@ -27,24 +27,20 @@ public class Trap extends Enemy {
         this.invisibilityTime = invisibilityTime;
         this.tickCount = 0;
         this.visible = true;
+
+        buildMapEvents();
     }
 
     /**
      * Used to control the tickCount field and control visibility of the trap
      */
     public void tickVisibility() {
-        tickCount += 1;
+        visible = tickCount < visibilityTime;
 
-        if(visible) {
-            if(tickCount == visibilityTime) {
-                tickCount = 0;
-                visible = false;
-            }
+        if(tickCount == (visibilityTime + invisibilityTime)) {
+            tickCount = 0;
         } else {
-            if(tickCount == invisibilityTime) {
-                tickCount = 0;
-                visible = true;
-            }
+            tickCount += 1;
         }
     }
 
@@ -55,12 +51,21 @@ public class Trap extends Enemy {
 
     @Override
     public void visit(Player player) {
-        //TODO Combat...
+        //Can't actually visit a player, damaging handled below in event route.
     }
 
     @Override
     public void buildMapEvents() {
-        //TODO
+        events.put(GameEventName.PLAYER_ACTION_EVENT, (GameEvent event) -> {
+            onTick();
+            if (position.range(event.getPosition()) < 2) {
+                attack(event.getActor());
+            }
+        });
+        events.put(GameEventName.PLAYER_ABILITY_CAST_EVENT, (GameEvent event) -> {
+            event.interactWithEvent(this);
+            events.get(GameEventName.PLAYER_ACTION_EVENT).execute(event);
+        });
     }
 
     @Override

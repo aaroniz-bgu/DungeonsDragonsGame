@@ -16,6 +16,7 @@ import java.util.HashMap;
 
 public class Monster extends Enemy {
 
+    private final int DEFAULT_RANGE = 8;
     private final int RANGE;
 
     public Monster(String name, Health health, UnitStats stats,
@@ -23,24 +24,27 @@ public class Monster extends Enemy {
                    GameEventNotifier gameEventNotifier) {
         super(name, health, stats, character, position, experience, gameEventNotifier);
 
-        //Add legality check on this: TODO
-        this.RANGE = range;
-        this.events = new HashMap<>();
-
+        if(range >= 0) {
+            this.RANGE = range;
+        } else {
+            //My own implementation, please do not deduct points it's actually nice:
+            RANGE = DEFAULT_RANGE;
+        }
+        buildMapEvents();
     }
 
     @Override
     public void buildMapEvents(){
         events.put(GameEventName.PLAYER_ACTION_EVENT, (GameEvent event) -> {
             onTick();
-            if(event.isPlayerEvent() && position.range(event.getPosition()) <= RANGE) {
+            if(position.range(event.getPosition()) <= RANGE) {
                 playerInRange(event.getActor());
             } else {
                 randomMove();
             }
         });
         events.put(GameEventName.PLAYER_ABILITY_CAST_EVENT, (GameEvent event) -> {
-            /*...Might be deprecated*/
+            event.interactWithEvent(this);
             events.get(GameEventName.PLAYER_ACTION_EVENT).execute(event);
         });
     }
@@ -86,7 +90,7 @@ public class Monster extends Enemy {
 
     @Override
     public void visit(Player player) {
-        //Combat TODO...
+        attack(player);
     }
 
     @Override

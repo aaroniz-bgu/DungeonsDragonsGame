@@ -4,17 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="090fd0be-7951-4436-97d2-9209ed3b9587" name="Changes" comment="Updating notify acessability, added Maps for reactions for events and EventCallback">
+    <list default="true" id="090fd0be-7951-4436-97d2-9209ed3b9587" name="Changes" comment="cast ability and visitor now working">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/Unit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/Unit.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/enemies/Monster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/enemies/Monster.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/enemies/Trap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/enemies/Trap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Mage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Mage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Rogue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Rogue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Warrior.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Warrior.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/utils/events/GameEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/utils/events/GameEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/utils/events/GameEventName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/utils/events/GameEventName.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/utils/events/GameEventNotifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/utils/events/GameEventNotifier.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,9 +20,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -94,112 +87,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1685700863698</updated>
-      <workItem from="1686910553286" duration="9114000" />
-    </task>
-    <task id="LOCAL-00025" summary="dependencies were refactored">
-      <created>1685739917895</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1685739917895</updated>
-    </task>
-    <task id="LOCAL-00026" summary="initial">
-      <created>1685739959019</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1685739959019</updated>
-    </task>
-    <task id="LOCAL-00027" summary="Nobody needs those files">
-      <created>1685740840755</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1685740840755</updated>
-    </task>
-    <task id="LOCAL-00028" summary="Implemented the event system for ticking everyone.">
-      <created>1685743772969</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1685743772969</updated>
-    </task>
-    <task id="LOCAL-00029" summary="implemented the eventListener">
-      <created>1685743788318</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1685743788318</updated>
-    </task>
-    <task id="LOCAL-00030" summary="added player field">
-      <created>1685744193587</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1685744193587</updated>
-    </task>
-    <task id="LOCAL-00031" summary="changed onTick signature &amp; implemented it">
-      <created>1685744214135</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1685744214135</updated>
-    </task>
-    <task id="LOCAL-00032" summary="removed onTick()">
-      <created>1685744227799</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1685744227799</updated>
-    </task>
-    <task id="LOCAL-00033" summary="documentation">
-      <created>1685744535616</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1685744535616</updated>
-    </task>
-    <task id="LOCAL-00034" summary="changed onTick signature according to the new event system">
-      <created>1685744559414</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1685744559414</updated>
-    </task>
-    <task id="LOCAL-00035" summary="changed onTick signature to correspond to the new event system">
-      <created>1685744624499</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1685744624499</updated>
-    </task>
-    <task id="LOCAL-00036" summary="fixed static getInstance">
-      <created>1685745061318</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1685745061318</updated>
-    </task>
-    <task id="LOCAL-00037" summary="subscription and removal on death of notifier">
-      <created>1685745117246</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1685745117246</updated>
-    </task>
-    <task id="LOCAL-00038" summary="subscribed upon init and unsub onDeath from notifier for events">
-      <created>1685745221219</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1685745221219</updated>
-    </task>
-    <task id="LOCAL-00039" summary="sub upon init and unsub onDeath from notifier for events">
-      <created>1685745353828</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1685745353828</updated>
+      <workItem from="1686910553286" duration="19538000" />
     </task>
     <task id="LOCAL-00040" summary="Initial commit">
       <created>1686843852718</created>
@@ -439,7 +327,112 @@
       <option name="project" value="LOCAL" />
       <updated>1686920213516</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="DOCUMENTATION">
+      <created>1686921598089</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1686921598089</updated>
+    </task>
+    <task id="LOCAL-00075" summary="add PLAYER_DIED_EVENT">
+      <created>1686921618527</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1686921618527</updated>
+    </task>
+    <task id="LOCAL-00076" summary="finalizing listeners and deprecating it's singleton use">
+      <created>1686921652447</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1686921652447</updated>
+    </task>
+    <task id="LOCAL-00077" summary="code polishing according to other changes (notifier isn't singleton anymore, onGameEvent is same for all units, same with attack and defence) + fixing documentations">
+      <created>1686921744894</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1686921744894</updated>
+    </task>
+    <task id="LOCAL-00078" summary="onGameEvent, attack, defend are same for all units so polishing other classes">
+      <created>1686921788243</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1686921788243</updated>
+    </task>
+    <task id="LOCAL-00079" summary="xp is now common to all units but defer on usage">
+      <created>1686932898535</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1686932898535</updated>
+    </task>
+    <task id="LOCAL-00080" summary="interact with was added ands is player was deprecated">
+      <created>1686932922200</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1686932922200</updated>
+    </task>
+    <task id="LOCAL-00081" summary="is alive and getting xp methods">
+      <created>1686932956934</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1686932956934</updated>
+    </task>
+    <task id="LOCAL-00082" summary="xp &amp; attack &amp; defense is same for all">
+      <created>1686932984142</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1686932984142</updated>
+    </task>
+    <task id="LOCAL-00083" summary="events handeling is all the same for player + init xp">
+      <created>1686933061587</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1686933061587</updated>
+    </task>
+    <task id="LOCAL-00084" summary="onDath, now player is changing to 'X'">
+      <created>1686933078501</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1686933078501</updated>
+    </task>
+    <task id="LOCAL-00085" summary="gain xp and overhauling level up to be in logical order">
+      <created>1686933120835</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1686933120835</updated>
+    </task>
+    <task id="LOCAL-00086" summary="New Event type">
+      <created>1686933157427</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1686933157427</updated>
+    </task>
+    <task id="LOCAL-00087" summary="cast ability and visitor now working">
+      <created>1686933198242</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1686933198242</updated>
+    </task>
+    <task id="LOCAL-00088" summary="cast ability and visitor now working">
+      <created>1686933269507</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1686933269507</updated>
+    </task>
+    <option name="localTasksCounter" value="89" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -457,20 +450,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="minor changes and removing this annoying xml" />
-    <MESSAGE value="-" />
-    <MESSAGE value="Refactoring name of eventing system" />
-    <MESSAGE value="added copying constructor and a missing setter" />
-    <MESSAGE value="swap position added and movement system overhaul" />
-    <MESSAGE value="Refactoring event system" />
-    <MESSAGE value="adding visitor system and doc" />
-    <MESSAGE value="movement system overhaul" />
-    <MESSAGE value="movement system overhaul and visitor" />
-    <MESSAGE value="directions movement overhaul" />
-    <MESSAGE value="toString+getAt" />
-    <MESSAGE value="first impl draft" />
-    <MESSAGE value="doc" />
-    <MESSAGE value="I hate this file" />
     <MESSAGE value="code reduction, visit enemy here" />
     <MESSAGE value="first impl" />
     <MESSAGE value="trying to change the impl to not be singleton" />
@@ -482,6 +461,20 @@
     <MESSAGE value="refactoring onGameEvent and adding onTick again" />
     <MESSAGE value="refactoring onGameEvent and adding onTick again, and ticking visibility" />
     <MESSAGE value="Updating notify acessability, added Maps for reactions for events and EventCallback" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updating notify acessability, added Maps for reactions for events and EventCallback" />
+    <MESSAGE value="DOCUMENTATION" />
+    <MESSAGE value="add PLAYER_DIED_EVENT" />
+    <MESSAGE value="finalizing listeners and deprecating it's singleton use" />
+    <MESSAGE value="code polishing according to other changes (notifier isn't singleton anymore, onGameEvent is same for all units, same with attack and defence) + fixing documentations" />
+    <MESSAGE value="onGameEvent, attack, defend are same for all units so polishing other classes" />
+    <MESSAGE value="xp is now common to all units but defer on usage" />
+    <MESSAGE value="interact with was added ands is player was deprecated" />
+    <MESSAGE value="is alive and getting xp methods" />
+    <MESSAGE value="xp &amp; attack &amp; defense is same for all" />
+    <MESSAGE value="events handeling is all the same for player + init xp" />
+    <MESSAGE value="onDath, now player is changing to 'X'" />
+    <MESSAGE value="gain xp and overhauling level up to be in logical order" />
+    <MESSAGE value="New Event type" />
+    <MESSAGE value="cast ability and visitor now working" />
+    <option name="LAST_COMMIT_MESSAGE" value="cast ability and visitor now working" />
   </component>
 </project>

@@ -1,13 +1,18 @@
 package org.dndoop.game.tile.players;
 
 import org.dndoop.game.tile.Empty;
+import org.dndoop.game.tile.Unit;
 import org.dndoop.game.tile.enemies.Enemy;
 import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
 import org.dndoop.game.tile.tile_utils.UnitStats;
+import org.dndoop.game.utils.GameRandomizer;
 import org.dndoop.game.utils.events.GameEvent;
 import org.dndoop.game.utils.events.GameEventName;
 import org.dndoop.game.utils.events.GameEventNotifier;
+import org.dndoop.game.utils.events.RangeAttackEvent;
+
+import java.util.ArrayList;
 
 public class Mage extends Player {
     private int manaPool;
@@ -35,6 +40,16 @@ public class Mage extends Player {
     }
 
     /**
+     * Used within Joystick, only casts ability if mage's current mana >= cost
+     */
+    @Override
+    public void castAbility() {
+        if(getCurrentMana() >= getManaCost()) {
+            onAbilityCast();
+        }
+    }
+
+    /**
      * On mage ability cast event, removes ability mana cost from mana pool and then hits hitsCount enemies randomly within
      * abilityRange for damage equal to spellPower (each enemy may try to defend itself).
      * Will also stop if there are no living enemies left within abilityRange.
@@ -42,12 +57,25 @@ public class Mage extends Player {
     @Override
     public void onAbilityCast() {
         currentMana = currentMana - manaCost;
+
+        ArrayList<Unit> potentialTargets = new ArrayList<>();
+        notifier.notify(new RangeAttackEvent(position, this, abilityRange, potentialTargets));
+
         int hits = 0;
-        /*while (hits<hitsCount&&TODO exists living enemy such that range(enemy, player)<abilityRange) {
-            //TODO deal damage to random enemy within abilityRange equal to spellPower
-            //     (the enemy may try to defend itself)
-            hits++;
-        }*/
+        while(hits < hitsCount && !potentialTargets.isEmpty()) {
+            //Getting the random target.
+            int randomTarget = GameRandomizer.getInstance().getRandomInt(0, potentialTargets.size() - 1);
+            Unit target = potentialTargets.get(randomTarget);
+
+            //Since here we're attacking with custom amount of damage.
+            target.defend(spellPower);
+
+            //If target died remove it from potential targets.
+            if(!target.isAlive()) {
+                potentialTargets.remove(target);
+            }
+            hits += 1;
+        }
     }
 
     /**
@@ -58,25 +86,14 @@ public class Mage extends Player {
      */
     @Override
     public void onLevelUp() {
-        levelUp();
         manaPool += MANA_POOL_MULTIPLIER*level;
         currentMana = Math.min(currentMana+manaPool/MANA_DIVISOR, manaPool);
         spellPower += SPELL_POWER_MULTIPLIER*level;
     }
 
     @Override
-    public void onDeath() {
-        notifier.notify(new GameEvent(GameEventName.PLAYER_DIED_EVENT, position, this));
-    }
-
-    @Override
     public void visit(Enemy enemy) {
-        //TODO combat
-    }
-
-    @Override
-    public void buildMapEvents() {
-
+        attack(enemy);
     }
 
     /**
@@ -85,12 +102,6 @@ public class Mage extends Player {
     @Override
     public void onTick() {
         currentMana = Math.min(manaPool, currentMana+MANA_TICK_MULTIPLIER*level);
-    }
-
-
-    @Override
-    public void onGameEvent(GameEvent event) {
-
     }
 
     public int getManaPool() {
