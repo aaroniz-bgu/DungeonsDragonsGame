@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="090fd0be-7951-4436-97d2-9209ed3b9587" name="Changes" comment="cast ability and visitor now working">
+    <list default="true" id="090fd0be-7951-4436-97d2-9209ed3b9587" name="Changes" comment="finished and polished combat system">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/enemies/Monster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/enemies/Monster.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/enemies/Trap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/enemies/Trap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/utils/GameRandomizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/utils/GameRandomizer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,14 +86,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1685700863698</updated>
-      <workItem from="1686910553286" duration="19538000" />
-    </task>
-    <task id="LOCAL-00040" summary="Initial commit">
-      <created>1686843852718</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1686843852718</updated>
+      <workItem from="1686910553286" duration="21598000" />
     </task>
     <task id="LOCAL-00041" summary="Tal's factory copy paste">
       <created>1686843870035</created>
@@ -432,7 +424,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686933269507</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL-00089" summary="finished and polished combat system">
+      <created>1686933578879</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1686933578879</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -450,7 +449,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="code reduction, visit enemy here" />
     <MESSAGE value="first impl" />
     <MESSAGE value="trying to change the impl to not be singleton" />
     <MESSAGE value="visitor code skeleton" />
@@ -475,6 +473,7 @@
     <MESSAGE value="gain xp and overhauling level up to be in logical order" />
     <MESSAGE value="New Event type" />
     <MESSAGE value="cast ability and visitor now working" />
-    <option name="LAST_COMMIT_MESSAGE" value="cast ability and visitor now working" />
+    <MESSAGE value="finished and polished combat system" />
+    <option name="LAST_COMMIT_MESSAGE" value="finished and polished combat system" />
   </component>
 </project>
