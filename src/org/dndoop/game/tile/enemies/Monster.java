@@ -78,11 +78,6 @@ public class Monster extends Enemy {
     }
 
     @Override
-    public void visit(Enemy enemy) {
-        //Do nothing...
-    }
-
-    @Override
     public void visit(Player player) {
         //Combat TODO...
     }

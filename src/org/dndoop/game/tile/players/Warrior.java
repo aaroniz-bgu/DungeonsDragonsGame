@@ -1,5 +1,6 @@
 package org.dndoop.game.tile.players;
 
+import org.dndoop.game.tile.enemies.Enemy;
 import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
 import org.dndoop.game.tile.tile_utils.UnitStats;
@@ -64,6 +65,27 @@ public class Warrior extends Player{
     public void onDeath() {
         GameEventNotifier.getInstance().removeListener(this);
         //TODO
+    }
+
+    /**
+     * Rolls up a damage amount between 0-attackPoints
+     */
+    @Override
+    public void attack() {
+        //TODO
+    }
+
+    /**
+     * Rolls up a defence amount between 0-defensePoints
+     */
+    @Override
+    public void defend() {
+        //TODO
+    }
+
+    @Override
+    public void visit(Enemy enemy) {
+        //TODO Combat
     }
 
     /**

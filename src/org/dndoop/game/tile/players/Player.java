@@ -1,5 +1,6 @@
 package org.dndoop.game.tile.players;
 
+import org.dndoop.game.tile.Empty;
 import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
 import org.dndoop.game.tile.Unit;
@@ -29,6 +30,21 @@ public abstract class Player extends Unit {
      */
     public void accept(Unit unit){
         unit.visit(this);
+    }
+
+    /**
+     * The only 2 impl of visitor in the abstract class of player
+     */
+    @Override
+    public void visit(Empty empty) {
+        position.swapPositions(empty.getPosition());
+    }
+    /**
+     * The only 2 impl of visitor in the abstract class of player
+     */
+    @Override
+    public void visit(Player player) {
+        //If this function gets invoked you f*****-up really hard buddy!
     }
 
     public abstract void onAbilityCast();
