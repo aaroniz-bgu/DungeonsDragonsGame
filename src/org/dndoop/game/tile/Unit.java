@@ -1,6 +1,7 @@
 package org.dndoop.game.tile;
 
 import org.dndoop.game.board.GameManager;
+import org.dndoop.game.board.GetAtCallback;
 import org.dndoop.game.tile.enemies.Enemy;
 import org.dndoop.game.tile.players.Player;
 import org.dndoop.game.tile.tile_utils.Direction;
@@ -16,6 +17,8 @@ public abstract class Unit extends Tile implements GameEventListener {
     protected Health health;
     protected UnitStats stats;
     protected String description;//Tal's recommendation TODO implement in all sub classes
+
+    protected GetAtCallback tiles;
     public Unit(String name, Health health, UnitStats stats, Character character, Position position)
     {
         super(character, position);
@@ -24,11 +27,16 @@ public abstract class Unit extends Tile implements GameEventListener {
         this.stats = stats;
     }
 
+    /**
+     * Just sends your request to move somewhere/interact with something using a direction.
+     * @param direction the direction you're trying to move to.
+     */
     protected void move(Direction direction) {
-        GameManager.getInstance()
-                .getGameBoard()
-                .getAt(position.move(direction))
-                .accept(this);
+        tiles.getAt(position.move(direction)).accept(this);
+    }
+
+    public void setTilesAccess(GetAtCallback callback) {
+        this.tiles = callback;
     }
 
     public String getName() {
