@@ -71,7 +71,17 @@ public abstract class Player extends Unit {
     public abstract void castAbility();
     public abstract void onAbilityCast();
     public abstract void onLevelUp();
-    public abstract void onDeath();
+
+
+    /**
+     * Adding xp to it's bar and taking care of leveling-up in the correct scenario.
+     * @param gain The xp that was gained/ to be added.
+     */
+    public void gainXp(int gain) {
+        this.xp += gain;
+        levelUp();
+    }
+
     /**
      * Levels up the player increasing and resetting its stats accordingly.
      */
@@ -81,6 +91,7 @@ public abstract class Player extends Unit {
             level++;
             this.health.levelUp(level);
             this.stats.levelUp(level);
+            onLevelUp();
         }
     }
 }
