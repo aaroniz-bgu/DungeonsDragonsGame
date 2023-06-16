@@ -18,8 +18,9 @@ public class Trap extends Enemy {
     private boolean visible;
 
     public Trap(String name, Health health, UnitStats stats, Character character,
-                Position position, int experience, int visibilityTime, int invisibilityTime) {
-        super(name, health, stats, character, position, experience);
+                Position position, int experience, int visibilityTime, int invisibilityTime,
+                GameEventNotifier gameEventNotifier) {
+        super(name, health, stats, character, position, experience, gameEventNotifier);
 
         this.visibilityTime = visibilityTime;
         this.invisibilityTime = invisibilityTime;
@@ -83,6 +84,11 @@ public class Trap extends Enemy {
     @Override
     public void visit(Player player) {
         //TODO Combat...
+    }
+
+    @Override
+    public void buildMapEvents() {
+        //TODO
     }
 
     @Override

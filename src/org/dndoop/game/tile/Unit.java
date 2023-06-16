@@ -8,8 +8,9 @@ import org.dndoop.game.tile.tile_utils.Direction;
 import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
 import org.dndoop.game.tile.tile_utils.UnitStats;
-import org.dndoop.game.utils.events.GameEvent;
-import org.dndoop.game.utils.events.GameEventListener;
+import org.dndoop.game.utils.events.*;
+
+import java.util.Map;
 
 public abstract class Unit extends Tile implements GameEventListener {
 
@@ -18,13 +19,17 @@ public abstract class Unit extends Tile implements GameEventListener {
     protected UnitStats stats;
     protected String description;//Tal's recommendation TODO implement in all sub classes
 
+    protected Notifier notifier;
     protected GetAtCallback tiles;
-    public Unit(String name, Health health, UnitStats stats, Character character, Position position)
+    protected Map<GameEventName, EventCallback> events;
+    public Unit(String name, Health health, UnitStats stats, Character character, Position position, GameEventNotifier gameEventNotifier)
     {
         super(character, position);
         this.name = name;
         this.health = health;
         this.stats = stats;
+
+        this.notifier = (GameEvent e) -> gameEventNotifier.notify(e);
     }
 
     /**
@@ -79,4 +84,9 @@ public abstract class Unit extends Tile implements GameEventListener {
     public abstract void visit(Empty empty);
     public abstract void visit(Enemy enemy);
     public abstract void visit(Player player);
+
+    /**Reactions for events*/
+    public abstract void buildMapEvents();
+    /**Game tick*/
+    public abstract void onTick();
 }

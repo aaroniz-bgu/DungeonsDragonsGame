@@ -16,8 +16,8 @@ public class Rogue extends Player {
     private static final int ENERGY_CAP = 100;
     private static final int ABILITY_RANGE = 2;
     public Rogue(String name, Health health, UnitStats stats, Character character, Position position,
-                 int abilityCost) {
-        super(name, health, stats, character, position);
+                 int abilityCost, GameEventNotifier gameEventNotifier) {
+        super(name, health, stats, character, position, gameEventNotifier);
         this.abilityCost = abilityCost;
         this.currentEnergy = ENERGY_CAP;
 
@@ -72,6 +72,11 @@ public class Rogue extends Player {
     @Override
     public void visit(Enemy enemy) {
         //TODO Combat
+    }
+
+    @Override
+    public void buildMapEvents() {
+        //TODO
     }
 
     @Override

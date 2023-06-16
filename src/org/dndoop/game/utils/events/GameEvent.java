@@ -5,7 +5,7 @@ import org.dndoop.game.tile.players.Player;
 import org.dndoop.game.tile.tile_utils.Position;
 
 public class GameEvent {
-    private final String NAME;
+    private final GameEventName NAME;
     private final Position POSITION;
     private final Unit ACTOR;
     private final boolean IS_PLAYER;
@@ -16,7 +16,7 @@ public class GameEvent {
      * @param name - Name of event e.g 'PlayerMovementEvent'
      * @param position The position of the player at time of event firing
      */
-    private GameEvent(String name, Position position, Unit actor, boolean isPlayer) {
+    private GameEvent(GameEventName name, Position position, Unit actor, boolean isPlayer) {
         if(position == null) {
             //TODO THROW ILLEGAL POSITION EXCEPTION
         }
@@ -27,11 +27,11 @@ public class GameEvent {
         this.IS_PLAYER = isPlayer;
     }
 
-    public GameEvent(String name, Position position, Unit actor) {
+    public GameEvent(GameEventName name, Position position, Unit actor) {
         this(name, position, actor, false);
     }
 
-    public GameEvent(String name, Position position, Player actor) {
+    public GameEvent(GameEventName name, Position position, Player actor) {
         this(name, position, actor, true);
     }
 
@@ -46,7 +46,7 @@ public class GameEvent {
     /**
      * @return Event's name
      */
-    public String getName() {
+    public GameEventName getName() {
         return NAME;
     }
 

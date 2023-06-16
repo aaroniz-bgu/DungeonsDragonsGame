@@ -5,6 +5,7 @@ import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
 import org.dndoop.game.tile.Unit;
 import org.dndoop.game.tile.tile_utils.UnitStats;
+import org.dndoop.game.utils.events.GameEventNotifier;
 
 public abstract class Player extends Unit {
     protected int xp;
@@ -18,8 +19,10 @@ public abstract class Player extends Unit {
      * @param character
      * @param position
      */
-    public Player(String name, Health health, UnitStats stats, Character character, Position position) {
-        super(name, health, stats, character, position);
+    public Player(
+            String name, Health health, UnitStats stats, Character character, Position position, GameEventNotifier gameEventNotifier
+    ) {
+        super(name, health, stats, character, position, gameEventNotifier);
         this.xp = 0;
         this.level = 1;
     }

@@ -22,8 +22,9 @@ public class Mage extends Player {
     private static final int MANA_TICK_MULTIPLIER = 1;
 
     public Mage(String name, Health health, UnitStats stats, Character character, Position position,
-                int manaPool, int manaCost, int spellPower, int hitsCount, int abilityRange) {
-        super(name, health, stats, character, position);
+                int manaPool, int manaCost, int spellPower, int hitsCount, int abilityRange,
+                GameEventNotifier gameEventNotifier) {
+        super(name, health, stats, character, position, gameEventNotifier);
         this.manaPool = manaPool;
         this.currentMana = manaPool/MANA_DIVISOR;
         this.manaCost = manaCost;
@@ -89,6 +90,11 @@ public class Mage extends Player {
     @Override
     public void visit(Enemy enemy) {
         //TODO combat
+    }
+
+    @Override
+    public void buildMapEvents() {
+
     }
 
     @Override

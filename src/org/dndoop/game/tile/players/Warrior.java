@@ -24,8 +24,9 @@ public class Warrior extends Player{
      * @param character
      * @param position
      */
-    public Warrior(String name, Health health, UnitStats stats, Character character, Position position) {
-        super(name, health, stats, character, position);
+    public Warrior(String name, Health health, UnitStats stats, Character character, Position position,
+                   GameEventNotifier gameEventNotifier) {
+        super(name, health, stats, character, position, gameEventNotifier);
 
         GameEventNotifier.getInstance().addListener(this);
     }
@@ -86,6 +87,11 @@ public class Warrior extends Player{
     @Override
     public void visit(Enemy enemy) {
         //TODO Combat
+    }
+
+    @Override
+    public void buildMapEvents() {
+        //TODO
     }
 
     @Override
