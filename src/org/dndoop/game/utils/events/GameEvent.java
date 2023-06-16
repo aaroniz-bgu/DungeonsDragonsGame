@@ -27,18 +27,40 @@ public class GameEvent {
         this.IS_PLAYER = isPlayer;
     }
 
+    /**
+     * Creating new game event, not firing it.
+     * @param name Name of event
+     * @param position Position of unit at the time of event
+     * @param actor Unit that acts upon invoking the event
+     */
     public GameEvent(GameEventName name, Position position, Unit actor) {
         this(name, position, actor, false);
     }
 
+    /**
+     * Creating new game event, not firing it.
+     * @param name Name of event
+     * @param position Position of unit at the time of event
+     * @param actor Unit that acts upon invoking the event
+     */
     public GameEvent(GameEventName name, Position position, Player actor) {
         this(name, position, actor, true);
     }
 
+    /**
+     * Creating new game event without a name only for testing purposes!.
+     * @param position Position of unit at the time of event
+     * @param actor Unit that acts upon invoking the event
+     */
     public GameEvent(Position position, Unit actor) {
         this(null, position, actor);
     }
 
+    /**
+     * Creating new game event without a name only for testing purposes!.
+     * @param position Position of unit at the time of event
+     * @param actor Unit that acts upon invoking the event
+     */
     public GameEvent(Position position, Player actor) {
         this(null, position, actor);
     }
