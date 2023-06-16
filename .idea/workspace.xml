@@ -4,19 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="090fd0be-7951-4436-97d2-9209ed3b9587" name="Changes" comment="refactoring onGameEvent and adding onTick again, and ticking visibility">
-      <change afterPath="$PROJECT_DIR$/src/org/dndoop/game/utils/events/EventCallback.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/dndoop/game/utils/events/GameEventName.java" afterDir="false" />
+    <list default="true" id="090fd0be-7951-4436-97d2-9209ed3b9587" name="Changes" comment="Updating notify acessability, added Maps for reactions for events and EventCallback">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/Unit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/Unit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/enemies/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/enemies/Enemy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/enemies/Monster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/enemies/Monster.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/enemies/Trap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/enemies/Trap.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Mage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Mage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Rogue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Rogue.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Warrior.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Warrior.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/utils/events/GameEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/utils/events/GameEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/utils/events/GameEventName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/utils/events/GameEventName.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/utils/events/GameEventNotifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/utils/events/GameEventNotifier.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,14 +94,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1685700863698</updated>
-      <workItem from="1686910553286" duration="7875000" />
-    </task>
-    <task id="LOCAL-00024" summary="changed package, code polished">
-      <created>1685739858530</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1685739858530</updated>
+      <workItem from="1686910553286" duration="9114000" />
     </task>
     <task id="LOCAL-00025" summary="dependencies were refactored">
       <created>1685739917895</created>
@@ -441,7 +432,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686915332554</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="Updating notify acessability, added Maps for reactions for events and EventCallback">
+      <created>1686920213516</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1686920213516</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -459,7 +457,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Visitor pattern" />
     <MESSAGE value="minor changes and removing this annoying xml" />
     <MESSAGE value="-" />
     <MESSAGE value="Refactoring name of eventing system" />
@@ -484,6 +481,7 @@
     <MESSAGE value="game startup" />
     <MESSAGE value="refactoring onGameEvent and adding onTick again" />
     <MESSAGE value="refactoring onGameEvent and adding onTick again, and ticking visibility" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactoring onGameEvent and adding onTick again, and ticking visibility" />
+    <MESSAGE value="Updating notify acessability, added Maps for reactions for events and EventCallback" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updating notify acessability, added Maps for reactions for events and EventCallback" />
   </component>
 </project>

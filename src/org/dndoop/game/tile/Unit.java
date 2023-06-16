@@ -32,6 +32,13 @@ public abstract class Unit extends Tile implements GameEventListener {
         this.notifier = (GameEvent e) -> gameEventNotifier.notify(e);
     }
 
+    @Override
+    public void onGameEvent(GameEvent event) {
+        if(events.containsKey(event.getName())) {
+            events.get(event.getName()).execute(event);
+        }
+    }
+
     /**
      * Just sends your request to move somewhere/interact with something using a direction.
      * @param direction the direction you're trying to move to.
@@ -68,18 +75,22 @@ public abstract class Unit extends Tile implements GameEventListener {
         this.stats = stats;
     }
 
+
     public abstract void onDeath();
 
     /**
      * Rolls up a damage amount between 0-attackPoints
      */
-    public abstract void attack();
+    public void attack() {
+
+    }
 
     /**
      * Rolls up a defence amount between 0-defensePoints
      */
-    public abstract void defend();
+    public void defend() {
 
+    }
 
     public abstract void visit(Empty empty);
     public abstract void visit(Enemy enemy);
