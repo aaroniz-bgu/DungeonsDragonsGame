@@ -1,10 +1,12 @@
 package org.dndoop.game.tile.players;
 
+import org.dndoop.game.tile.enemies.Enemy;
 import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
 import org.dndoop.game.tile.tile_utils.UnitStats;
-import org.dndoop.game.utils.events.PlayerEvent;
-import org.dndoop.game.utils.events.PlayerEventNotifier;
+import org.dndoop.game.utils.events.GameEvent;
+import org.dndoop.game.utils.events.GameEventName;
+import org.dndoop.game.utils.events.GameEventNotifier;
 
 public class Rogue extends Player {
 
@@ -15,12 +17,10 @@ public class Rogue extends Player {
     private static final int ENERGY_CAP = 100;
     private static final int ABILITY_RANGE = 2;
     public Rogue(String name, Health health, UnitStats stats, Character character, Position position,
-                 int abilityCost) {
-        super(name, health, stats, character, position);
+                 int abilityCost, GameEventNotifier gameEventNotifier) {
+        super(name, health, stats, character, position, gameEventNotifier);
         this.abilityCost = abilityCost;
         this.currentEnergy = ENERGY_CAP;
-
-        PlayerEventNotifier.getInstance().addListener(this);
     }
 
     /**
@@ -48,7 +48,16 @@ public class Rogue extends Player {
 
     @Override
     public void onDeath() {
-        PlayerEventNotifier.getInstance().removeListener(this);
+        notifier.notify(new GameEvent(GameEventName.PLAYER_DIED_EVENT, position, this));
+    }
+
+    @Override
+    public void visit(Enemy enemy) {
+        //TODO Combat
+    }
+
+    @Override
+    public void buildMapEvents() {
         //TODO
     }
 
@@ -56,7 +65,7 @@ public class Rogue extends Player {
      * On game tick event, the rogue regens {@value #ENERGY_TICK_REGEN} but caps at {@value #ENERGY_CAP}.\
      */
     @Override
-    public void onTick(PlayerEvent event) {
+    public void onTick() {
         currentEnergy = Math.min(currentEnergy+ENERGY_TICK_REGEN, ENERGY_CAP);
     }
 

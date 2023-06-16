@@ -1,10 +1,15 @@
 package org.dndoop.game.tile.enemies;
 
+import org.dndoop.game.tile.Empty;
+import org.dndoop.game.tile.players.Player;
 import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
 import org.dndoop.game.tile.tile_utils.UnitStats;
-import org.dndoop.game.utils.events.PlayerEvent;
-import org.dndoop.game.utils.events.PlayerEventNotifier;
+import org.dndoop.game.utils.events.GameEvent;
+import org.dndoop.game.utils.events.GameEventName;
+import org.dndoop.game.utils.events.GameEventNotifier;
+
+import java.beans.Visibility;
 
 public class Trap extends Enemy {
 
@@ -14,20 +19,18 @@ public class Trap extends Enemy {
     private boolean visible;
 
     public Trap(String name, Health health, UnitStats stats, Character character,
-                Position position, int experience, int visibilityTime, int invisibilityTime) {
-        super(name, health, stats, character, position, experience);
+                Position position, int experience, int visibilityTime, int invisibilityTime,
+                GameEventNotifier gameEventNotifier) {
+        super(name, health, stats, character, position, experience, gameEventNotifier);
 
         this.visibilityTime = visibilityTime;
         this.invisibilityTime = invisibilityTime;
         this.tickCount = 0;
         this.visible = true;
-
-        PlayerEventNotifier.getInstance().addListener(this);
     }
 
     /**
      * Used to control the tickCount field and control visibility of the trap
-     * TODO add visibility control once MVC is implemented
      */
     public void tickVisibility() {
         tickCount += 1;
@@ -43,6 +46,31 @@ public class Trap extends Enemy {
                 visible = true;
             }
         }
+    }
+
+    @Override
+    public void visit(Empty empty) {
+        //Do nothing
+    }
+
+    @Override
+    public void visit(Player player) {
+        //TODO Combat...
+    }
+
+    @Override
+    public void buildMapEvents() {
+        //TODO
+    }
+
+    @Override
+    public void onTick() {
+        tickVisibility();
+    }
+
+    @Override
+    public void onDeath() {
+        notifier.notify(new GameEvent(GameEventName.ENEMY_DEATH_EVENT, position, this));
     }
 
     public int getVisiblityTime() {
@@ -64,18 +92,6 @@ public class Trap extends Enemy {
     public boolean isVisible() {
         return visible;
     }
-
-    @Override
-    public void onTick(PlayerEvent event) {
-        tickVisibility();
-        //rest of that
-    }
-
-    @Override
-    public void onDeath() {
-        PlayerEventNotifier.getInstance().removeListener(this);
-    }
-
     @Override
     public String toString() {
         return visible ? character.toString() : ".";

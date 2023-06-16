@@ -1,41 +1,55 @@
 package org.dndoop.game.tile.enemies;
 
+import org.dndoop.game.tile.Empty;
+import org.dndoop.game.tile.Unit;
 import org.dndoop.game.tile.players.Player;
+import org.dndoop.game.tile.tile_utils.Direction;
 import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
 import org.dndoop.game.tile.tile_utils.UnitStats;
 import org.dndoop.game.utils.GameRandomizer;
-import org.dndoop.game.utils.events.PlayerEvent;
-import org.dndoop.game.utils.events.PlayerEventNotifier;
+import org.dndoop.game.utils.events.GameEvent;
+import org.dndoop.game.utils.events.GameEventName;
+import org.dndoop.game.utils.events.GameEventNotifier;
+
+import java.util.HashMap;
 
 public class Monster extends Enemy {
 
-    private int range;
+    private final int RANGE;
 
     public Monster(String name, Health health, UnitStats stats,
-                   Character character, Position position, int experience, int range) {
-        super(name, health, stats, character, position, experience);
+                   Character character, Position position, int experience, int range,
+                   GameEventNotifier gameEventNotifier) {
+        super(name, health, stats, character, position, experience, gameEventNotifier);
 
         //Add legality check on this: TODO
-        this.range = range;
+        this.RANGE = range;
+        this.events = new HashMap<>();
 
-        PlayerEventNotifier.getInstance().addListener(this);
     }
 
     @Override
-    public void onTick(PlayerEvent event) {
-        if(position.range(event.getPosition()) <= range) {
-            playerInRange(event.getPlayer());
-        } else {
-            randomMove();
-        }
+    public void buildMapEvents(){
+        events.put(GameEventName.PLAYER_ACTION_EVENT, (GameEvent event) -> {
+            onTick();
+            if(event.isPlayerEvent() && position.range(event.getPosition()) <= RANGE) {
+                playerInRange(event.getActor());
+            } else {
+                randomMove();
+            }
+        });
+        events.put(GameEventName.PLAYER_ABILITY_CAST_EVENT, (GameEvent event) -> {
+            /*...Might be deprecated*/
+            events.get(GameEventName.PLAYER_ACTION_EVENT).execute(event);
+        });
     }
 
     /**
-     * Used only when player is in range onTick, handles the movement.
-     * @param player the player.
+     * Used only when player is in range onGameEvent, handles the movement.
+     * @param player the player, must check if that's really a player instance using 'isPlayerEvent()'.
      */
-    public void playerInRange(Player player){
+    public void playerInRange(Unit player){
         Position playerPos = player.getPosition();
         int dx = position.getX() - playerPos.getX();
         int dy = position.getY() - playerPos.getY();
@@ -43,15 +57,15 @@ public class Monster extends Enemy {
         //This is disgusting, but it is what it is.
         if(Math.abs(dx) > Math.abs(dy)) {
             if(dx > 0) {
-                position.moveLeft();
+                move(Direction.LEFT);
             } else {
-                position.moveRight();
+                move(Direction.RIGHT);
             }
         } else {
             if(dy > 0) {
-                position.moveUp();
+                move(Direction.UP);
             } else {
-                position.moveDown();
+                move(Direction.DOWN);
             }
         }
     }
@@ -60,17 +74,28 @@ public class Monster extends Enemy {
      * Used when player isn't in range.
      */
     public void randomMove() {
-        int move = GameRandomizer.getInstance().getRandomInt(1, 4);
-        switch (move) {
-            case 1 -> position.moveDown();
-            case 2 -> position.moveUp();
-            case 3 -> position.moveLeft();
-            case 4 -> position.moveRight();
-        }
+        Direction[] DIRECTIONS = {Direction.UP, Direction.DOWN, Direction.LEFT, Direction.RIGHT};
+        int direction = GameRandomizer.getInstance().getRandomInt(1, 4);
+        move(DIRECTIONS[direction]);
+    }
+
+    @Override
+    public void visit(Empty empty) {
+        position.swapPositions(empty.getPosition());
+    }
+
+    @Override
+    public void visit(Player player) {
+        //Combat TODO...
+    }
+
+    @Override
+    public void onTick() {
+
     }
 
     @Override
     public void onDeath() {
-        PlayerEventNotifier.getInstance().removeListener(this);
+        notifier.notify(new GameEvent(GameEventName.ENEMY_DEATH_EVENT, position, this));
     }
 }

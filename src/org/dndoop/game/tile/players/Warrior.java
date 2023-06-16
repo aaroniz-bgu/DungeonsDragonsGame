@@ -1,10 +1,12 @@
 package org.dndoop.game.tile.players;
 
+import org.dndoop.game.tile.enemies.Enemy;
 import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
 import org.dndoop.game.tile.tile_utils.UnitStats;
-import org.dndoop.game.utils.events.PlayerEvent;
-import org.dndoop.game.utils.events.PlayerEventNotifier;
+import org.dndoop.game.utils.events.GameEvent;
+import org.dndoop.game.utils.events.GameEventName;
+import org.dndoop.game.utils.events.GameEventNotifier;
 
 public class Warrior extends Player{
     private int abilityCD;
@@ -23,10 +25,9 @@ public class Warrior extends Player{
      * @param character
      * @param position
      */
-    public Warrior(String name, Health health, UnitStats stats, Character character, Position position) {
-        super(name, health, stats, character, position);
-
-        PlayerEventNotifier.getInstance().addListener(this);
+    public Warrior(String name, Health health, UnitStats stats, Character character, Position position,
+                   GameEventNotifier gameEventNotifier) {
+        super(name, health, stats, character, position, gameEventNotifier);
     }
 
     /**
@@ -62,7 +63,16 @@ public class Warrior extends Player{
 
     @Override
     public void onDeath() {
-        PlayerEventNotifier.getInstance().removeListener(this);
+        notifier.notify(new GameEvent(GameEventName.PLAYER_DIED_EVENT, position, this));
+    }
+
+    @Override
+    public void visit(Enemy enemy) {
+        //TODO Combat
+    }
+
+    @Override
+    public void buildMapEvents() {
         //TODO
     }
 
@@ -70,7 +80,7 @@ public class Warrior extends Player{
      * On game tick event lowers the warriors ability cooldown by 1.
      */
     @Override
-    public void onTick(PlayerEvent event) {
+    public void onTick() {
         if(cdRemaining>0)
             cdRemaining--;
     }

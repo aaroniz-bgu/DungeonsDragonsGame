@@ -10,9 +10,23 @@ public class Position {
         this.y = initY;
     }
 
+    /**
+     * Copying constructor (Deep-copy).
+     * @param toCopy
+     */
+    public Position(Position toCopy) {
+        this.x = toCopy.getX();
+        this.y = toCopy.getY();
+    }
+
     public void setX(int x) {
         if(x >= 0)
             this.x = x;
+    }
+
+    public void setY(int y) {
+        if(y >= 0)
+            this.y = y;
     }
 
     public int getX() {
@@ -32,22 +46,31 @@ public class Position {
         return Math.sqrt(Math.pow(x - to.getX(), 2) + Math.pow(y - to.getY(), 2));
     }
 
+    public void swapPositions(Position with) {
+        int oldX = this.x, oldY = this.y;
+
+        setX(with.getX());
+        setY(with.getY());
+
+        with.setX(oldX);
+        with.setY(oldY);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return false;
+    }
+
+    //Just me casually escaping using instanceof
+    public boolean equals(Position o) {
+        return x == o.getX() && y == o.getY();
+    }
+
     /**
-     * These methods are called only within units, after making sure the direction
-     * chosen is legal. Would be better to not use them rn.
+     * Gets the position you're trying to move to, doesn't move you to it.
+     * You're only moving by switching with empty tiles.
      */
-    public void moveUp() {
-        this.y+=1;
+    public Position move(Direction direction) {
+        return new Position(x + direction.getX(), y + direction.getY());
     }
-    public void moveDown() {
-        this.y-=1;
-    }
-    public void moveRight() {
-        this.x+=1;
-    }
-    public void moveLeft() {
-        this.x-=1;
-    }
-
-
 }

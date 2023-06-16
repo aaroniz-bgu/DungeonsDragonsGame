@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="090fd0be-7951-4436-97d2-9209ed3b9587" name="Changes" comment="sub upon init and unsub onDeath from notifier for events">
+    <list default="true" id="090fd0be-7951-4436-97d2-9209ed3b9587" name="Changes" comment="Updating notify acessability, added Maps for reactions for events and EventCallback">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/Unit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/Unit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/enemies/Monster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/enemies/Monster.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/enemies/Trap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/enemies/Trap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Mage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Mage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Rogue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Rogue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Warrior.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Warrior.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/utils/events/GameEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/utils/events/GameEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/utils/events/GameEventName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/utils/events/GameEventName.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/utils/events/GameEventNotifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/utils/events/GameEventNotifier.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,8 +27,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -27,6 +40,19 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="36d6003b-afd4-4613-995b-596c0ae4c252" />
+        <option name="url" value="https://github.com/aaroniz-bgu/DungeonsDragonsGame.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -45,7 +71,12 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/User/Documents/Eclipse proj/DungeonsDragonsGame"
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/User/Documents/Eclipse proj/DungeonsDragonsGame",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -63,174 +94,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1685700863698</updated>
-    </task>
-    <task id="LOCAL-00001" summary="game">
-      <created>1685703419189</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1685703419189</updated>
-    </task>
-    <task id="LOCAL-00002" summary="written health class">
-      <created>1685705501938</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1685705501938</updated>
-    </task>
-    <task id="LOCAL-00003" summary="nothing">
-      <created>1685705516684</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1685705516684</updated>
-    </task>
-    <task id="LOCAL-00004" summary="nm">
-      <created>1685705524002</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1685705524002</updated>
-    </task>
-    <task id="LOCAL-00005" summary="nm">
-      <created>1685705554039</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1685705554039</updated>
-    </task>
-    <task id="LOCAL-00006" summary="protected">
-      <created>1685705563510</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1685705563510</updated>
-    </task>
-    <task id="LOCAL-00007" summary="todo mark">
-      <created>1685705574350</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1685705574350</updated>
-    </task>
-    <task id="LOCAL-00008" summary="added methods">
-      <created>1685709138142</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1685709138142</updated>
-    </task>
-    <task id="LOCAL-00009" summary="added contents">
-      <created>1685709176700</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1685709176700</updated>
-    </task>
-    <task id="LOCAL-00010" summary="added files">
-      <created>1685709185708</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1685709185708</updated>
-    </task>
-    <task id="LOCAL-00011" summary="added events struct">
-      <created>1685727308022</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1685727308022</updated>
-    </task>
-    <task id="LOCAL-00012" summary="fixed">
-      <created>1685727557157</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1685727557157</updated>
-    </task>
-    <task id="LOCAL-00013" summary="added on death">
-      <created>1685729155912</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1685729155912</updated>
-    </task>
-    <task id="LOCAL-00014" summary="added on death">
-      <created>1685729163483</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1685729163483</updated>
-    </task>
-    <task id="LOCAL-00015" summary="fixed syntax, package name &amp; added on death">
-      <created>1685729194233</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1685729194233</updated>
-    </task>
-    <task id="LOCAL-00016" summary="added enemy class">
-      <created>1685729206872</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1685729206872</updated>
-    </task>
-    <task id="LOCAL-00017" summary="created GameRandomizer">
-      <created>1685736186881</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1685736186881</updated>
-    </task>
-    <task id="LOCAL-00018" summary="created GameRandomizer">
-      <created>1685736196698</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1685736196698</updated>
-    </task>
-    <task id="LOCAL-00019" summary="created range()">
-      <created>1685736258603</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1685736258603</updated>
-    </task>
-    <task id="LOCAL-00020" summary="added random movement">
-      <created>1685736689497</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1685736689497</updated>
-    </task>
-    <task id="LOCAL-00021" summary="fixed getInstance static">
-      <created>1685736784547</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1685736784547</updated>
-    </task>
-    <task id="LOCAL-00022" summary="changed package, code polished">
-      <created>1685739810805</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1685739810805</updated>
-    </task>
-    <task id="LOCAL-00023" summary="changed package, code polished">
-      <created>1685739831473</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1685739831473</updated>
-    </task>
-    <task id="LOCAL-00024" summary="changed package, code polished">
-      <created>1685739858530</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1685739858530</updated>
+      <workItem from="1686910553286" duration="9114000" />
     </task>
     <task id="LOCAL-00025" summary="dependencies were refactored">
       <created>1685739917895</created>
@@ -337,8 +201,249 @@
       <option name="project" value="LOCAL" />
       <updated>1685745353828</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="Initial commit">
+      <created>1686843852718</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1686843852718</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Tal's factory copy paste">
+      <created>1686843870035</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1686843870035</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Initial commit">
+      <created>1686843878129</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1686843878129</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Added attack + defend">
+      <created>1686843937605</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1686843937605</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Visitor pattern">
+      <created>1686843954191</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1686843954191</updated>
+    </task>
+    <task id="LOCAL-00045" summary="minor changes and removing this annoying xml">
+      <created>1686844040539</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1686844040539</updated>
+    </task>
+    <task id="LOCAL-00046" summary="-">
+      <created>1686844047650</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1686844047650</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Refactoring name of eventing system">
+      <created>1686849897258</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1686849897258</updated>
+    </task>
+    <task id="LOCAL-00048" summary="added copying constructor and a missing setter">
+      <created>1686849935541</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1686849935541</updated>
+    </task>
+    <task id="LOCAL-00049" summary="swap position added and movement system overhaul">
+      <created>1686849969647</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1686849969647</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Refactoring event system">
+      <created>1686850015878</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1686850015878</updated>
+    </task>
+    <task id="LOCAL-00051" summary="Refactoring event system">
+      <created>1686850039681</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1686850039681</updated>
+    </task>
+    <task id="LOCAL-00052" summary="Refactoring event system">
+      <created>1686850056392</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1686850056392</updated>
+    </task>
+    <task id="LOCAL-00053" summary="adding visitor system and doc">
+      <created>1686850092116</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1686850092117</updated>
+    </task>
+    <task id="LOCAL-00054" summary="movement system overhaul">
+      <created>1686850114767</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1686850114767</updated>
+    </task>
+    <task id="LOCAL-00055" summary="movement system overhaul and visitor">
+      <created>1686850139352</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1686850139352</updated>
+    </task>
+    <task id="LOCAL-00056" summary="movement system overhaul and visitor">
+      <created>1686850158749</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1686850158749</updated>
+    </task>
+    <task id="LOCAL-00057" summary="directions movement overhaul">
+      <created>1686850176348</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1686850176348</updated>
+    </task>
+    <task id="LOCAL-00058" summary="toString+getAt">
+      <created>1686850195934</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1686850195934</updated>
+    </task>
+    <task id="LOCAL-00059" summary="first impl draft">
+      <created>1686850219160</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1686850219160</updated>
+    </task>
+    <task id="LOCAL-00060" summary="doc">
+      <created>1686850231536</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1686850231537</updated>
+    </task>
+    <task id="LOCAL-00061" summary="I hate this file">
+      <created>1686850244333</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1686850244333</updated>
+    </task>
+    <task id="LOCAL-00062" summary="code reduction, visit enemy here">
+      <created>1686910597185</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1686910597186</updated>
+    </task>
+    <task id="LOCAL-00063" summary="first impl">
+      <created>1686910612866</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1686910612866</updated>
+    </task>
+    <task id="LOCAL-00064" summary="trying to change the impl to not be singleton">
+      <created>1686910652827</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1686910652827</updated>
+    </task>
+    <task id="LOCAL-00065" summary="trying to change the impl to not be singleton">
+      <created>1686910775468</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1686910775468</updated>
+    </task>
+    <task id="LOCAL-00066" summary="visitor code skeleton">
+      <created>1686910810437</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1686910810437</updated>
+    </task>
+    <task id="LOCAL-00067" summary="trying to decouple the gameboard without making the game manager a singleton">
+      <created>1686910847256</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1686910847256</updated>
+    </task>
+    <task id="LOCAL-00068" summary="trying to remove singleton from observer system">
+      <created>1686910871569</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1686910871569</updated>
+    </task>
+    <task id="LOCAL-00069" summary="fixing visitor code">
+      <created>1686910895276</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1686910895276</updated>
+    </task>
+    <task id="LOCAL-00070" summary="game startup">
+      <created>1686910915247</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1686910915247</updated>
+    </task>
+    <task id="LOCAL-00071" summary="refactoring onGameEvent and adding onTick again">
+      <created>1686915315203</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1686915315203</updated>
+    </task>
+    <task id="LOCAL-00072" summary="refactoring onGameEvent and adding onTick again, and ticking visibility">
+      <created>1686915332554</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1686915332554</updated>
+    </task>
+    <task id="LOCAL-00073" summary="Updating notify acessability, added Maps for reactions for events and EventCallback">
+      <created>1686920213516</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1686920213516</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -352,31 +457,31 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added events struct" />
-    <MESSAGE value="fixed" />
-    <MESSAGE value="added on death" />
-    <MESSAGE value="fixed syntax, package name &amp; added on death" />
-    <MESSAGE value="added enemy class" />
-    <MESSAGE value="created GameRandomizer" />
-    <MESSAGE value="created range()" />
-    <MESSAGE value="added random movement" />
-    <MESSAGE value="fixed getInstance static" />
-    <MESSAGE value="changed package, code polished" />
-    <MESSAGE value="dependencies were refactored" />
-    <MESSAGE value="initial" />
-    <MESSAGE value="Nobody needs those files" />
-    <MESSAGE value="Implemented the event system for ticking everyone." />
-    <MESSAGE value="implemented the eventListener" />
-    <MESSAGE value="added player field" />
-    <MESSAGE value="changed onTick signature &amp; implemented it" />
-    <MESSAGE value="removed onTick()" />
-    <MESSAGE value="documentation" />
-    <MESSAGE value="changed onTick signature according to the new event system" />
-    <MESSAGE value="changed onTick signature to correspond to the new event system" />
-    <MESSAGE value="fixed static getInstance" />
-    <MESSAGE value="subscription and removal on death of notifier" />
-    <MESSAGE value="subscribed upon init and unsub onDeath from notifier for events" />
-    <MESSAGE value="sub upon init and unsub onDeath from notifier for events" />
-    <option name="LAST_COMMIT_MESSAGE" value="sub upon init and unsub onDeath from notifier for events" />
+    <MESSAGE value="minor changes and removing this annoying xml" />
+    <MESSAGE value="-" />
+    <MESSAGE value="Refactoring name of eventing system" />
+    <MESSAGE value="added copying constructor and a missing setter" />
+    <MESSAGE value="swap position added and movement system overhaul" />
+    <MESSAGE value="Refactoring event system" />
+    <MESSAGE value="adding visitor system and doc" />
+    <MESSAGE value="movement system overhaul" />
+    <MESSAGE value="movement system overhaul and visitor" />
+    <MESSAGE value="directions movement overhaul" />
+    <MESSAGE value="toString+getAt" />
+    <MESSAGE value="first impl draft" />
+    <MESSAGE value="doc" />
+    <MESSAGE value="I hate this file" />
+    <MESSAGE value="code reduction, visit enemy here" />
+    <MESSAGE value="first impl" />
+    <MESSAGE value="trying to change the impl to not be singleton" />
+    <MESSAGE value="visitor code skeleton" />
+    <MESSAGE value="trying to decouple the gameboard without making the game manager a singleton" />
+    <MESSAGE value="trying to remove singleton from observer system" />
+    <MESSAGE value="fixing visitor code" />
+    <MESSAGE value="game startup" />
+    <MESSAGE value="refactoring onGameEvent and adding onTick again" />
+    <MESSAGE value="refactoring onGameEvent and adding onTick again, and ticking visibility" />
+    <MESSAGE value="Updating notify acessability, added Maps for reactions for events and EventCallback" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updating notify acessability, added Maps for reactions for events and EventCallback" />
   </component>
 </project>

@@ -1,10 +1,13 @@
 package org.dndoop.game.tile.players;
 
+import org.dndoop.game.tile.Empty;
+import org.dndoop.game.tile.enemies.Enemy;
 import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
 import org.dndoop.game.tile.tile_utils.UnitStats;
-import org.dndoop.game.utils.events.PlayerEvent;
-import org.dndoop.game.utils.events.PlayerEventNotifier;
+import org.dndoop.game.utils.events.GameEvent;
+import org.dndoop.game.utils.events.GameEventName;
+import org.dndoop.game.utils.events.GameEventNotifier;
 
 public class Mage extends Player {
     private int manaPool;
@@ -20,16 +23,15 @@ public class Mage extends Player {
     private static final int MANA_TICK_MULTIPLIER = 1;
 
     public Mage(String name, Health health, UnitStats stats, Character character, Position position,
-                int manaPool, int manaCost, int spellPower, int hitsCount, int abilityRange) {
-        super(name, health, stats, character, position);
+                int manaPool, int manaCost, int spellPower, int hitsCount, int abilityRange,
+                GameEventNotifier gameEventNotifier) {
+        super(name, health, stats, character, position, gameEventNotifier);
         this.manaPool = manaPool;
         this.currentMana = manaPool/MANA_DIVISOR;
         this.manaCost = manaCost;
         this.spellPower = spellPower;
         this.hitsCount = hitsCount;
         this.abilityRange = abilityRange;
-
-        PlayerEventNotifier.getInstance().addListener(this);
     }
 
     /**
@@ -64,16 +66,31 @@ public class Mage extends Player {
 
     @Override
     public void onDeath() {
-        PlayerEventNotifier.getInstance().removeListener(this);
-        //TODO
+        notifier.notify(new GameEvent(GameEventName.PLAYER_DIED_EVENT, position, this));
+    }
+
+    @Override
+    public void visit(Enemy enemy) {
+        //TODO combat
+    }
+
+    @Override
+    public void buildMapEvents() {
+
     }
 
     /**
-     * On game tick event regenerates mana by min(manaPool, currentMana+{@value #MANA_TICK_MULTIPLIER}*level)
+     * On game tick regenerates mana by min(manaPool, currentMana+{@value #MANA_TICK_MULTIPLIER}*level)
      */
     @Override
-    public void onTick(PlayerEvent event) {
+    public void onTick() {
         currentMana = Math.min(manaPool, currentMana+MANA_TICK_MULTIPLIER*level);
+    }
+
+
+    @Override
+    public void onGameEvent(GameEvent event) {
+
     }
 
     public int getManaPool() {
