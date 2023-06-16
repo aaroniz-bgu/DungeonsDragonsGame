@@ -58,9 +58,15 @@ public abstract class Unit extends Tile implements GameEventListener {
     public void setName(String name) {
         this.name = name;
     }
+    public int getXp() {
+        return xp;
+    }
 
     public Health getHealth() {
         return health;
+    }
+    public boolean isAlive() {
+        return getHealth().getHealthAmount() > 0;
     }
 
     public void setHealth(Health health) {
