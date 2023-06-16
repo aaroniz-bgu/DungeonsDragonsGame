@@ -5,6 +5,7 @@ import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
 import org.dndoop.game.tile.tile_utils.UnitStats;
 import org.dndoop.game.utils.events.GameEvent;
+import org.dndoop.game.utils.events.GameEventName;
 import org.dndoop.game.utils.events.GameEventNotifier;
 
 public class Warrior extends Player{
@@ -27,8 +28,6 @@ public class Warrior extends Player{
     public Warrior(String name, Health health, UnitStats stats, Character character, Position position,
                    GameEventNotifier gameEventNotifier) {
         super(name, health, stats, character, position, gameEventNotifier);
-
-        GameEventNotifier.getInstance().addListener(this);
     }
 
     /**
@@ -64,24 +63,7 @@ public class Warrior extends Player{
 
     @Override
     public void onDeath() {
-        GameEventNotifier.getInstance().removeListener(this);
-        //TODO
-    }
-
-    /**
-     * Rolls up a damage amount between 0-attackPoints
-     */
-    @Override
-    public void attack() {
-        //TODO
-    }
-
-    /**
-     * Rolls up a defence amount between 0-defensePoints
-     */
-    @Override
-    public void defend() {
-        //TODO
+        notifier.notify(new GameEvent(GameEventName.PLAYER_DIED_EVENT, position, this));
     }
 
     @Override
@@ -94,16 +76,11 @@ public class Warrior extends Player{
         //TODO
     }
 
-    @Override
-    public void onTick() {
-
-    }
-
     /**
      * On game tick event lowers the warriors ability cooldown by 1.
      */
     @Override
-    public void onGameEvent(GameEvent event) {
+    public void onTick() {
         if(cdRemaining>0)
             cdRemaining--;
     }

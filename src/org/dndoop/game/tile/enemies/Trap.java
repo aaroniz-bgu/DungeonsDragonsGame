@@ -6,6 +6,7 @@ import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
 import org.dndoop.game.tile.tile_utils.UnitStats;
 import org.dndoop.game.utils.events.GameEvent;
+import org.dndoop.game.utils.events.GameEventName;
 import org.dndoop.game.utils.events.GameEventNotifier;
 
 import java.beans.Visibility;
@@ -26,13 +27,10 @@ public class Trap extends Enemy {
         this.invisibilityTime = invisibilityTime;
         this.tickCount = 0;
         this.visible = true;
-
-        GameEventNotifier.getInstance().addListener(this);
     }
 
     /**
      * Used to control the tickCount field and control visibility of the trap
-     * TODO add visibility control once MVC is implemented
      */
     public void tickVisibility() {
         tickCount += 1;
@@ -48,32 +46,6 @@ public class Trap extends Enemy {
                 visible = true;
             }
         }
-    }
-
-    public int getVisiblityTime() {
-        return visibilityTime;
-    }
-
-    public int getInvisibilityTime() {
-        return invisibilityTime;
-    }
-
-    public void setVisibilityTime(int visibilityTime) {
-        this.visibilityTime = visibilityTime;
-    }
-
-    public void setInvisibilityTime(int invisibilityTime) {
-        this.invisibilityTime = invisibilityTime;
-    }
-
-    public boolean isVisible() {
-        return visible;
-    }
-
-    @Override
-    public void onGameEvent(GameEvent event) {
-
-        //TODO rest of that
     }
 
     @Override
@@ -98,25 +70,28 @@ public class Trap extends Enemy {
 
     @Override
     public void onDeath() {
-        GameEventNotifier.getInstance().removeListener(this);
+        notifier.notify(new GameEvent(GameEventName.ENEMY_DEATH_EVENT, position, this));
     }
 
-    /**
-     * Rolls up a damage amount between 0-attackPoints
-     */
-    @Override
-    public void attack() {
-        //TODO
+    public int getVisiblityTime() {
+        return visibilityTime;
     }
 
-    /**
-     * Rolls up a defence amount between 0-defensePoints
-     */
-    @Override
-    public void defend() {
-        //TODO
+    public int getInvisibilityTime() {
+        return invisibilityTime;
     }
 
+    public void setVisibilityTime(int visibilityTime) {
+        this.visibilityTime = visibilityTime;
+    }
+
+    public void setInvisibilityTime(int invisibilityTime) {
+        this.invisibilityTime = invisibilityTime;
+    }
+
+    public boolean isVisible() {
+        return visible;
+    }
     @Override
     public String toString() {
         return visible ? character.toString() : ".";

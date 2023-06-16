@@ -16,7 +16,7 @@ import java.util.HashMap;
 
 public class Monster extends Enemy {
 
-    private int range;
+    private final int RANGE;
 
     public Monster(String name, Health health, UnitStats stats,
                    Character character, Position position, int experience, int range,
@@ -24,10 +24,8 @@ public class Monster extends Enemy {
         super(name, health, stats, character, position, experience, gameEventNotifier);
 
         //Add legality check on this: TODO
-        this.range = range;
+        this.RANGE = range;
         this.events = new HashMap<>();
-
-        GameEventNotifier.getInstance().addListener(this);
 
     }
 
@@ -35,7 +33,7 @@ public class Monster extends Enemy {
     public void buildMapEvents(){
         events.put(GameEventName.PLAYER_ACTION_EVENT, (GameEvent event) -> {
             onTick();
-            if(event.isPlayerEvent() && position.range(event.getPosition()) <= range) {
+            if(event.isPlayerEvent() && position.range(event.getPosition()) <= RANGE) {
                 playerInRange(event.getActor());
             } else {
                 randomMove();
@@ -45,13 +43,6 @@ public class Monster extends Enemy {
             /*...Might be deprecated*/
             events.get(GameEventName.PLAYER_ACTION_EVENT).execute(event);
         });
-    }
-
-    @Override
-    public void onGameEvent(GameEvent event) {
-        if(events.containsKey(event.getName())) {
-            events.get(event.getName()).execute(event);
-        }
     }
 
     /**
@@ -106,22 +97,5 @@ public class Monster extends Enemy {
     @Override
     public void onDeath() {
         notifier.notify(new GameEvent(GameEventName.ENEMY_DEATH_EVENT, position, this));
-    }
-
-
-    /**
-     * Rolls up a damage amount between 0-attackPoints
-     */
-    @Override
-    public void attack() {
-        //Roll attack TODO
-    }
-
-    /**
-     * Rolls up a defence amount between 0-defensePoints
-     */
-    @Override
-    public void defend() {
-        //Roll defence TODO
     }
 }

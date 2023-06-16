@@ -6,6 +6,7 @@ import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
 import org.dndoop.game.tile.tile_utils.UnitStats;
 import org.dndoop.game.utils.events.GameEvent;
+import org.dndoop.game.utils.events.GameEventName;
 import org.dndoop.game.utils.events.GameEventNotifier;
 
 public class Mage extends Player {
@@ -31,8 +32,6 @@ public class Mage extends Player {
         this.spellPower = spellPower;
         this.hitsCount = hitsCount;
         this.abilityRange = abilityRange;
-
-        GameEventNotifier.getInstance().addListener(this);
     }
 
     /**
@@ -67,24 +66,7 @@ public class Mage extends Player {
 
     @Override
     public void onDeath() {
-        GameEventNotifier.getInstance().removeListener(this);
-        //TODO
-    }
-
-    /**
-     * Rolls up a damage amount between 0-attackPoints
-     */
-    @Override
-    public void attack() {
-        //TODO
-    }
-
-    /**
-     * Rolls up a defence amount between 0-defensePoints
-     */
-    @Override
-    public void defend() {
-        //TODO
+        notifier.notify(new GameEvent(GameEventName.PLAYER_DIED_EVENT, position, this));
     }
 
     @Override
@@ -97,14 +79,15 @@ public class Mage extends Player {
 
     }
 
+    /**
+     * On game tick regenerates mana by min(manaPool, currentMana+{@value #MANA_TICK_MULTIPLIER}*level)
+     */
     @Override
     public void onTick() {
         currentMana = Math.min(manaPool, currentMana+MANA_TICK_MULTIPLIER*level);
     }
 
-    /**
-     * On game event regenerates mana by min(manaPool, currentMana+{@value #MANA_TICK_MULTIPLIER}*level)
-     */
+
     @Override
     public void onGameEvent(GameEvent event) {
 
