@@ -8,10 +8,12 @@ import org.dndoop.game.tile.tile_utils.UnitStats;
 import org.dndoop.game.utils.events.GameEvent;
 import org.dndoop.game.utils.events.GameEventName;
 import org.dndoop.game.utils.events.GameEventNotifier;
+import java.lang.String;
 
 public abstract class Player extends Unit {
 
     private static int INITIAL_XP = 0;
+    private static final Character PLAYER_CHARACTER = '@';
 
     protected int level;
 
@@ -19,14 +21,15 @@ public abstract class Player extends Unit {
      * Creates a new player, starts at level 1 with 0 xp with the name, stats and position given.
      * @param name
      * @param health
-     * @param stats
-     * @param character
+     * @param attack
+     * @param defense
      * @param position
+     * @param gameEventNotifier
      */
     public Player(
-            String name, Health health, UnitStats stats, Character character, Position position, GameEventNotifier gameEventNotifier
+            String name, int health, int attack, int defense, Position position, GameEventNotifier gameEventNotifier
     ) {
-        super(name, health, stats, character, INITIAL_XP, position, gameEventNotifier);
+        super(name, health, attack, defense, PLAYER_CHARACTER, INITIAL_XP, position, gameEventNotifier);
         this.level = 1;
 
         buildMapEvents();
@@ -93,5 +96,13 @@ public abstract class Player extends Unit {
             this.stats.levelUp(level);
             onLevelUp();
         }
+    }
+
+    @Override
+    public String getDescription(){
+        String description = super.getDescription();
+        description += fixedLengthString("Level: "+level);
+        description += fixedLengthString("Experience: "+xp+"/"+50*level);
+        return description;
     }
 }

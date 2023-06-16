@@ -10,10 +10,10 @@ import org.dndoop.game.utils.events.GameEventNotifier;
 public abstract class Enemy extends Unit {
 
     public Enemy(
-            String name, Health health, UnitStats stats,
+            String name, int health, int attack, int defense,
             Character character, Position position, int experience,
             GameEventNotifier gameEventNotifier) {
-        super(name, health, stats, character, experience, position, gameEventNotifier);
+        super(name, health, attack, defense, character, experience, position, gameEventNotifier);
     }
 
     /**
@@ -34,4 +34,15 @@ public abstract class Enemy extends Unit {
 
     @Override
     public abstract void onDeath();
+
+    public Character getTile() {
+        return this.character;
+    }
+
+    @Override
+    public String getDescription(){
+        String description = super.getDescription();
+        description += fixedLengthString("Experience Value: "+xp);
+        return description;
+    }
 }

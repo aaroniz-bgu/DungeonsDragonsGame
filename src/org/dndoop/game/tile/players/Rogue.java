@@ -20,9 +20,15 @@ public class Rogue extends Player {
     private static final int ENERGY_TICK_REGEN = 3;
     private static final int ENERGY_CAP = 100;
     private static final int ABILITY_RANGE = 2;
-    public Rogue(String name, Health health, UnitStats stats, Character character, Position position,
+
+    public Rogue(String name, int health, int attack, int defense, int abilityCost, GameEventNotifier gameEventNotifier) {
+        super(name, health, attack, defense, null, gameEventNotifier);
+        this.abilityCost = abilityCost;
+        this.currentEnergy = ENERGY_CAP;
+    }
+    public Rogue(String name, int health, int attack, int defense, Position position,
                  int abilityCost, GameEventNotifier gameEventNotifier) {
-        super(name, health, stats, character, position, gameEventNotifier);
+        super(name, health, attack, defense, position, gameEventNotifier);
         this.abilityCost = abilityCost;
         this.currentEnergy = ENERGY_CAP;
     }
@@ -92,5 +98,12 @@ public class Rogue extends Player {
 
     public void setCurrentEnergy(int currentEnergy) {
         this.currentEnergy = currentEnergy;
+    }
+
+    @Override
+    public String getDescription(){
+        String description = super.getDescription();
+        description += fixedLengthString("Energy: "+currentEnergy+"/"+ENERGY_CAP);
+        return description;
     }
 }
