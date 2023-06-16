@@ -7,13 +7,13 @@ import java.util.List;
  * A singleton responsible on notifying all the units that are alive and other objects about
  * various player events, such as 'PlayerMovementEvent'
  */
-public class GameEventNotifier {
+public class GameEventNotifier implements Notifier {
 
     private static GameEventNotifier instance = null;
 
     private List<GameEventListener> listeners;
 
-    private GameEventNotifier() {
+    public GameEventNotifier() {
         this.listeners = new ArrayList<>();
     }
 
