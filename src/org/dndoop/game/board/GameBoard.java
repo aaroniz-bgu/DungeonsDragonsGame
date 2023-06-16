@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class GameBoard implements GameEventListener {
+public class GameBoard implements GameEventListener, GetAtCallback {
 
     private final int WIDTH;
     private final int HEIGHT;
@@ -21,8 +21,9 @@ public class GameBoard implements GameEventListener {
 
         this.WIDTH = width;
         this.HEIGHT = height;
-    }
 
+        //build game board here
+    }
 
     /**
      * Returns a tile at the position provided.
