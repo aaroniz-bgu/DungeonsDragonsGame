@@ -66,6 +66,14 @@ public class GameEvent {
     }
 
     /**
+     * Used for subclasses where a receiver might need to interact with the event.
+     * @param unit the unit that interacts with the event.
+     */
+    public void interactWithEvent(Unit unit) {
+        //Implemented only in subclasses;
+    }
+
+    /**
      * @return Event's name
      */
     public GameEventName getName() {
@@ -86,6 +94,10 @@ public class GameEvent {
         return ACTOR;
     }
 
+    /**
+     * @deprecated please avoid using it.
+     * @return true iff a player invoked this event.
+     */
     public boolean isPlayerEvent() {
         return IS_PLAYER;
     }
