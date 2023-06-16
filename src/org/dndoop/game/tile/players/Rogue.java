@@ -1,5 +1,6 @@
 package org.dndoop.game.tile.players;
 
+import org.dndoop.game.tile.Unit;
 import org.dndoop.game.tile.enemies.Enemy;
 import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
@@ -7,6 +8,9 @@ import org.dndoop.game.tile.tile_utils.UnitStats;
 import org.dndoop.game.utils.events.GameEvent;
 import org.dndoop.game.utils.events.GameEventName;
 import org.dndoop.game.utils.events.GameEventNotifier;
+import org.dndoop.game.utils.events.RangeAttackEvent;
+
+import java.util.ArrayList;
 
 public class Rogue extends Player {
 
@@ -24,6 +28,16 @@ public class Rogue extends Player {
     }
 
     /**
+     * Called within the Joystick class only casts ability if the requirements are met.
+     */
+    @Override
+    public void castAbility() {
+        if(getCurrentEnergy() >= getAbilityCost()) {
+            onAbilityCast();
+        }
+    }
+
+    /**
      * On ability cast event, if the rogue has enough energy, remove ability cost from rogues current energy
      * and then for each enemy within range < {@value #ABILITY_RANGE}, deal damage equal to the rogues
      * attackPoints (each enemy attempts to defend itself).
@@ -31,8 +45,14 @@ public class Rogue extends Player {
     @Override
     public void onAbilityCast() {
         currentEnergy -= abilityCost;
-        //TODO for each enemy within range < ABILITY_RANGE,
-        // deal damage equal to the rogues attackPoints (each enemy attempts to defend itself).
+
+        ArrayList<Unit> targets = new ArrayList<>();
+        notifier.notify(new RangeAttackEvent(position, this, ABILITY_RANGE, targets));
+
+        for(Unit target : targets) {
+            //Since we're not rolling an attack and just maxing our attack.
+            target.defend(getStats().getAttackPoints());
+        }
     }
 
     /**
@@ -41,24 +61,13 @@ public class Rogue extends Player {
      */
     @Override
     public void onLevelUp() {
-        levelUp();
         currentEnergy = ENERGY_CAP;
         stats.increaseAttackPoints(ATTACK_POINTS_MULTIPLIER*level);
     }
 
     @Override
-    public void onDeath() {
-        notifier.notify(new GameEvent(GameEventName.PLAYER_DIED_EVENT, position, this));
-    }
-
-    @Override
     public void visit(Enemy enemy) {
-        //TODO Combat
-    }
-
-    @Override
-    public void buildMapEvents() {
-        //TODO
+        attack(enemy);
     }
 
     /**
