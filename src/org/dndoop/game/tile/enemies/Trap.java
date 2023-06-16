@@ -8,6 +8,8 @@ import org.dndoop.game.tile.tile_utils.UnitStats;
 import org.dndoop.game.utils.events.GameEvent;
 import org.dndoop.game.utils.events.GameEventNotifier;
 
+import java.beans.Visibility;
+
 public class Trap extends Enemy {
 
     private int visibilityTime;
@@ -68,8 +70,8 @@ public class Trap extends Enemy {
     }
 
     @Override
-    public void onTick(GameEvent event) {
-        tickVisibility();
+    public void onGameEvent(GameEvent event) {
+
         //TODO rest of that
     }
 
@@ -81,6 +83,11 @@ public class Trap extends Enemy {
     @Override
     public void visit(Player player) {
         //TODO Combat...
+    }
+
+    @Override
+    public void onTick() {
+        tickVisibility();
     }
 
     @Override
