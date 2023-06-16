@@ -73,7 +73,7 @@ public class GameManager implements GameEventListener {
         input.close();
         for(String level : levelPaths) {
             this.board = new GameBoard(factory, player, level);
-            System.out.println(board);
+            System.out.println(board); //TODO remove this line, just for visual purposes when coding.
             runLevel();
         }
     }
