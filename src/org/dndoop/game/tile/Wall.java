@@ -3,9 +3,10 @@ package org.dndoop.game.tile;
 import org.dndoop.game.tile.tile_utils.Position;
 
 public class Wall extends Tile {
+    private static final Character WALL_CHARACTER = '#';
 
     public Wall(Position position) {
-        super('#', position);
+        super(WALL_CHARACTER, position);
     }
 
     /**
