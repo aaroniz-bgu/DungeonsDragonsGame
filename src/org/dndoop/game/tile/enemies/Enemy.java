@@ -24,6 +24,14 @@ public abstract class Enemy extends Unit {
         unit.visit(this);
     }
 
+    /**
+     * Enemies that meet should not do anything...
+     */
+    @Override
+    public void visit(Enemy enemy) {
+        //Do nothing...
+    }
+
     @Override
     public abstract void onDeath();
 }
