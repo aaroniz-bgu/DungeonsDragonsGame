@@ -62,6 +62,13 @@ public abstract class Player extends Unit {
         //If this function gets invoked you f*****-up really hard buddy!
     }
 
+    @Override
+    public void onDeath() {
+        this.character = 'X';
+        notifier.notify(new GameEvent(GameEventName.PLAYER_DIED_EVENT, position, this));
+    }
+
+    public abstract void castAbility();
     public abstract void onAbilityCast();
     public abstract void onLevelUp();
     public abstract void onDeath();
