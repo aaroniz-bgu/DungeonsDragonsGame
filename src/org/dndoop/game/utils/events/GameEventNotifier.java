@@ -4,25 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A singleton responsible on notifying all the units that are alive and other objects about
- * various player events, such as 'PlayerMovementEvent'
+ * A class responsible on notifying all the units that are alive and other objects about
+ * various unit events, such as 'PlayerMovementEvent'
+ * Each function returns it's instance for concatenating calls.
  */
 public class GameEventNotifier implements Notifier {
 
-    private static GameEventNotifier instance = null;
-
-    private List<GameEventListener> listeners;
+    private final List<GameEventListener> LISTENERS;
 
     public GameEventNotifier() {
-        this.listeners = new ArrayList<>();
-    }
-
-    public static GameEventNotifier getInstance() {
-        if(instance == null) {
-            instance = new GameEventNotifier();
-        }
-
-        return instance;
+        this.LISTENERS = new ArrayList<>();
     }
 
     /**
@@ -31,18 +22,17 @@ public class GameEventNotifier implements Notifier {
      * @param listener - the listener that subscribes
      */
     public GameEventNotifier addListener(GameEventListener listener) {
-        listeners.add(listener);
+        LISTENERS.add(listener);
         return this;
     }
 
     /**
-     * Removes an object from the subscribed listeners.
+     * Removes an object from the subscribed LISTENERS.
      * Used upon death of a monster.
      * @param listener - The listener that listens to the player events.
-     * @return true if was in the listeners, false otherwise.
      */
     public GameEventNotifier removeListener(GameEventListener listener) {
-        listeners.remove(listener);
+        LISTENERS.remove(listener);
         return this;
     }
 
@@ -51,7 +41,7 @@ public class GameEventNotifier implements Notifier {
      * @param event event to be sent
      */
     public GameEventNotifier notify(GameEvent event) {
-        for(GameEventListener listener : listeners) {
+        for(GameEventListener listener : LISTENERS) {
             listener.onGameEvent(event);
         }
         return this;
