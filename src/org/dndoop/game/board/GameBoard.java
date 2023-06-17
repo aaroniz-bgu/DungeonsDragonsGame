@@ -4,18 +4,20 @@ import org.dndoop.game.tile.Tile;
 import org.dndoop.game.tile.enemies.Enemy;
 import org.dndoop.game.tile.players.Player;
 import org.dndoop.game.tile.tile_utils.Position;
+import org.dndoop.game.utils.events.EventCallback;
 import org.dndoop.game.utils.events.GameEvent;
 import org.dndoop.game.utils.events.GameEventListener;
+import org.dndoop.game.utils.events.GameEventName;
 import org.dndoop.game.utils.files.TileFactory;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class GameBoard implements GameEventListener, GetAtCallback {
+
+    private final Map<GameEventName, EventCallback> events;
 
     private final int WIDTH;
     private final int HEIGHT;
@@ -23,18 +25,19 @@ public class GameBoard implements GameEventListener, GetAtCallback {
     private final Character PLAYER_CHAR = '@';
     private final Character WALL_CHAR = '#';
 
-    private List<Enemy> enemies;
-
-
+    private List<Enemy> enemies;//if is problematic change to unit
     private List<Tile> board;
 
     public GameBoard(TileFactory factory, Player player, String levelPath){
-        board = new ArrayList<>();
         int x = 0;
         int y = 0;
         int maxWidth = 0;
         int maxHeight = 0;
+        board = new ArrayList<>();
         enemies = new ArrayList<>();
+
+        events = new HashMap<>();
+
         try (BufferedReader reader = new BufferedReader(new FileReader(levelPath))) {
             int character;
             while ((character = reader.read()) != -1) {
@@ -112,7 +115,12 @@ public class GameBoard implements GameEventListener, GetAtCallback {
 
         String output = "";
         for(String[] s : build) {
-            output = output.concat(Arrays.toString(s)+"\n");
+            output = output.concat(
+                    Arrays.toString(s)
+                            .replace("[","")
+                            .replace("]","")
+                            .replace(", ","")
+                            +"\n");
         }
 
         return output;
@@ -120,6 +128,13 @@ public class GameBoard implements GameEventListener, GetAtCallback {
 
     @Override
     public void onGameEvent(GameEvent event) {
+
+    }
+
+    private void buildMapEvents() {
+        events.put(GameEventName.ENEMY_DEATH_EVENT, (GameEvent event) -> {
+            getEnemies().remove(event.getActor());
+        });
 
     }
 }
