@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 
 public class Main {
     public static void main(String[] args) {
-        GameManager gameManager = new GameManager(System.out::println);
+        GameManager gameManager = new GameManager();
         Path currentDirectory = Paths.get("");
         Path parentDirectory = currentDirectory.toAbsolutePath().getParent();
         String levels_dir = "/levels_dir";
