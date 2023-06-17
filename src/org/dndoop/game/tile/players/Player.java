@@ -1,6 +1,7 @@
 package org.dndoop.game.tile.players;
 
 import org.dndoop.game.tile.Empty;
+import org.dndoop.game.tile.enemies.Enemy;
 import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
 import org.dndoop.game.tile.Unit;
@@ -31,8 +32,6 @@ public abstract class Player extends Unit {
     ) {
         super(name, health, attack, defense, PLAYER_CHARACTER, INITIAL_XP, position, gameEventNotifier);
         this.level = 1;
-
-        buildMapEvents();
     }
 
     @Override
@@ -45,7 +44,6 @@ public abstract class Player extends Unit {
     @Override
     public void onTick() {
         notifier.notify(new GameEvent(GameEventName.PLAYER_ACTION_EVENT, position, this));
-        m.send(getDescription());
     }
 
     /**
@@ -54,6 +52,11 @@ public abstract class Player extends Unit {
      */
     public void accept(Unit unit){
         unit.visit(this);
+    }
+
+    @Override
+    public void visit(Enemy enemy) {
+        attack(enemy);
     }
 
     /**
@@ -111,5 +114,9 @@ public abstract class Player extends Unit {
         description += fixedLengthString("Level: "+level);
         description += fixedLengthString("Experience: "+xp+"/"+50*level);
         return description;
+    }
+
+    public void getBar(String s) {
+        m.send(getDescription());
     }
 }
