@@ -73,7 +73,7 @@ public class Warrior extends Player{
             int randomTarget = GameRandomizer.getInstance().getRandomInt(0, potentialTargets.size() - 1);
             Unit target = potentialTargets.get(randomTarget);
             //Doing the ouchie:
-            target.defend(getHealth().getHealthPool()/ABILITY_HEALTH_DIVISOR);
+            target.defend(getHealth().getHealthPool()/ABILITY_HEALTH_DIVISOR, this);
         }
         /* Before use of regen, leaving it here just to be safe.
         health.setHealthAmount(
@@ -98,11 +98,6 @@ public class Warrior extends Player{
         stats.increaseDefensePoints(DEFENSE_POINTS_MULTIPLIER*level);
         health.increasePool(HEALTH_POOL_MULTIPLIER*level);
         health.setHealthAmount(health.getHealthPool());
-    }
-
-    @Override
-    public void visit(Enemy enemy) {
-        attack(enemy);
     }
 
     /**
