@@ -40,6 +40,8 @@ public abstract class Unit extends Tile implements GameEventListener {
         this.xp = xp;
         this.notifier = (GameEvent e) -> gameEventNotifier.notify(e);
         this.events = new HashMap<>();
+
+        buildMapEvents();
     }
 
     @Override
@@ -66,25 +68,29 @@ public abstract class Unit extends Tile implements GameEventListener {
      * @param target Unit to be attacked.
      */
     public void attack(Unit target) {
+        m.send(getName()+" engaged in combat with "+target.getName()+".");
+        m.send(getDescription());
+        m.send(target.getDescription());
+
         int attackDamage = GameRandomizer.getInstance().getRandomInt(0, getStats().getAttackPoints());
+        m.send(getName()+" rolled "+attackDamage+" attack points.");
 
-        m.send(this.name+" rolled "+attackDamage+" attack points.");
-
-        target.defend(attackDamage);
+        target.defend(attackDamage, this);
     }
 
     /**
      * Damaging the unit with giving it the ability to defend.
      * Rolls up a defence amount between 0-defensePoints
      */
-    public void defend(int attackDamage) {
+    public void defend(int attackDamage, Unit attacker) {
 
         int defensePoints = GameRandomizer.getInstance().getRandomInt(0, getStats().getDefensePoints());
         int damage = attackDamage - defensePoints;
 
-        m.send(this.name+" rolled "+defensePoints+" defense points against "+attackDamage+" attack points");
+        m.send(getName()+" rolled "+defensePoints+" defense points.");
 
         if(damage >= 0) {
+            m.send(attacker.getName()+" dealt "+damage+" damage to "+getName()+".");
             if(getHealth().damage(damage)) {
                 m.send(this.name+" has died.");
                 onDeath();
@@ -136,6 +142,7 @@ public abstract class Unit extends Tile implements GameEventListener {
     public abstract void buildMapEvents();
     /**Game tick*/
     public abstract void onTick();
+
     public String getDescription() {
         String description = "";
         description += fixedLengthString(name);
