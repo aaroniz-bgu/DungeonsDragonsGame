@@ -82,6 +82,7 @@ public class Rogue extends Player {
     @Override
     public void onTick() {
         currentEnergy = Math.min(currentEnergy+ENERGY_TICK_REGEN, ENERGY_CAP);
+        super.onTick();
     }
 
     public int getAbilityCost() {

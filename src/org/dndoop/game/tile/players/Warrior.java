@@ -110,8 +110,10 @@ public class Warrior extends Player{
      */
     @Override
     public void onTick() {
-        if(cdRemaining>0)
+        if(cdRemaining>0) {
             cdRemaining--;
+        }
+        super.onTick();
     }
 
     @Override

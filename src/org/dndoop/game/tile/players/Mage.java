@@ -107,6 +107,7 @@ public class Mage extends Player {
     @Override
     public void onTick() {
         currentMana = Math.min(manaPool, currentMana+MANA_TICK_MULTIPLIER*level);
+        super.onTick();
     }
 
     public int getManaPool() {

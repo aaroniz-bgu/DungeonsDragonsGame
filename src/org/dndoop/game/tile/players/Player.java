@@ -42,6 +42,12 @@ public abstract class Player extends Unit {
         });
     }
 
+    @Override
+    public void onTick() {
+        notifier.notify(new GameEvent(GameEventName.PLAYER_ACTION_EVENT, position, this));
+        m.send(getDescription());
+    }
+
     /**
      * Visitor design pattern, visits the pattern later.
      * @param unit self.
@@ -69,6 +75,7 @@ public abstract class Player extends Unit {
     public void onDeath() {
         this.character = 'X';
         notifier.notify(new GameEvent(GameEventName.PLAYER_DIED_EVENT, position, this));
+        m.send("Game Over");
     }
 
     public abstract void castAbility();
