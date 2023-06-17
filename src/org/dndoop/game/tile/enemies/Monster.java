@@ -56,7 +56,6 @@ public class Monster extends Enemy {
         });
         events.put(GameEventName.PLAYER_ABILITY_CAST_EVENT, (GameEvent event) -> {
             event.interactWithEvent(this);
-            events.get(GameEventName.PLAYER_ACTION_EVENT).execute(event);
         });
     }
 
@@ -90,7 +89,7 @@ public class Monster extends Enemy {
      */
     public void randomMove() {
         Direction[] DIRECTIONS = {Direction.UP, Direction.DOWN, Direction.LEFT, Direction.RIGHT};
-        int direction = GameRandomizer.getInstance().getRandomInt(1, 4);
+        int direction = GameRandomizer.getInstance().getRandomInt(0, 3);
         move(DIRECTIONS[direction]);
     }
 
@@ -112,6 +111,7 @@ public class Monster extends Enemy {
     @Override
     public void onDeath() {
         notifier.notify(new GameEvent(GameEventName.ENEMY_DEATH_EVENT, position, this));
+
     }
 
     @Override
