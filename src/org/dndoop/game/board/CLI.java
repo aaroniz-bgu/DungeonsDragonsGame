@@ -1,6 +1,9 @@
 package org.dndoop.game.board;
 
+import org.dndoop.game.tile.players.Player;
 import org.dndoop.game.utils.MessageCallback;
+
+import java.util.List;
 
 /**
  * Display object for CLI presentation.
@@ -21,6 +24,16 @@ public class CLI {
      */
     public MessageCallback getCallback() {
         return m;
+    }
+
+    public void displayPlayerMenu(List<Player> players) {
+        int number = 1;
+        print("Select player:");
+        for (Player player : players)
+        {
+            print(number+". "+player.getDescription());
+            number++;
+        }
     }
 
     /**
