@@ -4,6 +4,8 @@ import org.dndoop.game.tile.Unit;
 import org.dndoop.game.tile.players.Player;
 import org.dndoop.game.tile.tile_utils.Position;
 
+import java.nio.channels.FileLockInterruptionException;
+
 public class GameEvent {
     private final GameEventName NAME;
     private final Position POSITION;
@@ -18,7 +20,7 @@ public class GameEvent {
      */
     private GameEvent(GameEventName name, Position position, Unit actor, boolean isPlayer) {
         if(position == null) {
-            //TODO THROW ILLEGAL POSITION EXCEPTION
+            throw new IllegalArgumentException("Hi");
         }
 
         this.NAME = name;
