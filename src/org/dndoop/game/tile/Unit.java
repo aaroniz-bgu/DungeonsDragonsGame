@@ -67,6 +67,9 @@ public abstract class Unit extends Tile implements GameEventListener {
      */
     public void attack(Unit target) {
         int attackDamage = GameRandomizer.getInstance().getRandomInt(0, getStats().getAttackPoints());
+
+        m.send(this.name+" rolled "+attackDamage+" attack points.");
+
         target.defend(attackDamage);
     }
 
@@ -75,10 +78,15 @@ public abstract class Unit extends Tile implements GameEventListener {
      * Rolls up a defence amount between 0-defensePoints
      */
     public void defend(int attackDamage) {
-        int defenseAttack = GameRandomizer.getInstance().getRandomInt(0, getStats().getDefensePoints());
-        int damage = attackDamage - defenseAttack;
+
+        int defensePoints = GameRandomizer.getInstance().getRandomInt(0, getStats().getDefensePoints());
+        int damage = attackDamage - defensePoints;
+
+        m.send(this.name+" rolled "+defensePoints+" defense points against "+attackDamage+" attack points");
+
         if(damage >= 0) {
             if(getHealth().damage(damage)) {
+                m.send(this.name+" has died.");
                 onDeath();
             }
         }
