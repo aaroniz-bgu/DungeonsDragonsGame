@@ -17,8 +17,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 //TODO shouldn't be a singleton
 public class GameManager implements GameEventListener {
@@ -109,6 +111,7 @@ public class GameManager implements GameEventListener {
      * @param path The path to the level directory
      */
     public void loadLevels(String path) {
+        List<String> sortedPaths = new ArrayList<>();
         List<String> filePaths = new ArrayList<>();
         try (DirectoryStream<Path> directoryStream = Files.newDirectoryStream(Paths.get(path), "*.txt")) {
             for (Path file : directoryStream) {
@@ -116,11 +119,21 @@ public class GameManager implements GameEventListener {
                     filePaths.add(file.toString());
                 }
             }
-            //TODO Sorts by level_name in lexicographic order
+            sortedPaths = filePaths.stream()
+                    .sorted(Comparator.comparingInt(this::extractLevelNumber))
+                    .collect(Collectors.toList());
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-        this.levelPaths = filePaths;
+        this.levelPaths = sortedPaths;
+    }
+
+    private int extractLevelNumber(String filePath) {
+        String fileName = new File(filePath).getName();
+        int index = fileName.lastIndexOf("level") + "level".length();
+        String levelNumber = fileName.substring(index, fileName.lastIndexOf('.'));
+        return Integer.parseInt(levelNumber);
     }
 
     public GameBoard getGameBoard() {
