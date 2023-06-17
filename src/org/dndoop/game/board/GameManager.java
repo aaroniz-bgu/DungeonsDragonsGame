@@ -88,6 +88,7 @@ public class GameManager implements GameEventListener {
                 Player player = factory.producePlayer(Integer.parseInt(characterChoice));
                 this.player = player;
                 joystick.setPlayer(player);
+                CLI.setStatBar(player::getBar);
                 chosen = true;
             } catch (Exception e) {
                 //User is idiot.
@@ -97,9 +98,6 @@ public class GameManager implements GameEventListener {
 
     public void runLevel() {
         while(player.isAlive() && !board.getEnemies().isEmpty()) {
-
-
-
             String move = input.nextLine();
             joystick.input(move);
             CLI.update();
