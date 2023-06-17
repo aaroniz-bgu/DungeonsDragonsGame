@@ -73,8 +73,6 @@ public class GameBoard implements GameEventListener, GetAtCallback {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(maxWidth);
-        System.out.println(maxHeight);
         this.WIDTH = maxWidth;
         this.HEIGHT = maxHeight;
     }
