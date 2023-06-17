@@ -57,7 +57,7 @@ public class Rogue extends Player {
 
         for(Unit target : targets) {
             //Since we're not rolling an attack and just maxing our attack.
-            target.defend(getStats().getAttackPoints());
+            target.defend(getStats().getAttackPoints(), this);
         }
     }
 
@@ -69,11 +69,6 @@ public class Rogue extends Player {
     public void onLevelUp() {
         currentEnergy = ENERGY_CAP;
         stats.increaseAttackPoints(ATTACK_POINTS_MULTIPLIER*level);
-    }
-
-    @Override
-    public void visit(Enemy enemy) {
-        attack(enemy);
     }
 
     /**
