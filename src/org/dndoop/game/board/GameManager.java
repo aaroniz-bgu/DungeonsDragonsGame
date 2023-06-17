@@ -6,6 +6,7 @@ import org.dndoop.game.tile.tile_utils.Position;
 import org.dndoop.game.utils.MessageCallback;
 import org.dndoop.game.utils.events.GameEvent;
 import org.dndoop.game.utils.events.GameEventListener;
+import org.dndoop.game.utils.events.GameEventName;
 import org.dndoop.game.utils.events.GameEventNotifier;
 import org.dndoop.game.utils.files.TileFactory;
 
@@ -23,17 +24,23 @@ import java.util.Scanner;
 public class GameManager implements GameEventListener {
 
     private List<String> levels;
-    private Player player;
-    private GameBoard board;
-    private final GameEventNotifier NOTIFIER;
     private List<String> levelPaths;
-    private Joystick joystick;
-    private CLI CLI;
+    private final GameEventNotifier NOTIFIER;
+
     private TileFactory factory;
-    private MessageCallback m;
-    public GameManager(MessageCallback m) {
-        this.m = m;
-        this.NOTIFIER = new GameEventNotifier();
+    private final Scanner input;
+
+    private Player player;
+    private Joystick joystick;
+
+    private GameBoard board;
+    private CLI CLI;
+    public GameManager() {
+        this.CLI = new CLI(null);
+        this.joystick = new Joystick(null);
+        this.NOTIFIER = new GameEventNotifier().addListener(this);
+
+        this.input = new Scanner(System.in);
     }
 
     /**
@@ -41,54 +48,68 @@ public class GameManager implements GameEventListener {
      * @param path path to the levels_dir
      */
     public void start(String path) {
-        this.factory = new TileFactory(NOTIFIER);
+        this.factory = new TileFactory(NOTIFIER, CLI.getCallback());
 
         loadLevels(path);
         runGame(path);
+        input.close();
     }
 
+    /**
+     * Iterates through all the different levels
+     * @param path
+     */
     public void runGame(String path) {
-        boolean chosen = false;
-        Scanner input = new Scanner(System.in);
-        List<Player> players = factory.listPlayers();
-        while (!chosen) {
-            int number = 1;
-            System.out.println("Select player:");
-            for (Player player : players)
-            {
-                System.out.println(""+number+". "+player.getDescription());
-                number++;
+        choosePlayer();
+        for(String level : levelPaths) {
+            if(board != null) {
+                NOTIFIER.removeListener(board);
             }
+            this.board = new GameBoard(factory, player, level);
+            NOTIFIER.addListener(board);
+
+            CLI.nextLevel(board);
+            runLevel();
+            if(!player.isAlive()) break;
+        }
+    }
+
+    /**
+     * Lets the user choose a player he wants to play with.
+     */
+    public void choosePlayer() {
+        boolean chosen = false;
+        List<Player> players = factory.listPlayers();
+
+        while(!chosen) {
+            CLI.displayPlayerMenu(players);
             String characterChoice = input.nextLine();
             try {
                 Player player = factory.producePlayer(Integer.parseInt(characterChoice));
                 this.player = player;
+                joystick.setPlayer(player);
                 chosen = true;
+            } catch (Exception e) {
+                //User is idiot.
             }
-            catch (Exception e)
-            {
-
-            }
-        }
-        input.close();
-        for(String level : levelPaths) {
-            this.board = new GameBoard(factory, player, level);
-            System.out.println(board); //TODO remove this line, just for visual purposes when coding.
-            runLevel();
         }
     }
 
-    public void runLevel()
-    {
-        Scanner input = new Scanner(System.in);
+    public void runLevel() {
         while(player.isAlive() && !board.getEnemies().isEmpty()) {
+
+
+
             String move = input.nextLine();
-            //joystick.input(move);
-            //CLI.updateDisplay();
+            joystick.input(move);
+            CLI.update();
         }
-        input.close();
     }
 
+    /**
+     * Loads the file paths of levels to be run.
+     * @param path The path to the level directory
+     */
     public void loadLevels(String path) {
         List<String> filePaths = new ArrayList<>();
         try (DirectoryStream<Path> directoryStream = Files.newDirectoryStream(Paths.get(path), "*.txt")) {
@@ -97,6 +118,7 @@ public class GameManager implements GameEventListener {
                     filePaths.add(file.toString());
                 }
             }
+            //TODO Sorts by level_name in lexicographic order
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -109,6 +131,8 @@ public class GameManager implements GameEventListener {
 
     @Override
     public void onGameEvent(GameEvent event) {
-        //if player died....
+        if(event.getName().equals(GameEventName.ENEMY_DEATH_EVENT)) {
+            NOTIFIER.removeListener(event.getActor());
+        }
     }
 }
