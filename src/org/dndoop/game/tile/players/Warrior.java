@@ -50,7 +50,7 @@ public class Warrior extends Player{
     @Override
     public void castAbility() {
         if(cdRemaining == 0) {
-            castAbility();
+            onAbilityCast();
         }
     }
 
