@@ -27,10 +27,15 @@ public class Mage extends Player {
     private static final int MANA_DIVISOR = 4;
     private static final int MANA_TICK_MULTIPLIER = 1;
 
-    public Mage(String name, Health health, UnitStats stats, Character character, Position position,
+    public Mage(String name, int health, int attack, int defense,
+                int manaPool, int manaCost, int spellPower, int hitsCount, int abilityRange, GameEventNotifier gameEventNotifier) {
+        this(name, health, attack, defense, null, manaPool, manaCost, spellPower, hitsCount, abilityRange, gameEventNotifier);
+    }
+
+    public Mage(String name, int health, int attack, int defense, Position position,
                 int manaPool, int manaCost, int spellPower, int hitsCount, int abilityRange,
                 GameEventNotifier gameEventNotifier) {
-        super(name, health, stats, character, position, gameEventNotifier);
+        super(name, health, attack, defense, position, gameEventNotifier);
         this.manaPool = manaPool;
         this.currentMana = manaPool/MANA_DIVISOR;
         this.manaCost = manaCost;
@@ -150,5 +155,13 @@ public class Mage extends Player {
 
     public void setAbilityRange(int abilityRange) {
         this.abilityRange = abilityRange;
+    }
+
+    @Override
+    public String getDescription(){
+        String description = super.getDescription();
+        description += fixedLengthString("Mana: "+currentMana+"/"+manaPool);
+        description += fixedLengthString("Spell Power: "+spellPower);
+        return description;
     }
 }

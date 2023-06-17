@@ -25,15 +25,17 @@ public abstract class Unit extends Tile implements GameEventListener {
     protected Notifier notifier;
     protected GetAtCallback tiles;
     protected Map<GameEventName, EventCallback> events;
-    public Unit(String name, Health health, UnitStats stats, Character character,
+    private static final int FIXED_STRING_LENGTH = 30;
+    public Unit(String name, int healthPool, int attack, int defense, Character character,
                 int xp, Position position, GameEventNotifier gameEventNotifier)
     {
         super(character, position);
+        Health health = new Health(healthPool);
+        UnitStats stats = new UnitStats(attack, defense);
         this.name = name;
         this.health = health;
         this.stats = stats;
         this.xp = xp;
-
         this.notifier = (GameEvent e) -> gameEventNotifier.notify(e);
         this.events = new HashMap<>();
     }
@@ -116,9 +118,38 @@ public abstract class Unit extends Tile implements GameEventListener {
     public abstract void visit(Empty empty);
     public abstract void visit(Enemy enemy);
     public abstract void visit(Player player);
-
     /**Reactions for events*/
     public abstract void buildMapEvents();
     /**Game tick*/
     public abstract void onTick();
+    public String getDescription() {
+        String description = "";
+        description += fixedLengthString(name);
+        description += fixedLengthString("Health: "+health.toString());
+        description += fixedLengthString("Attack: "+stats.getAttackPoints());
+        description += fixedLengthString("Defense: "+stats.getDefensePoints());
+        //TODO add new line here if needed
+        return description;
+    }
+
+    /**
+     * Creates a string with a fixed length ({@value FIXED_STRING_LENGTH}), helps with creating nicely formatted
+     * outputs.
+     * @param string
+     * @return
+     */
+    protected String fixedLengthString(String string) {
+        return String.format("%1$-"+FIXED_STRING_LENGTH+ "s", string);
+    }
+
+    /**
+     * Creates a string with a fixed length, helps with creating nicely formatted
+     * outputs.
+     * @param string
+     * @param length
+     * @return
+     */
+    protected String fixedLengthString(String string, int length) {
+        return String.format("%1$-"+length+ "s", string);
+    }
 }

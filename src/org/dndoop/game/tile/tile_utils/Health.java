@@ -78,4 +78,9 @@ public class Health {
         increasePool(HEALTH_POOL_MULTIPLIER*level);
         setHealthAmount(healthPool);
     }
+
+    @Override
+    public String toString() {
+        return ""+healthAmount+"/"+healthPool;
+    }
 }

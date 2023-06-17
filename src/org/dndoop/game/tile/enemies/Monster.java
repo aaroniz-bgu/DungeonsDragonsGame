@@ -19,10 +19,21 @@ public class Monster extends Enemy {
     private final int DEFAULT_RANGE = 8;
     private final int RANGE;
 
-    public Monster(String name, Health health, UnitStats stats,
-                   Character character, Position position, int experience, int range,
+    public Monster(Character character, String name, int health, int attack, int defense,
+                   int experience, int range, GameEventNotifier gameEventNotifier) {
+        super(name, health, attack, defense, character, null, experience, gameEventNotifier);
+        if(range >= 0) {
+            this.RANGE = range;
+        } else {
+            //My own implementation, please do not deduct points it's actually nice:
+            RANGE = DEFAULT_RANGE;
+        }
+        buildMapEvents();
+    }
+    public Monster(Character character, String name, int health, int attack, int defense,
+                    Position position, int experience, int range,
                    GameEventNotifier gameEventNotifier) {
-        super(name, health, stats, character, position, experience, gameEventNotifier);
+        super(name, health, attack, defense, character, position, experience, gameEventNotifier);
 
         if(range >= 0) {
             this.RANGE = range;
@@ -101,5 +112,12 @@ public class Monster extends Enemy {
     @Override
     public void onDeath() {
         notifier.notify(new GameEvent(GameEventName.ENEMY_DEATH_EVENT, position, this));
+    }
+
+    @Override
+    public String getDescription(){
+        String description = super.getDescription();
+        description += fixedLengthString("Vision Range: "+RANGE);
+        return description;
     }
 }

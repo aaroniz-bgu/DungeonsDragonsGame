@@ -18,10 +18,19 @@ public class Trap extends Enemy {
     private int tickCount;
     private boolean visible;
 
-    public Trap(String name, Health health, UnitStats stats, Character character,
+    public Trap(Character character,String name, int health, int attack, int defense,
+                int experience, int visibilityTime, int invisibilityTime, GameEventNotifier gameEventNotifier) {
+        super(name, health, attack, defense, character, null, experience, gameEventNotifier);
+
+        this.visibilityTime = visibilityTime;
+        this.invisibilityTime = invisibilityTime;
+        this.tickCount = 0;
+        this.visible = true;
+    }
+    public Trap(Character character,String name, int health, int attack, int defense,
                 Position position, int experience, int visibilityTime, int invisibilityTime,
                 GameEventNotifier gameEventNotifier) {
-        super(name, health, stats, character, position, experience, gameEventNotifier);
+        super(name, health, attack, defense, character, position, experience, gameEventNotifier);
 
         this.visibilityTime = visibilityTime;
         this.invisibilityTime = invisibilityTime;

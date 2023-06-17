@@ -26,13 +26,19 @@ public class Warrior extends Player{
      * Creates a new warrior with the given parameters.
      * @param name
      * @param health
-     * @param stats
-     * @param character
-     * @param position
+     * @param attack
+     * @param defense
      */
-    public Warrior(String name, Health health, UnitStats stats, Character character, Position position,
+
+    public Warrior(String name, int health, int attack, int defense, int abilityCoolDown, GameEventNotifier gameEventNotifier) {
+        super(name, health, attack, defense, null, gameEventNotifier);
+        abilityCD = abilityCoolDown;
+        cdRemaining = 0;
+    }
+
+    public Warrior(String name, int health, int attack, int defense, Position position,
                    int abilityCoolDown, GameEventNotifier gameEventNotifier) {
-        super(name, health, stats, character, position, gameEventNotifier);
+        super(name, health, attack, defense, position, gameEventNotifier);
 
         abilityCD = abilityCoolDown;
         cdRemaining = 0;
@@ -106,5 +112,12 @@ public class Warrior extends Player{
     public void onTick() {
         if(cdRemaining>0)
             cdRemaining--;
+    }
+
+    @Override
+    public String getDescription(){
+        String description = super.getDescription();
+        description += fixedLengthString("Cooldown: "+cdRemaining+"/"+abilityCD);
+        return description;
     }
 }
