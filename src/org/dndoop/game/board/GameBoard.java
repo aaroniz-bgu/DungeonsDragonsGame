@@ -1,21 +1,25 @@
 package org.dndoop.game.board;
 
+import org.dndoop.game.tile.Empty;
 import org.dndoop.game.tile.Tile;
+import org.dndoop.game.tile.Unit;
 import org.dndoop.game.tile.enemies.Enemy;
 import org.dndoop.game.tile.players.Player;
 import org.dndoop.game.tile.tile_utils.Position;
+import org.dndoop.game.utils.events.EventCallback;
 import org.dndoop.game.utils.events.GameEvent;
 import org.dndoop.game.utils.events.GameEventListener;
+import org.dndoop.game.utils.events.GameEventName;
 import org.dndoop.game.utils.files.TileFactory;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class GameBoard implements GameEventListener, GetAtCallback {
+
+    private final Map<GameEventName, EventCallback> events;
 
     private final int WIDTH;
     private final int HEIGHT;
@@ -24,17 +28,24 @@ public class GameBoard implements GameEventListener, GetAtCallback {
     private final Character WALL_CHAR = '#';
 
     private List<Enemy> enemies;
-
-
     private List<Tile> board;
 
     public GameBoard(TileFactory factory, Player player, String levelPath){
+        int[] widthAndHeight = createBoard(factory,player,levelPath);
+        this.WIDTH = widthAndHeight[0];
+        this.HEIGHT = widthAndHeight[1];
+        events = new HashMap<>();
+        buildMapEvents();
+    }
+
+    private int[] createBoard(TileFactory factory, Player player, String levelPath)
+    {
         board = new ArrayList<>();
         int x = 0;
         int y = 0;
-        int maxWidth = 0;
-        int maxHeight = 0;
+        int[] widthAndHeight = new int[2];
         enemies = new ArrayList<>();
+
         try (BufferedReader reader = new BufferedReader(new FileReader(levelPath))) {
             int character;
             while ((character = reader.read()) != -1) {
@@ -57,7 +68,7 @@ public class GameBoard implements GameEventListener, GetAtCallback {
                     case '\n':
                         // Newline encountered, increment y, reset x.
                         y++;
-                        maxWidth = x;
+                        widthAndHeight[0] = x;
                         x = 0;
                         break;
                     default: //enemy
@@ -69,12 +80,11 @@ public class GameBoard implements GameEventListener, GetAtCallback {
                 if (!(c == '\n' || c == '\r'))
                     x++;
             }
-            maxHeight = y+1; //Since indexing starts at 0.
+            widthAndHeight[1] = y+1; //Since indexing starts at 0.
         } catch (IOException e) {
             e.printStackTrace();
         }
-        this.WIDTH = maxWidth;
-        this.HEIGHT = maxHeight;
+        return widthAndHeight;
     }
 
     public List<Enemy> getEnemies() {
@@ -112,7 +122,12 @@ public class GameBoard implements GameEventListener, GetAtCallback {
 
         String output = "";
         for(String[] s : build) {
-            output = output.concat(Arrays.toString(s)+"\n");
+            output = output.concat(
+                    Arrays.toString(s)
+                            .replace("[","")
+                            .replace("]","")
+                            .replace(", ","")
+                            +"\n");
         }
 
         return output;
@@ -120,6 +135,17 @@ public class GameBoard implements GameEventListener, GetAtCallback {
 
     @Override
     public void onGameEvent(GameEvent event) {
+        if(events.containsKey(event.getName())) {
+            events.get(event.getName()).execute(event);
+        }
+    }
+
+    private void buildMapEvents() {
+        events.put(GameEventName.ENEMY_DEATH_EVENT, (GameEvent event) -> {
+            getEnemies().remove(event.getActor());
+            board.remove(event.getActor());
+            board.add(new Empty(event.getPosition()));
+        });
 
     }
 }

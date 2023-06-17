@@ -73,7 +73,7 @@ public class Mage extends Player {
             Unit target = potentialTargets.get(randomTarget);
 
             //Since here we're attacking with custom amount of damage.
-            target.defend(spellPower);
+            target.defend(spellPower, this);
 
             //If target died remove it from potential targets.
             if(!target.isAlive()) {
@@ -96,17 +96,13 @@ public class Mage extends Player {
         spellPower += SPELL_POWER_MULTIPLIER*level;
     }
 
-    @Override
-    public void visit(Enemy enemy) {
-        attack(enemy);
-    }
-
     /**
      * On game tick regenerates mana by min(manaPool, currentMana+{@value #MANA_TICK_MULTIPLIER}*level)
      */
     @Override
     public void onTick() {
         currentMana = Math.min(manaPool, currentMana+MANA_TICK_MULTIPLIER*level);
+        super.onTick();
     }
 
     public int getManaPool() {

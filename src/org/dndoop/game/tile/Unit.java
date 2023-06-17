@@ -9,6 +9,7 @@ import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
 import org.dndoop.game.tile.tile_utils.UnitStats;
 import org.dndoop.game.utils.GameRandomizer;
+import org.dndoop.game.utils.MessageCallback;
 import org.dndoop.game.utils.events.*;
 
 import java.util.HashMap;
@@ -23,6 +24,7 @@ public abstract class Unit extends Tile implements GameEventListener {
     protected String description;//Tal's recommendation TODO implement in all sub classes
 
     protected Notifier notifier;
+    protected MessageCallback m;
     protected GetAtCallback tiles;
     protected Map<GameEventName, EventCallback> events;
     private static final int FIXED_STRING_LENGTH = 30;
@@ -38,6 +40,8 @@ public abstract class Unit extends Tile implements GameEventListener {
         this.xp = xp;
         this.notifier = (GameEvent e) -> gameEventNotifier.notify(e);
         this.events = new HashMap<>();
+
+        buildMapEvents();
     }
 
     @Override
@@ -51,7 +55,7 @@ public abstract class Unit extends Tile implements GameEventListener {
      * Just sends your request to move somewhere/interact with something using a direction.
      * @param direction the direction you're trying to move to.
      */
-    protected void move(Direction direction) {
+    public void move(Direction direction) {
         tiles.getAt(position.move(direction)).accept(this);
     }
 
@@ -64,22 +68,38 @@ public abstract class Unit extends Tile implements GameEventListener {
      * @param target Unit to be attacked.
      */
     public void attack(Unit target) {
+        m.send(getName()+" engaged in combat with "+target.getName()+".");
+        m.send(getDescription());
+        m.send(target.getDescription());
+
         int attackDamage = GameRandomizer.getInstance().getRandomInt(0, getStats().getAttackPoints());
-        target.defend(attackDamage);
+        m.send(getName()+" rolled "+attackDamage+" attack points.");
+
+        target.defend(attackDamage, this);
     }
 
     /**
      * Damaging the unit with giving it the ability to defend.
      * Rolls up a defence amount between 0-defensePoints
      */
-    public void defend(int attackDamage) {
-        int defenseAttack = GameRandomizer.getInstance().getRandomInt(0, getStats().getDefensePoints());
-        int damage = attackDamage - defenseAttack;
+    public void defend(int attackDamage, Unit attacker) {
+
+        int defensePoints = GameRandomizer.getInstance().getRandomInt(0, getStats().getDefensePoints());
+        int damage = attackDamage - defensePoints;
+
+        m.send(getName()+" rolled "+defensePoints+" defense points.");
+
         if(damage >= 0) {
+            m.send(attacker.getName()+" dealt "+damage+" damage to "+getName()+".");
             if(getHealth().damage(damage)) {
+                m.send(this.name+" has died.");
                 onDeath();
             }
         }
+    }
+
+    public void setMessageCallback(MessageCallback m) {
+        this.m = m;
     }
 
     public String getName() {
@@ -122,6 +142,7 @@ public abstract class Unit extends Tile implements GameEventListener {
     public abstract void buildMapEvents();
     /**Game tick*/
     public abstract void onTick();
+
     public String getDescription() {
         String description = "";
         description += fixedLengthString(name);

@@ -3,16 +3,15 @@ package org.dndoop.game.utils.files;
 import org.dndoop.game.board.GameBoard;
 import org.dndoop.game.tile.Empty;
 import org.dndoop.game.tile.Wall;
+import org.dndoop.game.tile.enemies.Boss;
 import org.dndoop.game.tile.enemies.Enemy;
 import org.dndoop.game.tile.enemies.Monster;
 import org.dndoop.game.tile.enemies.Trap;
-import org.dndoop.game.tile.players.Mage;
-import org.dndoop.game.tile.players.Player;
-import org.dndoop.game.tile.players.Rogue;
-import org.dndoop.game.tile.players.Warrior;
+import org.dndoop.game.tile.players.*;
 import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
 import org.dndoop.game.tile.tile_utils.UnitStats;
+import org.dndoop.game.utils.MessageCallback;
 import org.dndoop.game.utils.events.GameEventNotifier;
 
 import java.util.Arrays;
@@ -28,11 +27,13 @@ public class TileFactory {
     private Player selected;
 
     private GameEventNotifier gameEventNotifier;
+    private MessageCallback m;
 
-    public TileFactory(GameEventNotifier gameEventNotifier){
+    public TileFactory(GameEventNotifier gameEventNotifier, MessageCallback m){
         playersList = initPlayers();
         enemiesMap = initEnemies();
         this.gameEventNotifier = gameEventNotifier;
+        this.m = m;
     }
 
     private Map<Character, Supplier<Enemy>> initEnemies() {
@@ -44,9 +45,9 @@ public class TileFactory {
                 () -> new Monster('b', "Bear-Wright", 1000, 75, 30, 250,  4, gameEventNotifier),
                 () -> new Monster('g', "Giant-Wright",1500, 100, 40,500,   5, gameEventNotifier),
                 () -> new Monster('w', "White Walker", 2000, 150, 50, 1000, 6, gameEventNotifier),
-                //() -> new Boss('M', "The Mountain", 1000, 60, 25,  500, 6, 5, gameEventNotifier),
-                //() -> new Boss('C', "Queen Cersei", 100, 10, 10,1000, 1, 8, gameEventNotifier),
-                //() -> new Boss('K', "Night's King", 5000, 300, 150, 5000, 8, 3, gameEventNotifier),
+                () -> new Boss('M', "The Mountain", 1000, 60, 25,  500, 6, 5, gameEventNotifier),
+                () -> new Boss('C', "Queen Cersei", 100, 10, 10,1000, 1, 8, gameEventNotifier),
+                () -> new Boss('K', "Night's King", 5000, 300, 150, 5000, 8, 3, gameEventNotifier),
                 () -> new Trap('B', "Bonus Trap", 1, 1, 1, 250,  1, 10, gameEventNotifier),
                 () -> new Trap('Q', "Queen's Trap", 250, 50, 10, 100, 3, 10, gameEventNotifier),
                 () -> new Trap('D', "Death Trap", 500, 100, 20, 250, 1, 10, gameEventNotifier)
@@ -62,8 +63,8 @@ public class TileFactory {
                 () -> new Mage("Melisandre", 100, 5, 1, 300, 30, 15, 5, 6, gameEventNotifier),
                 () -> new Mage("Thoros of Myr", 250, 25, 4, 150, 20, 20, 3, 4, gameEventNotifier),
                 () -> new Rogue("Arya Stark", 150, 40, 2, 20, gameEventNotifier),
-                () -> new Rogue("Bronn", 250, 35, 3, 50, gameEventNotifier)
-                //() -> new Hunter("Ygritte", 220, 30, 2, 6, gameEventNotifier)
+                () -> new Rogue("Bronn", 250, 35, 3, 50, gameEventNotifier),
+                () -> new Hunter("Ygritte", 220, 30, 2, 6, gameEventNotifier)
         );
     }
 
@@ -72,22 +73,27 @@ public class TileFactory {
         return playersList.stream().map(Supplier::get).collect(Collectors.toList());
     }
 
-
-    // TODO: Add additional callbacks of your choice
-
     public Enemy produceEnemy(char tile, Position position, GameBoard gameboard) {
         if (!enemiesMap.containsKey(tile))
             throw new IllegalArgumentException();
         Enemy enemy = enemiesMap.get(tile).get();
         enemy.setPosition(position);
         enemy.setTilesAccess(gameboard);
+        enemy.setMessageCallback(m);
+
+        gameEventNotifier.addListener(enemy);
+
         return enemy;
     }
 
     public Player producePlayer(int idx) {
-        if (!(idx>0)&&(idx<=playersList.size()))
+        if (!(idx > 0) && (idx <= playersList.size()))
             throw new IllegalArgumentException();
-        Player player = playersList.get(idx).get();
+        Player player = playersList.get(idx-1).get();
+        player.setMessageCallback(m);
+
+        gameEventNotifier.addListener(player);
+
         return player;
     }
 
@@ -98,6 +104,4 @@ public class TileFactory {
     public Wall produceWall(Position position) {
         return new Wall(position);
     }
-
-
 }

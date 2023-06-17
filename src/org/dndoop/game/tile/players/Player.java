@@ -1,6 +1,7 @@
 package org.dndoop.game.tile.players;
 
 import org.dndoop.game.tile.Empty;
+import org.dndoop.game.tile.enemies.Enemy;
 import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
 import org.dndoop.game.tile.Unit;
@@ -10,7 +11,7 @@ import org.dndoop.game.utils.events.GameEventName;
 import org.dndoop.game.utils.events.GameEventNotifier;
 import java.lang.String;
 
-public abstract class Player extends Unit {
+public abstract class Player extends Unit implements HeroicUnit {
 
     private static int INITIAL_XP = 0;
     private static final Character PLAYER_CHARACTER = '@';
@@ -31,8 +32,6 @@ public abstract class Player extends Unit {
     ) {
         super(name, health, attack, defense, PLAYER_CHARACTER, INITIAL_XP, position, gameEventNotifier);
         this.level = 1;
-
-        buildMapEvents();
     }
 
     @Override
@@ -42,12 +41,22 @@ public abstract class Player extends Unit {
         });
     }
 
+    @Override
+    public void onTick() {
+        notifier.notify(new GameEvent(GameEventName.PLAYER_ACTION_EVENT, position, this));
+    }
+
     /**
      * Visitor design pattern, visits the pattern later.
      * @param unit self.
      */
     public void accept(Unit unit){
         unit.visit(this);
+    }
+
+    @Override
+    public void visit(Enemy enemy) {
+        attack(enemy);
     }
 
     /**
@@ -66,12 +75,21 @@ public abstract class Player extends Unit {
     }
 
     @Override
+    public void attack(Unit target) {
+        super.attack(target);
+        //If target was killed then player takes its position.
+        if(!target.isAlive()) {
+            tiles.getAt(target.getPosition()).accept(this);
+        }
+    }
+
+    @Override
     public void onDeath() {
         this.character = 'X';
         notifier.notify(new GameEvent(GameEventName.PLAYER_DIED_EVENT, position, this));
+        m.send("Game Over");
     }
 
-    public abstract void castAbility();
     public abstract void onAbilityCast();
     public abstract void onLevelUp();
 
@@ -104,5 +122,14 @@ public abstract class Player extends Unit {
         description += fixedLengthString("Level: "+level);
         description += fixedLengthString("Experience: "+xp+"/"+50*level);
         return description;
+    }
+
+    public void getBar(String s) {
+        m.send(getDescription());
+    }
+
+    @Override
+    public void castAbility(Unit unit) {
+        //Do nothing...
     }
 }

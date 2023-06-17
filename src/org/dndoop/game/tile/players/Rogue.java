@@ -57,7 +57,7 @@ public class Rogue extends Player {
 
         for(Unit target : targets) {
             //Since we're not rolling an attack and just maxing our attack.
-            target.defend(getStats().getAttackPoints());
+            target.defend(getStats().getAttackPoints(), this);
         }
     }
 
@@ -71,17 +71,13 @@ public class Rogue extends Player {
         stats.increaseAttackPoints(ATTACK_POINTS_MULTIPLIER*level);
     }
 
-    @Override
-    public void visit(Enemy enemy) {
-        attack(enemy);
-    }
-
     /**
      * On game tick event, the rogue regens {@value #ENERGY_TICK_REGEN} but caps at {@value #ENERGY_CAP}.\
      */
     @Override
     public void onTick() {
         currentEnergy = Math.min(currentEnergy+ENERGY_TICK_REGEN, ENERGY_CAP);
+        super.onTick();
     }
 
     public int getAbilityCost() {

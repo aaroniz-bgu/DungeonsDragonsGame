@@ -1,10 +1,11 @@
 package org.dndoop.game.tile.tile_utils;
 
 public enum Direction {
-    UP(0,1),
-    DOWN(0,-1),
+    UP(0,-1),
+    DOWN(0,1),
     LEFT(-1,0),
-    RIGHT(1,0);
+    RIGHT(1,0),
+    STAY(0,0);
 
     private final int x;
     private final int y;

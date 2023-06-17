@@ -10,7 +10,7 @@ public abstract class Tile {
     public String toString() {
         return character.toString();
     }
-  
+
     public Tile(Character character, Position position) {
         this.character = character;
         this.position = position;

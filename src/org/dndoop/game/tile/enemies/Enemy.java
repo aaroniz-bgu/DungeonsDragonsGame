@@ -4,7 +4,9 @@ import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
 import org.dndoop.game.tile.Unit;
 import org.dndoop.game.tile.tile_utils.UnitStats;
+import org.dndoop.game.utils.events.GameEvent;
 import org.dndoop.game.utils.events.GameEventListener;
+import org.dndoop.game.utils.events.GameEventName;
 import org.dndoop.game.utils.events.GameEventNotifier;
 
 public abstract class Enemy extends Unit {
@@ -33,7 +35,9 @@ public abstract class Enemy extends Unit {
     }
 
     @Override
-    public abstract void onDeath();
+    public void onDeath() {
+        notifier.notify(new GameEvent(GameEventName.ENEMY_DEATH_EVENT, position, this));
+    }
 
     public Character getTile() {
         return this.character;

@@ -50,7 +50,7 @@ public class Warrior extends Player{
     @Override
     public void castAbility() {
         if(cdRemaining == 0) {
-            castAbility();
+            onAbilityCast();
         }
     }
 
@@ -73,7 +73,7 @@ public class Warrior extends Player{
             int randomTarget = GameRandomizer.getInstance().getRandomInt(0, potentialTargets.size() - 1);
             Unit target = potentialTargets.get(randomTarget);
             //Doing the ouchie:
-            target.defend(getHealth().getHealthPool()/ABILITY_HEALTH_DIVISOR);
+            target.defend(getHealth().getHealthPool()/ABILITY_HEALTH_DIVISOR, this);
         }
         /* Before use of regen, leaving it here just to be safe.
         health.setHealthAmount(
@@ -100,18 +100,15 @@ public class Warrior extends Player{
         health.setHealthAmount(health.getHealthPool());
     }
 
-    @Override
-    public void visit(Enemy enemy) {
-        attack(enemy);
-    }
-
     /**
      * On game tick event lowers the warriors ability cool-down by 1.
      */
     @Override
     public void onTick() {
-        if(cdRemaining>0)
+        if(cdRemaining>0) {
             cdRemaining--;
+        }
+        super.onTick();
     }
 
     @Override

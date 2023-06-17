@@ -2,53 +2,58 @@ package org.dndoop.game.tile.enemies;
 
 import org.dndoop.game.tile.Empty;
 import org.dndoop.game.tile.Unit;
+import org.dndoop.game.tile.players.HeroicUnit;
 import org.dndoop.game.tile.players.Player;
 import org.dndoop.game.tile.tile_utils.Direction;
-import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
-import org.dndoop.game.tile.tile_utils.UnitStats;
 import org.dndoop.game.utils.GameRandomizer;
 import org.dndoop.game.utils.events.GameEvent;
 import org.dndoop.game.utils.events.GameEventName;
 import org.dndoop.game.utils.events.GameEventNotifier;
 
-import java.util.HashMap;
+public class Boss extends Enemy implements HeroicUnit {
 
-public class Monster extends Enemy {
+    private final int VISION_RANGE;
+    private final int ABILITY_FREQUENCY;
+    private int combatTicks;
 
-    private final int DEFAULT_RANGE = 8;
-    private final int RANGE;
-
-    public Monster(Character character, String name, int health, int attack, int defense,
-                   int experience, int range, GameEventNotifier gameEventNotifier) {
+    public Boss(Character character, String name, int health, int attack, int defense,
+                int experience, int visionRange, int abilityFrequency,
+                GameEventNotifier gameEventNotifier) {
         super(name, health, attack, defense, character, null, experience, gameEventNotifier);
-        if(range >= 0) {
-            this.RANGE = range;
-        } else {
-            //My own implementation, please do not deduct points it's actually nice:
-            RANGE = DEFAULT_RANGE;
-        }
-    }
-    public Monster(Character character, String name, int health, int attack, int defense,
-                    Position position, int experience, int range,
-                   GameEventNotifier gameEventNotifier) {
-        super(name, health, attack, defense, character, position, experience, gameEventNotifier);
 
-        if(range >= 0) {
-            this.RANGE = range;
-        } else {
-            //My own implementation, please do not deduct points it's actually nice:
-            RANGE = DEFAULT_RANGE;
-        }
+        this.VISION_RANGE = visionRange;
+        this.ABILITY_FREQUENCY = abilityFrequency;
+        this.combatTicks = 0;
     }
 
     @Override
-    public void buildMapEvents(){
+    public void visit(Empty empty) {
+        getPosition().swapPositions(empty.getPosition());
+    }
+
+    @Override
+    public void visit(Player player) {
+        attack(player);
+    }
+
+    /**
+     * Reactions for events
+     */
+    @Override
+    public void buildMapEvents() {
         events.put(GameEventName.PLAYER_ACTION_EVENT, (GameEvent event) -> {
             onTick();
-            if(position.range(event.getPosition()) <= RANGE) {
-                playerInRange(event.getActor());
+            if(position.range(event.getPosition()) <= VISION_RANGE) {
+                if(combatTicks == ABILITY_FREQUENCY) {
+                    combatTicks = 0;
+                    castAbility();
+                } else {
+                    combatTicks += 1;
+                    playerInRange(event.getActor());
+                }
             } else {
+                combatTicks = 0;
                 randomMove();
             }
         });
@@ -91,25 +96,21 @@ public class Monster extends Enemy {
         move(DIRECTIONS[direction]);
     }
 
-    @Override
-    public void visit(Empty empty) {
-        position.swapPositions(empty.getPosition());
-    }
-
-    @Override
-    public void visit(Player player) {
-        attack(player);
-    }
-
+    /**
+     * Game tick
+     */
     @Override
     public void onTick() {
 
     }
 
     @Override
-    public String getDescription(){
-        String description = super.getDescription();
-        description += fixedLengthString("Vision Range: "+RANGE);
-        return description;
+    public void castAbility(Unit unit) {
+        unit.defend(getStats().getAttackPoints(), this);
+    }
+
+    @Override
+    public void castAbility() {
+        //Do nothing...
     }
 }
