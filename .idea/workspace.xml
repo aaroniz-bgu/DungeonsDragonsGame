@@ -4,18 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="090fd0be-7951-4436-97d2-9209ed3b9587" name="Changes" comment="callbacks">
+    <list default="true" id="090fd0be-7951-4436-97d2-9209ed3b9587" name="Changes" comment="unified">
+      <change afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/enemies/Boss.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/HeroicUnit.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Hunter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/board/CLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/board/CLI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/board/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/board/GameManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/Tile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/Unit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/Unit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/enemies/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/enemies/Enemy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/enemies/Monster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/enemies/Monster.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/enemies/Trap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/enemies/Trap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Mage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Mage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Rogue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Rogue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Warrior.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Warrior.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/utils/files/TileFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/utils/files/TileFactory.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,8 +26,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -116,77 +114,7 @@
       <option name="presentableId" value="Default" />
       <updated>1685700863698</updated>
       <workItem from="1686910553286" duration="22923000" />
-      <workItem from="1686993470131" duration="15382000" />
-    </task>
-    <task id="LOCAL-00062" summary="code reduction, visit enemy here">
-      <created>1686910597185</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1686910597186</updated>
-    </task>
-    <task id="LOCAL-00063" summary="first impl">
-      <created>1686910612866</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1686910612866</updated>
-    </task>
-    <task id="LOCAL-00064" summary="trying to change the impl to not be singleton">
-      <created>1686910652827</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1686910652827</updated>
-    </task>
-    <task id="LOCAL-00065" summary="trying to change the impl to not be singleton">
-      <created>1686910775468</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1686910775468</updated>
-    </task>
-    <task id="LOCAL-00066" summary="visitor code skeleton">
-      <created>1686910810437</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1686910810437</updated>
-    </task>
-    <task id="LOCAL-00067" summary="trying to decouple the gameboard without making the game manager a singleton">
-      <created>1686910847256</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1686910847256</updated>
-    </task>
-    <task id="LOCAL-00068" summary="trying to remove singleton from observer system">
-      <created>1686910871569</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1686910871569</updated>
-    </task>
-    <task id="LOCAL-00069" summary="fixing visitor code">
-      <created>1686910895276</created>
-      <option name="number" value="00069" />
-      <option name="presentableId" value="LOCAL-00069" />
-      <option name="project" value="LOCAL" />
-      <updated>1686910895276</updated>
-    </task>
-    <task id="LOCAL-00070" summary="game startup">
-      <created>1686910915247</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1686910915247</updated>
-    </task>
-    <task id="LOCAL-00071" summary="refactoring onGameEvent and adding onTick again">
-      <created>1686915315203</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1686915315203</updated>
+      <workItem from="1686993470131" duration="21620000" />
     </task>
     <task id="LOCAL-00072" summary="refactoring onGameEvent and adding onTick again, and ticking visibility">
       <created>1686915332554</created>
@@ -461,7 +389,77 @@
       <option name="project" value="LOCAL" />
       <updated>1687009637366</updated>
     </task>
-    <option name="localTasksCounter" value="111" />
+    <task id="LOCAL-00111" summary="added stat bar">
+      <created>1687012731569</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1687012731569</updated>
+    </task>
+    <task id="LOCAL-00112" summary="added stat bar">
+      <created>1687012741567</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1687012741567</updated>
+    </task>
+    <task id="LOCAL-00113" summary="added stat bar and unified visit(Enemy)">
+      <created>1687012768893</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1687012768893</updated>
+    </task>
+    <task id="LOCAL-00114" summary="unified visit(Enemy)">
+      <created>1687012783302</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1687012783303</updated>
+    </task>
+    <task id="LOCAL-00115" summary="unified visit(Enemy) + fixed defend">
+      <created>1687012801793</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1687012801793</updated>
+    </task>
+    <task id="LOCAL-00116" summary="unified visit(Enemy) + fixed defend">
+      <created>1687012809967</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1687012809968</updated>
+    </task>
+    <task id="LOCAL-00117" summary="unified buildMapEvents + fixed defend and callbacks">
+      <created>1687012833105</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1687012833105</updated>
+    </task>
+    <task id="LOCAL-00118" summary="fixed visibility">
+      <created>1687012858104</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1687012858104</updated>
+    </task>
+    <task id="LOCAL-00119" summary="-">
+      <created>1687012867862</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1687012867862</updated>
+    </task>
+    <task id="LOCAL-00120" summary="unified">
+      <created>1687012890698</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1687012890698</updated>
+    </task>
+    <option name="localTasksCounter" value="121" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -472,21 +470,25 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/daniel" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="gain xp and overhauling level up to be in logical order" />
-    <MESSAGE value="New Event type" />
-    <MESSAGE value="cast ability and visitor now working" />
-    <MESSAGE value="finished and polished combat system" />
-    <MESSAGE value="Seed display" />
-    <MESSAGE value="Created the CLI" />
-    <MESSAGE value="Added no movement" />
-    <MESSAGE value="Entity removal on death" />
     <MESSAGE value="imports of new CLI and Joystick" />
     <MESSAGE value="Created the joystick" />
     <MESSAGE value="Fixed pathing" />
@@ -504,6 +506,14 @@
     <MESSAGE value="shouldn't call twice the action + fixing random move" />
     <MESSAGE value="now gives message callback" />
     <MESSAGE value="callbacks" />
-    <option name="LAST_COMMIT_MESSAGE" value="callbacks" />
+    <MESSAGE value="added stat bar" />
+    <MESSAGE value="added stat bar and unified visit(Enemy)" />
+    <MESSAGE value="unified visit(Enemy)" />
+    <MESSAGE value="unified visit(Enemy) + fixed defend" />
+    <MESSAGE value="unified buildMapEvents + fixed defend and callbacks" />
+    <MESSAGE value="fixed visibility" />
+    <MESSAGE value="-" />
+    <MESSAGE value="unified" />
+    <option name="LAST_COMMIT_MESSAGE" value="unified" />
   </component>
 </project>

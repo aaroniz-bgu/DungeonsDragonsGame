@@ -79,11 +79,6 @@ public class Trap extends Enemy {
         tickVisibility();
     }
 
-    @Override
-    public void onDeath() {
-        notifier.notify(new GameEvent(GameEventName.ENEMY_DEATH_EVENT, position, this));
-    }
-
     public int getVisiblityTime() {
         return visibilityTime;
     }
