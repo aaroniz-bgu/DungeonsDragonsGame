@@ -28,7 +28,6 @@ public class Monster extends Enemy {
             //My own implementation, please do not deduct points it's actually nice:
             RANGE = DEFAULT_RANGE;
         }
-        buildMapEvents();
     }
     public Monster(Character character, String name, int health, int attack, int defense,
                     Position position, int experience, int range,
@@ -41,7 +40,6 @@ public class Monster extends Enemy {
             //My own implementation, please do not deduct points it's actually nice:
             RANGE = DEFAULT_RANGE;
         }
-        buildMapEvents();
     }
 
     @Override
