@@ -12,7 +12,7 @@ import java.util.Map;
 public class Joystick {
 
     private static final Map<String, Direction> DIRECTIONS = new HashMap<>();
-    private final Player player;
+    private Player player;
     public Joystick(Player player) {
         this.player = player;
 
@@ -52,6 +52,7 @@ public class Joystick {
      */
     public void move(Direction direction) {
         player.move(direction);
+        player.onTick();
     }
 
     /**
@@ -59,5 +60,14 @@ public class Joystick {
      */
     public void specialAbilityCast() {
         player.castAbility();
+        player.onTick();
+    }
+
+    /**
+     * Just updates the player.
+     * @param player The player to be updated.
+     */
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 }
