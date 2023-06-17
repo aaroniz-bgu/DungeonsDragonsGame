@@ -1,6 +1,8 @@
 package org.dndoop.game.board;
 
+import org.dndoop.game.tile.Empty;
 import org.dndoop.game.tile.Tile;
+import org.dndoop.game.tile.Unit;
 import org.dndoop.game.tile.enemies.Enemy;
 import org.dndoop.game.tile.players.Player;
 import org.dndoop.game.tile.tile_utils.Position;
@@ -25,7 +27,7 @@ public class GameBoard implements GameEventListener, GetAtCallback {
     private final Character PLAYER_CHAR = '@';
     private final Character WALL_CHAR = '#';
 
-    private List<Enemy> enemies;//if is problematic change to unit
+    private List<Enemy> enemies;
     private List<Tile> board;
 
     public GameBoard(TileFactory factory, Player player, String levelPath){
@@ -33,6 +35,7 @@ public class GameBoard implements GameEventListener, GetAtCallback {
         this.WIDTH = widthAndHeight[0];
         this.HEIGHT = widthAndHeight[1];
         events = new HashMap<>();
+        buildMapEvents();
     }
 
     private int[] createBoard(TileFactory factory, Player player, String levelPath)
@@ -132,12 +135,16 @@ public class GameBoard implements GameEventListener, GetAtCallback {
 
     @Override
     public void onGameEvent(GameEvent event) {
-
+        if(events.containsKey(event.getName())) {
+            events.get(event.getName()).execute(event);
+        }
     }
 
     private void buildMapEvents() {
         events.put(GameEventName.ENEMY_DEATH_EVENT, (GameEvent event) -> {
             getEnemies().remove(event.getActor());
+            board.remove(event.getActor());
+            board.add(new Empty(event.getPosition()));
         });
 
     }
