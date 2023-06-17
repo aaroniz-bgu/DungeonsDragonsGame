@@ -86,8 +86,8 @@ public class Monster extends Enemy {
      * Used when player isn't in range.
      */
     public void randomMove() {
-        Direction[] DIRECTIONS = {Direction.UP, Direction.DOWN, Direction.LEFT, Direction.RIGHT};
-        int direction = GameRandomizer.getInstance().getRandomInt(0, 3);
+        Direction[] DIRECTIONS = {Direction.UP, Direction.DOWN, Direction.LEFT, Direction.RIGHT, Direction.STAY};
+        int direction = GameRandomizer.getInstance().getRandomInt(0, 4);
         move(DIRECTIONS[direction]);
     }
 
@@ -103,12 +103,6 @@ public class Monster extends Enemy {
 
     @Override
     public void onTick() {
-
-    }
-
-    @Override
-    public void onDeath() {
-        notifier.notify(new GameEvent(GameEventName.ENEMY_DEATH_EVENT, position, this));
 
     }
 
