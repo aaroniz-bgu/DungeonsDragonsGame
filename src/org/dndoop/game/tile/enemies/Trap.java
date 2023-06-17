@@ -1,10 +1,15 @@
 package org.dndoop.game.tile.enemies;
 
+import org.dndoop.game.tile.Empty;
+import org.dndoop.game.tile.players.Player;
 import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
 import org.dndoop.game.tile.tile_utils.UnitStats;
-import org.dndoop.game.utils.events.PlayerEvent;
-import org.dndoop.game.utils.events.PlayerEventNotifier;
+import org.dndoop.game.utils.events.GameEvent;
+import org.dndoop.game.utils.events.GameEventName;
+import org.dndoop.game.utils.events.GameEventNotifier;
+
+import java.beans.Visibility;
 
 public class Trap extends Enemy {
 
@@ -14,35 +19,63 @@ public class Trap extends Enemy {
     private boolean visible;
 
     public Trap(String name, Health health, UnitStats stats, Character character,
-                Position position, int experience, int visibilityTime, int invisibilityTime) {
-        super(name, health, stats, character, position, experience);
+                Position position, int experience, int visibilityTime, int invisibilityTime,
+                GameEventNotifier gameEventNotifier) {
+        super(name, health, stats, character, position, experience, gameEventNotifier);
 
         this.visibilityTime = visibilityTime;
         this.invisibilityTime = invisibilityTime;
         this.tickCount = 0;
         this.visible = true;
 
-        PlayerEventNotifier.getInstance().addListener(this);
+        buildMapEvents();
     }
 
     /**
      * Used to control the tickCount field and control visibility of the trap
-     * TODO add visibility control once MVC is implemented
      */
     public void tickVisibility() {
-        tickCount += 1;
+        visible = tickCount < visibilityTime;
 
-        if(visible) {
-            if(tickCount == visibilityTime) {
-                tickCount = 0;
-                visible = false;
-            }
+        if(tickCount == (visibilityTime + invisibilityTime)) {
+            tickCount = 0;
         } else {
-            if(tickCount == invisibilityTime) {
-                tickCount = 0;
-                visible = true;
-            }
+            tickCount += 1;
         }
+    }
+
+    @Override
+    public void visit(Empty empty) {
+        //Do nothing
+    }
+
+    @Override
+    public void visit(Player player) {
+        //Can't actually visit a player, damaging handled below in event route.
+    }
+
+    @Override
+    public void buildMapEvents() {
+        events.put(GameEventName.PLAYER_ACTION_EVENT, (GameEvent event) -> {
+            onTick();
+            if (position.range(event.getPosition()) < 2) {
+                attack(event.getActor());
+            }
+        });
+        events.put(GameEventName.PLAYER_ABILITY_CAST_EVENT, (GameEvent event) -> {
+            event.interactWithEvent(this);
+            events.get(GameEventName.PLAYER_ACTION_EVENT).execute(event);
+        });
+    }
+
+    @Override
+    public void onTick() {
+        tickVisibility();
+    }
+
+    @Override
+    public void onDeath() {
+        notifier.notify(new GameEvent(GameEventName.ENEMY_DEATH_EVENT, position, this));
     }
 
     public int getVisiblityTime() {
@@ -64,18 +97,6 @@ public class Trap extends Enemy {
     public boolean isVisible() {
         return visible;
     }
-
-    @Override
-    public void onTick(PlayerEvent event) {
-        tickVisibility();
-        //rest of that
-    }
-
-    @Override
-    public void onDeath() {
-        PlayerEventNotifier.getInstance().removeListener(this);
-    }
-
     @Override
     public String toString() {
         return visible ? character.toString() : ".";

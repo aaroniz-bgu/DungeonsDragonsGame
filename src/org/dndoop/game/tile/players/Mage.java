@@ -1,10 +1,18 @@
 package org.dndoop.game.tile.players;
 
+import org.dndoop.game.tile.Empty;
+import org.dndoop.game.tile.Unit;
+import org.dndoop.game.tile.enemies.Enemy;
 import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
 import org.dndoop.game.tile.tile_utils.UnitStats;
-import org.dndoop.game.utils.events.PlayerEvent;
-import org.dndoop.game.utils.events.PlayerEventNotifier;
+import org.dndoop.game.utils.GameRandomizer;
+import org.dndoop.game.utils.events.GameEvent;
+import org.dndoop.game.utils.events.GameEventName;
+import org.dndoop.game.utils.events.GameEventNotifier;
+import org.dndoop.game.utils.events.RangeAttackEvent;
+
+import java.util.ArrayList;
 
 public class Mage extends Player {
     private int manaPool;
@@ -20,16 +28,25 @@ public class Mage extends Player {
     private static final int MANA_TICK_MULTIPLIER = 1;
 
     public Mage(String name, Health health, UnitStats stats, Character character, Position position,
-                int manaPool, int manaCost, int spellPower, int hitsCount, int abilityRange) {
-        super(name, health, stats, character, position);
+                int manaPool, int manaCost, int spellPower, int hitsCount, int abilityRange,
+                GameEventNotifier gameEventNotifier) {
+        super(name, health, stats, character, position, gameEventNotifier);
         this.manaPool = manaPool;
         this.currentMana = manaPool/MANA_DIVISOR;
         this.manaCost = manaCost;
         this.spellPower = spellPower;
         this.hitsCount = hitsCount;
         this.abilityRange = abilityRange;
+    }
 
-        PlayerEventNotifier.getInstance().addListener(this);
+    /**
+     * Used within Joystick, only casts ability if mage's current mana >= cost
+     */
+    @Override
+    public void castAbility() {
+        if(getCurrentMana() >= getManaCost()) {
+            onAbilityCast();
+        }
     }
 
     /**
@@ -40,12 +57,25 @@ public class Mage extends Player {
     @Override
     public void onAbilityCast() {
         currentMana = currentMana - manaCost;
+
+        ArrayList<Unit> potentialTargets = new ArrayList<>();
+        notifier.notify(new RangeAttackEvent(position, this, abilityRange, potentialTargets));
+
         int hits = 0;
-        /*while (hits<hitsCount&&TODO exists living enemy such that range(enemy, player)<abilityRange) {
-            //TODO deal damage to random enemy within abilityRange equal to spellPower
-            //     (the enemy may try to defend itself)
-            hits++;
-        }*/
+        while(hits < hitsCount && !potentialTargets.isEmpty()) {
+            //Getting the random target.
+            int randomTarget = GameRandomizer.getInstance().getRandomInt(0, potentialTargets.size() - 1);
+            Unit target = potentialTargets.get(randomTarget);
+
+            //Since here we're attacking with custom amount of damage.
+            target.defend(spellPower);
+
+            //If target died remove it from potential targets.
+            if(!target.isAlive()) {
+                potentialTargets.remove(target);
+            }
+            hits += 1;
+        }
     }
 
     /**
@@ -56,23 +86,21 @@ public class Mage extends Player {
      */
     @Override
     public void onLevelUp() {
-        levelUp();
         manaPool += MANA_POOL_MULTIPLIER*level;
         currentMana = Math.min(currentMana+manaPool/MANA_DIVISOR, manaPool);
         spellPower += SPELL_POWER_MULTIPLIER*level;
     }
 
     @Override
-    public void onDeath() {
-        PlayerEventNotifier.getInstance().removeListener(this);
-        //TODO
+    public void visit(Enemy enemy) {
+        attack(enemy);
     }
 
     /**
-     * On game tick event regenerates mana by min(manaPool, currentMana+{@value #MANA_TICK_MULTIPLIER}*level)
+     * On game tick regenerates mana by min(manaPool, currentMana+{@value #MANA_TICK_MULTIPLIER}*level)
      */
     @Override
-    public void onTick(PlayerEvent event) {
+    public void onTick() {
         currentMana = Math.min(manaPool, currentMana+MANA_TICK_MULTIPLIER*level);
     }
 

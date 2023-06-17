@@ -1,13 +1,20 @@
 package org.dndoop.game.tile.players;
 
+import org.dndoop.game.tile.Unit;
+import org.dndoop.game.tile.enemies.Enemy;
 import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
 import org.dndoop.game.tile.tile_utils.UnitStats;
-import org.dndoop.game.utils.events.PlayerEvent;
-import org.dndoop.game.utils.events.PlayerEventNotifier;
+import org.dndoop.game.utils.GameRandomizer;
+import org.dndoop.game.utils.events.GameEvent;
+import org.dndoop.game.utils.events.GameEventName;
+import org.dndoop.game.utils.events.GameEventNotifier;
+import org.dndoop.game.utils.events.RangeAttackEvent;
+
+import java.util.ArrayList;
 
 public class Warrior extends Player{
-    private int abilityCD;
+    private final int abilityCD;
     private int cdRemaining;
     private static final int HEALTH_POOL_MULTIPLIER = 5;
     private static final int ATTACK_POINTS_MULTIPLIER = 2;
@@ -23,10 +30,22 @@ public class Warrior extends Player{
      * @param character
      * @param position
      */
-    public Warrior(String name, Health health, UnitStats stats, Character character, Position position) {
-        super(name, health, stats, character, position);
+    public Warrior(String name, Health health, UnitStats stats, Character character, Position position,
+                   int abilityCoolDown, GameEventNotifier gameEventNotifier) {
+        super(name, health, stats, character, position, gameEventNotifier);
 
-        PlayerEventNotifier.getInstance().addListener(this);
+        abilityCD = abilityCoolDown;
+        cdRemaining = 0;
+    }
+
+    /**
+     * Warrior can cast its ability only when it's cool-down reached 0.
+     */
+    @Override
+    public void castAbility() {
+        if(cdRemaining == 0) {
+            castAbility();
+        }
     }
 
     /**
@@ -38,10 +57,26 @@ public class Warrior extends Player{
     @Override
     public void onAbilityCast() {
         cdRemaining = abilityCD;
-        health.setHealthAmount(Math.min(health.getHealthAmount() + ABILITY_DEFENSE_MULTIPLIER*stats.getDefensePoints(),
-                health.getHealthPool()));
-        //TODO Randomly hit one enemy within range<ABILITY_RANGE for an amount equal to
-        // the warriors health pool/ABILITY_HEALTH_DIVISOR.
+        //Regen 10
+        getHealth().regen(ABILITY_DEFENSE_MULTIPLIER * stats.getDefensePoints());
+        //Creating and getting potential targets.
+        ArrayList<Unit> potentialTargets = new ArrayList<>();
+        notifier.notify(new RangeAttackEvent(position, this, ABILITY_RANGE, potentialTargets));
+        //Getting randomly chosen target:
+        if(!potentialTargets.isEmpty()) {
+            int randomTarget = GameRandomizer.getInstance().getRandomInt(0, potentialTargets.size() - 1);
+            Unit target = potentialTargets.get(randomTarget);
+            //Doing the ouchie:
+            target.defend(getHealth().getHealthPool()/ABILITY_HEALTH_DIVISOR);
+        }
+        /* Before use of regen, leaving it here just to be safe.
+        health.setHealthAmount(
+                Math.min(
+                        health.getHealthAmount() + ABILITY_DEFENSE_MULTIPLIER * stats.getDefensePoints(),
+                        health.getHealthPool()
+                )
+        );
+         */
     }
 
     /**
@@ -52,7 +87,6 @@ public class Warrior extends Player{
      */
     @Override
     public void onLevelUp() {
-        levelUp();
         cdRemaining = 0;
         stats.increaseAttackPoints(ATTACK_POINTS_MULTIPLIER*level);
         stats.increaseDefensePoints(DEFENSE_POINTS_MULTIPLIER*level);
@@ -61,16 +95,15 @@ public class Warrior extends Player{
     }
 
     @Override
-    public void onDeath() {
-        PlayerEventNotifier.getInstance().removeListener(this);
-        //TODO
+    public void visit(Enemy enemy) {
+        attack(enemy);
     }
 
     /**
-     * On game tick event lowers the warriors ability cooldown by 1.
+     * On game tick event lowers the warriors ability cool-down by 1.
      */
     @Override
-    public void onTick(PlayerEvent event) {
+    public void onTick() {
         if(cdRemaining>0)
             cdRemaining--;
     }

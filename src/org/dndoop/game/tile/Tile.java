@@ -28,4 +28,10 @@ public abstract class Tile {
     public void setPosition(Position position) {
         this.position = position;
     }
+
+    /**
+     * Visitor design pattern, visits the pattern later.
+     * @param unit self.
+     */
+    public abstract void accept(Unit unit);
 }

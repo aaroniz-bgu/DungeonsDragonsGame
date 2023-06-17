@@ -9,7 +9,7 @@ import java.util.Random;
 public class GameRandomizer {
 
     private static GameRandomizer gameRandomizer = null;
-    private Random random;
+    private final Random random;
 
     private GameRandomizer(Random random) {
         this.random = random;
@@ -21,7 +21,9 @@ public class GameRandomizer {
      */
     public static GameRandomizer getInstance() {
         if(gameRandomizer == null) {
-            gameRandomizer = new GameRandomizer(new Random());
+            long seed = (long) Math.ceil(Math.random() * Math.pow(10, 8));
+            System.out.println("SEED:"+seed);
+            gameRandomizer = new GameRandomizer(new Random(seed));
         }
 
         return gameRandomizer;
