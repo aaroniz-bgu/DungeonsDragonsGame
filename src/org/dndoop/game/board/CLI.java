@@ -12,6 +12,7 @@ public class CLI {
 
     //Used for invoking prints outside this object.
     private MessageCallback m;
+    private MessageCallback statBar;
     private GameBoard gameBoard;
 
     public CLI(GameBoard gameBoard) {
@@ -36,6 +37,10 @@ public class CLI {
         }
     }
 
+    public void setStatBar(MessageCallback statBar) {
+        this.statBar = statBar;
+    }
+
     /**
      * When we're updating the level we need to get the new GameBoard accordingly.
      * @param gameBoard The new GameBoard.
@@ -50,6 +55,7 @@ public class CLI {
      */
     public void update() {
         print(gameBoard.toString());
+        statBar.send("");
     }
 
     /**
