@@ -11,7 +11,7 @@ import org.dndoop.game.utils.events.GameEventName;
 import org.dndoop.game.utils.events.GameEventNotifier;
 import java.lang.String;
 
-public abstract class Player extends Unit {
+public abstract class Player extends Unit implements HeroicUnit {
 
     private static int INITIAL_XP = 0;
     private static final Character PLAYER_CHARACTER = '@';
@@ -81,7 +81,6 @@ public abstract class Player extends Unit {
         m.send("Game Over");
     }
 
-    public abstract void castAbility();
     public abstract void onAbilityCast();
     public abstract void onLevelUp();
 
@@ -118,5 +117,10 @@ public abstract class Player extends Unit {
 
     public void getBar(String s) {
         m.send(getDescription());
+    }
+
+    @Override
+    public void castAbility(Unit unit) {
+        //Do nothing...
     }
 }
