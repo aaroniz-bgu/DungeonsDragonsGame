@@ -91,7 +91,7 @@ public class TileFactory {
     public Player producePlayer(int idx) {
         if (!(idx > 0) && (idx <= playersList.size()))
             throw new IllegalArgumentException();
-        Player player = playersList.get(idx).get();
+        Player player = playersList.get(idx-1).get();
         player.setMessageCallback(m);
 
         gameEventNotifier.addListener(player);
