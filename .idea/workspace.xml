@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="090fd0be-7951-4436-97d2-9209ed3b9587" name="Changes" comment="unified on death">
+    <list default="true" id="090fd0be-7951-4436-97d2-9209ed3b9587" name="Changes" comment="player now takes position of killed enemies">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Hunter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/players/Hunter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,14 +107,7 @@
       <option name="presentableId" value="Default" />
       <updated>1685700863698</updated>
       <workItem from="1686910553286" duration="22923000" />
-      <workItem from="1686993470131" duration="22144000" />
-    </task>
-    <task id="LOCAL-00080" summary="interact with was added ands is player was deprecated">
-      <created>1686932922200</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1686932922200</updated>
+      <workItem from="1686993470131" duration="22737000" />
     </task>
     <task id="LOCAL-00081" summary="is alive and getting xp methods">
       <created>1686932956934</created>
@@ -452,7 +445,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687019092491</updated>
     </task>
-    <option name="localTasksCounter" value="129" />
+    <task id="LOCAL-00129" summary="player now takes position of killed enemies">
+      <created>1687019496125</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1687019496125</updated>
+    </task>
+    <option name="localTasksCounter" value="130" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -482,7 +482,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="build events" />
     <MESSAGE value="throwing something" />
     <MESSAGE value="just yeah" />
     <MESSAGE value="listening now and notifying, updated loop, remodeled the code." />
@@ -507,6 +506,7 @@
     <MESSAGE value="just the nonsense of the bonus" />
     <MESSAGE value="Now adds the new units and can produce them" />
     <MESSAGE value="unified on death" />
-    <option name="LAST_COMMIT_MESSAGE" value="unified on death" />
+    <MESSAGE value="player now takes position of killed enemies" />
+    <option name="LAST_COMMIT_MESSAGE" value="player now takes position of killed enemies" />
   </component>
 </project>

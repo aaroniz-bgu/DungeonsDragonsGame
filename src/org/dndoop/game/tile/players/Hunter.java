@@ -68,4 +68,11 @@ public class Hunter extends Player {
         }
         super.onTick();
     }
+
+    @Override
+    public String getDescription() {
+        String output = super.getDescription();
+        output = output.concat("\nArrows: "+arrowCount);
+        return output;
+    }
 }
