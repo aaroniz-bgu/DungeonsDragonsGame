@@ -13,6 +13,7 @@ import org.dndoop.game.tile.players.Warrior;
 import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
 import org.dndoop.game.tile.tile_utils.UnitStats;
+import org.dndoop.game.utils.MessageCallback;
 import org.dndoop.game.utils.events.GameEventNotifier;
 
 import java.util.Arrays;
@@ -28,11 +29,13 @@ public class TileFactory {
     private Player selected;
 
     private GameEventNotifier gameEventNotifier;
+    private MessageCallback m;
 
-    public TileFactory(GameEventNotifier gameEventNotifier){
+    public TileFactory(GameEventNotifier gameEventNotifier, MessageCallback m){
         playersList = initPlayers();
         enemiesMap = initEnemies();
         this.gameEventNotifier = gameEventNotifier;
+        this.m = m;
     }
 
     private Map<Character, Supplier<Enemy>> initEnemies() {
@@ -72,22 +75,27 @@ public class TileFactory {
         return playersList.stream().map(Supplier::get).collect(Collectors.toList());
     }
 
-
-    // TODO: Add additional callbacks of your choice
-
     public Enemy produceEnemy(char tile, Position position, GameBoard gameboard) {
         if (!enemiesMap.containsKey(tile))
             throw new IllegalArgumentException();
         Enemy enemy = enemiesMap.get(tile).get();
         enemy.setPosition(position);
         enemy.setTilesAccess(gameboard);
+        enemy.setMessageCallback(m);
+
+        gameEventNotifier.addListener(enemy);
+
         return enemy;
     }
 
     public Player producePlayer(int idx) {
-        if (!(idx>0)&&(idx<=playersList.size()))
+        if (!(idx > 0) && (idx <= playersList.size()))
             throw new IllegalArgumentException();
         Player player = playersList.get(idx).get();
+        player.setMessageCallback(m);
+
+        gameEventNotifier.addListener(player);
+
         return player;
     }
 
