@@ -9,6 +9,7 @@ import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
 import org.dndoop.game.tile.tile_utils.UnitStats;
 import org.dndoop.game.utils.GameRandomizer;
+import org.dndoop.game.utils.MessageCallback;
 import org.dndoop.game.utils.events.*;
 
 import java.util.HashMap;
@@ -23,6 +24,7 @@ public abstract class Unit extends Tile implements GameEventListener {
     protected String description;//Tal's recommendation TODO implement in all sub classes
 
     protected Notifier notifier;
+    protected MessageCallback m;
     protected GetAtCallback tiles;
     protected Map<GameEventName, EventCallback> events;
     private static final int FIXED_STRING_LENGTH = 30;
@@ -51,7 +53,7 @@ public abstract class Unit extends Tile implements GameEventListener {
      * Just sends your request to move somewhere/interact with something using a direction.
      * @param direction the direction you're trying to move to.
      */
-    protected void move(Direction direction) {
+    public void move(Direction direction) {
         tiles.getAt(position.move(direction)).accept(this);
     }
 
@@ -80,6 +82,10 @@ public abstract class Unit extends Tile implements GameEventListener {
                 onDeath();
             }
         }
+    }
+
+    public void setMessageCallback(MessageCallback m) {
+        this.m = m;
     }
 
     public String getName() {

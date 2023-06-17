@@ -4,9 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="090fd0be-7951-4436-97d2-9209ed3b9587" name="Changes" comment="finished and polished combat system">
+    <list default="true" id="090fd0be-7951-4436-97d2-9209ed3b9587" name="Changes" comment="Seed display">
+      <change afterPath="$PROJECT_DIR$/src/Scratch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/dndoop/game/board/CLI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/dndoop/game/board/Joystick.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/utils/GameRandomizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/utils/GameRandomizer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/board/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/board/GameBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/board/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/board/GameManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/Unit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/Unit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/dndoop/game/tile/tile_utils/Direction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/dndoop/game/tile/tile_utils/Direction.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,16 +35,16 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="aaron" />
+        <entry key="$PROJECT_DIR$" value="aaron-backend-gameplay" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -58,25 +65,45 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/User/Documents/Eclipse proj/DungeonsDragonsGame",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/User/Documents/Eclipse proj/DungeonsDragonsGame&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="org.dndoop.game.tile.tile_utils" />
       <recent name="org.dndoop.game.tile.players" />
       <recent name="org.dndoop.game.tile.enemies" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.dndoop.game.Main" />
+      <module name="DungeonsDragonsGame" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.dndoop.game.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -86,14 +113,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1685700863698</updated>
-      <workItem from="1686910553286" duration="21598000" />
-    </task>
-    <task id="LOCAL-00041" summary="Tal's factory copy paste">
-      <created>1686843870035</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1686843870035</updated>
+      <workItem from="1686910553286" duration="22923000" />
+      <workItem from="1686993470131" duration="4441000" />
     </task>
     <task id="LOCAL-00042" summary="Initial commit">
       <created>1686843878129</created>
@@ -431,7 +452,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686933578879</updated>
     </task>
-    <option name="localTasksCounter" value="90" />
+    <task id="LOCAL-00090" summary="Seed display">
+      <created>1686935915359</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1686935915359</updated>
+    </task>
+    <option name="localTasksCounter" value="91" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -449,7 +477,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="first impl" />
     <MESSAGE value="trying to change the impl to not be singleton" />
     <MESSAGE value="visitor code skeleton" />
     <MESSAGE value="trying to decouple the gameboard without making the game manager a singleton" />
@@ -474,6 +501,18 @@
     <MESSAGE value="New Event type" />
     <MESSAGE value="cast ability and visitor now working" />
     <MESSAGE value="finished and polished combat system" />
-    <option name="LAST_COMMIT_MESSAGE" value="finished and polished combat system" />
+    <MESSAGE value="Seed display" />
+    <option name="LAST_COMMIT_MESSAGE" value="Seed display" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/org/dndoop/game/utils/files/TileFactory.java</url>
+          <line>79</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
