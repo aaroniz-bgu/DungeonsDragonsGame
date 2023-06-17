@@ -36,8 +36,6 @@ public class Trap extends Enemy {
         this.invisibilityTime = invisibilityTime;
         this.tickCount = 0;
         this.visible = true;
-
-        buildMapEvents();
     }
 
     /**
@@ -46,7 +44,7 @@ public class Trap extends Enemy {
     public void tickVisibility() {
         visible = tickCount < visibilityTime;
 
-        if(tickCount == (visibilityTime + invisibilityTime)) {
+        if(tickCount >= (visibilityTime + invisibilityTime)) {
             tickCount = 0;
         } else {
             tickCount += 1;
@@ -73,7 +71,6 @@ public class Trap extends Enemy {
         });
         events.put(GameEventName.PLAYER_ABILITY_CAST_EVENT, (GameEvent event) -> {
             event.interactWithEvent(this);
-            events.get(GameEventName.PLAYER_ACTION_EVENT).execute(event);
         });
     }
 
