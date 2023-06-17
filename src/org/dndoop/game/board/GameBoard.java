@@ -30,8 +30,8 @@ public class GameBoard implements GameEventListener, GetAtCallback {
 
     public GameBoard(TileFactory factory, Player player, String levelPath){
         board = new ArrayList<>();
-        int x = 1;
-        int y = 1;
+        int x = 0;
+        int y = 0;
         int maxWidth = 0;
         int maxHeight = 0;
         enemies = new ArrayList<>();
@@ -57,8 +57,8 @@ public class GameBoard implements GameEventListener, GetAtCallback {
                     case '\n':
                         // Newline encountered, increment y, reset x.
                         y++;
-                        maxWidth = x - 1;
-                        x = 1;
+                        maxWidth = x;
+                        x = 0;
                         break;
                     default: //enemy
                         Enemy enemy = factory.produceEnemy(c, position, this);
@@ -69,10 +69,12 @@ public class GameBoard implements GameEventListener, GetAtCallback {
                 if (!(c == '\n' || c == '\r'))
                     x++;
             }
-            maxHeight = y;
+            maxHeight = y+1; //Since indexing starts at 0.
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println(maxWidth);
+        System.out.println(maxHeight);
         this.WIDTH = maxWidth;
         this.HEIGHT = maxHeight;
     }
@@ -104,8 +106,8 @@ public class GameBoard implements GameEventListener, GetAtCallback {
         String[][] build = new String[HEIGHT][WIDTH];
         for(Tile tile : board) {
             Position pos = tile.getPosition();
-            int x = pos.getX()-1;
-            int y = pos.getY()-1;
+            int x = pos.getX();
+            int y = pos.getY();
 
             build[y][x] = tile.toString();
         }
