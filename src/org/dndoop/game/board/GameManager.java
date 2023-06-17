@@ -25,15 +25,15 @@ public class GameManager implements GameEventListener {
     private List<String> levels;
     private Player player;
     private GameBoard board;
-    private GameEventNotifier notifier;
+    private final GameEventNotifier NOTIFIER;
     private List<String> levelPaths;
-    //private Joystick joystick;
-    //private CLI cli;
+    private Joystick joystick;
+    private CLI CLI;
     private TileFactory factory;
     private MessageCallback m;
     public GameManager(MessageCallback m) {
         this.m = m;
-        this.notifier = new GameEventNotifier();
+        this.NOTIFIER = new GameEventNotifier();
     }
 
     /**
@@ -41,7 +41,7 @@ public class GameManager implements GameEventListener {
      * @param path path to the levels_dir
      */
     public void start(String path) {
-        this.factory = new TileFactory(notifier);
+        this.factory = new TileFactory(NOTIFIER);
 
         loadLevels(path);
         runGame(path);
@@ -109,6 +109,6 @@ public class GameManager implements GameEventListener {
 
     @Override
     public void onGameEvent(GameEvent event) {
-
+        //if player died....
     }
 }
