@@ -29,11 +29,17 @@ public class GameBoard implements GameEventListener, GetAtCallback {
     private List<Tile> board;
 
     public GameBoard(TileFactory factory, Player player, String levelPath){
+        int[] widthAndHeight = createBoard(factory,player,levelPath);
+        this.WIDTH = widthAndHeight[0];
+        this.HEIGHT = widthAndHeight[1];
+    }
+
+    private int[] createBoard(TileFactory factory, Player player, String levelPath)
+    {
         board = new ArrayList<>();
         int x = 0;
         int y = 0;
-        int maxWidth = 0;
-        int maxHeight = 0;
+        int[] widthAndHeight = new int[2];
         enemies = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(levelPath))) {
             int character;
@@ -57,7 +63,7 @@ public class GameBoard implements GameEventListener, GetAtCallback {
                     case '\n':
                         // Newline encountered, increment y, reset x.
                         y++;
-                        maxWidth = x;
+                        widthAndHeight[0] = x;
                         x = 0;
                         break;
                     default: //enemy
@@ -69,14 +75,12 @@ public class GameBoard implements GameEventListener, GetAtCallback {
                 if (!(c == '\n' || c == '\r'))
                     x++;
             }
-            maxHeight = y+1; //Since indexing starts at 0.
+            widthAndHeight[1] = y+1; //Since indexing starts at 0.
         } catch (IOException e) {
             e.printStackTrace();
         }
-        this.WIDTH = maxWidth;
-        this.HEIGHT = maxHeight;
+        return widthAndHeight;
     }
-
     public List<Enemy> getEnemies() {
         return enemies;
     }
