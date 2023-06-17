@@ -75,6 +75,15 @@ public abstract class Player extends Unit implements HeroicUnit {
     }
 
     @Override
+    public void attack(Unit target) {
+        super.attack(target);
+        //If target was killed then player takes its position.
+        if(!target.isAlive()) {
+            tiles.getAt(target.getPosition()).accept(this);
+        }
+    }
+
+    @Override
     public void onDeath() {
         this.character = 'X';
         notifier.notify(new GameEvent(GameEventName.PLAYER_DIED_EVENT, position, this));
