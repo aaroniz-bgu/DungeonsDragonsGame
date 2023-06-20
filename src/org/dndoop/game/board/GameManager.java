@@ -41,7 +41,6 @@ public class GameManager implements GameEventListener {
         this.CLI = new CLI(null);
         this.joystick = new Joystick(null);
         this.NOTIFIER = new GameEventNotifier().addListener(this);
-
         this.input = new Scanner(System.in);
     }
 
