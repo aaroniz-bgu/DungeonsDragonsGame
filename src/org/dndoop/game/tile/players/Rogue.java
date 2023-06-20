@@ -22,13 +22,13 @@ public class Rogue extends Player {
     private static final int ABILITY_RANGE = 2;
 
     public Rogue(String name, int health, int attack, int defense, int abilityCost, GameEventNotifier gameEventNotifier) {
-        super(name, health, attack, defense, null, gameEventNotifier);
+        super(name, health, attack, defense, null, gameEventNotifier, 0, ATTACK_POINTS_MULTIPLIER, 0);
         this.abilityCost = abilityCost;
         this.currentEnergy = ENERGY_CAP;
     }
     public Rogue(String name, int health, int attack, int defense, Position position,
                  int abilityCost, GameEventNotifier gameEventNotifier) {
-        super(name, health, attack, defense, position, gameEventNotifier);
+        super(name, health, attack, defense, position, gameEventNotifier, 0, ATTACK_POINTS_MULTIPLIER, 0);
         this.abilityCost = abilityCost;
         this.currentEnergy = ENERGY_CAP;
     }
