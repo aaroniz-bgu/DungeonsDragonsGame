@@ -4,7 +4,7 @@ public class Health {
 
     private int healthPool;
     private int healthAmount;
-    private static final int HEALTH_POOL_MULTIPLIER = 10;
+    public static final int HEALTH_POOL_MULTIPLIER = 10;
 
     public Health(int initPool) {
         this.healthAmount = initPool;
