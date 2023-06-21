@@ -180,7 +180,6 @@ public class Tests {
     }
     //endregion
 
-
     //region Unit tests
     @Test
     void testMoveToEmpty() {
