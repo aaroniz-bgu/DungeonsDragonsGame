@@ -18,14 +18,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class Tests {
     private static final int numOfPlayerCharacters = 7;
-    private String[] GenerateMapWithTileBelowPlayer(Character c) {
-        String[] map = new String[] {
-                "####",
-                "#@"+c.toString()+"#",
-                "####"
-        };
-        return map;
-    }
     private Player player;
     private GameManager manager;
     private GameBoard board;
@@ -38,6 +30,14 @@ public class Tests {
     private final static Character[] NONTRAPENEMIESMAP = new Character[] {
             's','k','q','z','b','g','w','M','C','K'
     };
+    private String[] GenerateMapWithTileBelowPlayer(Character c) {
+        String[] map = new String[] {
+                "####",
+                "#@"+c.toString()+"#",
+                "####"
+        };
+        return map;
+    }
 
     /**
      * Generates a random number in the given range [0, max)
@@ -93,9 +93,9 @@ public class Tests {
         int health = player.getHealth().getHealthPool();
         player.gainXp(100);
         player.levelUp();
-        assertNotEquals(attack, player.getStats().getAttackPoints());
-        assertNotEquals(defense, player.getStats().getDefensePoints());
-        assertNotEquals(health, player.getHealth().getHealthPool());
+        assertTrue(attack < player.getStats().getAttackPoints());
+        assertTrue(defense < player.getStats().getDefensePoints());
+        assertTrue(health < player.getHealth().getHealthPool());
     }
 
     @Test
