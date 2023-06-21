@@ -73,7 +73,7 @@ public class Hunter extends Player {
     @Override
     public String getDescription() {
         String output = super.getDescription();
-        output = output.concat("\nArrows: "+arrowCount);
+        output += fixedLengthString("\nArrows: "+arrowCount);
         return output;
     }
 }

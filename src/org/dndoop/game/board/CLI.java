@@ -42,6 +42,18 @@ public class CLI {
     }
 
     /**
+     * Shows game's end screen.
+     * @param playerAlive expects Player.isAlive().
+     */
+    public void endGameScreen(boolean playerAlive) {
+        if(playerAlive) {
+            print("You Won!");
+        } else {
+            print("Game Over.");
+        }
+    }
+
+    /**
      * When we're updating the level we need to get the new GameBoard accordingly.
      * @param gameBoard The new GameBoard.
      */
