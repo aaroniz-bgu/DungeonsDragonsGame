@@ -12,7 +12,7 @@ public class Main {
     public static void main(String[] args) {
         GameManager gameManager = new GameManager();
         Path currentDirectory = Paths.get("");
-        Path parentDirectory = currentDirectory.toAbsolutePath().getParent();
+        Path parentDirectory = currentDirectory.toAbsolutePath()/*just to be safe i'll keep it here .getParent()*/;
         String levels_dir = "/";
         if(args.length == 0) {
             levels_dir += LEVELS_DIRECTORY_NAME;
