@@ -146,4 +146,53 @@ public class GameManager implements GameEventListener {
             NOTIFIER.removeListener(event.getActor());
         }
     }
+
+    /**
+     * For testing purposes only.
+     * @return CLI
+     */
+    public CLI getCLI () {
+        return this.CLI;
+    }
+
+    /**
+     * For testing purposes only.
+     * @param player
+     */
+    public void setPlayer (Player player) {
+        this.player = player;
+    }
+
+    /**
+     * For testing purposes only.
+     * @return NOTIFIER
+     */
+    public GameEventNotifier getNotifier() {
+        return this.NOTIFIER;
+    }
+
+    /**
+     * For testing purposes only.
+     * @return factory
+     */
+    public TileFactory generateAndReturnFactory() {
+        this.factory = new TileFactory(NOTIFIER, CLI.getCallback());
+        return this.factory;
+    }
+
+    /**
+     * For testing purposes only.
+     * @return factory
+     */
+    public void setBoard(GameBoard board) {
+        this.board = board;
+    }
+
+    /**
+     * For testing purposes only.
+     * @return factory
+     */
+    public TileFactory getFactory() {
+        return this.factory;
+    }
 }

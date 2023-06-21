@@ -146,6 +146,64 @@ public class GameBoard implements GameEventListener, GetAtCallback {
             board.remove(event.getActor());
             board.add(new Empty(event.getPosition()));
         });
+    }
 
+
+    /**
+     * For testing purposes
+     * @param factory
+     * @param player
+     * @param testBoardToMake a 2d array with the symbols representing the tiles of the board
+     */
+    public GameBoard(TileFactory factory, Player player, String[] testBoardToMake){
+        int[] widthAndHeight = createBoard(factory,player, testBoardToMake);
+        this.WIDTH = widthAndHeight[0];
+        this.HEIGHT = widthAndHeight[1];
+        events = new HashMap<>();
+        buildMapEvents();
+    }
+
+    /**
+     * for testing purposes
+     * @param factory
+     * @param player
+     * @param testBoardToMake a 2d array with the symbols representing the tiles of the board.
+     *                        Assumes it's not empty or null.
+     * @return
+     */
+    private int[] createBoard(TileFactory factory, Player player, String[] testBoardToMake) {
+        board = new ArrayList<>();
+        int x = 0;
+        int y = 0;
+        int[] widthAndHeight = new int[2];
+        enemies = new ArrayList<>();
+
+        for (int i = 0; i < testBoardToMake.length; i++) {
+            for (int j = 0; j < testBoardToMake[i].length(); j++) {
+                char c = testBoardToMake[i].charAt(j);
+                Position position = new Position(i, j);
+                switch (c) {
+                    case '.':
+                        board.add(factory.produceEmpty(position));
+                        break;
+                    case '#':
+                        board.add(factory.produceWall(position));
+                        break;
+                    case '@':
+                        player.setPosition(position);
+                        player.setTilesAccess(this);
+                        board.add(player);
+                        break;
+                    default: //enemy
+                        Enemy enemy = factory.produceEnemy(c, position, this);
+                        enemies.add(enemy);
+                        board.add(enemy);
+                        break;
+                }
+            }
+        }
+        widthAndHeight[0] = testBoardToMake.length;
+        widthAndHeight[1] = testBoardToMake[0].length();
+        return widthAndHeight;
     }
 }
