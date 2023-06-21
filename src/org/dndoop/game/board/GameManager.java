@@ -73,6 +73,7 @@ public class GameManager implements GameEventListener {
             runLevel();
             if(!player.isAlive()) break;
         }
+        CLI.endGameScreen(player.isAlive());
     }
 
     /**
