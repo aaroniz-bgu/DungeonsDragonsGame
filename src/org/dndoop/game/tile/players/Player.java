@@ -99,7 +99,7 @@ public abstract class Player extends Unit implements HeroicUnit {
         this.character = 'X';
         m.send(name+" was killed by "+attacker.getName());
         notifier.notify(new GameEvent(GameEventName.PLAYER_DIED_EVENT, position, this));
-        m.send("Game Over");
+        //TODO PROBABLY CAHANGED m.send("Game Over");
     }
 
     public abstract void onAbilityCast();
