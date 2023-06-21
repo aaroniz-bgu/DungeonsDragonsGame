@@ -94,6 +94,8 @@ public abstract class Unit extends Tile implements GameEventListener {
             if(getHealth().damage(damage)) {
                 onDeath(attacker);
             }
+        } else if (getHealth().getHealthAmount()<=0) { //Debugging purposes
+            onDeath(attacker);
         }
     }
 
