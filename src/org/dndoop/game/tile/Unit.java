@@ -92,8 +92,7 @@ public abstract class Unit extends Tile implements GameEventListener {
         if(damage >= 0) {
             m.send(attacker.getName()+" dealt "+damage+" damage to "+getName()+".");
             if(getHealth().damage(damage)) {
-                m.send(this.name+" has died.");
-                onDeath();
+                onDeath(attacker);
             }
         }
     }
@@ -133,7 +132,7 @@ public abstract class Unit extends Tile implements GameEventListener {
     }
 
 
-    public abstract void onDeath();
+    public abstract void onDeath(Unit attacker);
 
     public abstract void visit(Empty empty);
     public abstract void visit(Enemy enemy);

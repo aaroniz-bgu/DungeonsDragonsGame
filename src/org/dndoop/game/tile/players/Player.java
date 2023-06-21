@@ -11,10 +11,17 @@ import org.dndoop.game.utils.events.GameEventName;
 import org.dndoop.game.utils.events.GameEventNotifier;
 import java.lang.String;
 
+import static org.dndoop.game.tile.tile_utils.Health.HEALTH_POOL_MULTIPLIER;
+import static org.dndoop.game.tile.tile_utils.UnitStats.ATTACK_MULTIPLIER;
+import static org.dndoop.game.tile.tile_utils.UnitStats.DEFENSE_MULTIPLIER;
+
 public abstract class Player extends Unit implements HeroicUnit {
 
     private static int INITIAL_XP = 0;
     private static final Character PLAYER_CHARACTER = '@';
+    private final int HEALTH_LEVEL_MULTIPLIER;
+    private final int ATTACK_LEVEL_MULTIPLIER;
+    private final int DEFENSE_LEVEL_MULTIPLIER;
 
     protected int level;
 
@@ -28,9 +35,13 @@ public abstract class Player extends Unit implements HeroicUnit {
      * @param gameEventNotifier
      */
     public Player(
-            String name, int health, int attack, int defense, Position position, GameEventNotifier gameEventNotifier
+            String name, int health, int attack, int defense, Position position, GameEventNotifier gameEventNotifier,
+            int HEALTH_LEVEL_MULTIPLIER, int ATTACK_LEVEL_MULTIPLIER, int DEFENSE_LEVEL_MULTIPLIER
     ) {
         super(name, health, attack, defense, PLAYER_CHARACTER, INITIAL_XP, position, gameEventNotifier);
+        this.HEALTH_LEVEL_MULTIPLIER = HEALTH_LEVEL_MULTIPLIER + HEALTH_POOL_MULTIPLIER;
+        this.ATTACK_LEVEL_MULTIPLIER = ATTACK_LEVEL_MULTIPLIER + ATTACK_MULTIPLIER;
+        this.DEFENSE_LEVEL_MULTIPLIER = DEFENSE_LEVEL_MULTIPLIER + DEFENSE_MULTIPLIER;
         this.level = 1;
     }
 
@@ -84,8 +95,9 @@ public abstract class Player extends Unit implements HeroicUnit {
     }
 
     @Override
-    public void onDeath() {
+    public void onDeath(Unit attacker) {
         this.character = 'X';
+        m.send(name+" was killed by "+attacker.getName());
         notifier.notify(new GameEvent(GameEventName.PLAYER_DIED_EVENT, position, this));
         m.send("Game Over");
     }
@@ -112,6 +124,8 @@ public abstract class Player extends Unit implements HeroicUnit {
             level++;
             this.health.levelUp(level);
             this.stats.levelUp(level);
+            m.send(name + " reached level " + level + ": +"+HEALTH_LEVEL_MULTIPLIER*level+
+                    " Health, +"+ATTACK_LEVEL_MULTIPLIER*level+" Attack, +"+DEFENSE_LEVEL_MULTIPLIER*level+" Defense");
             onLevelUp();
         }
     }

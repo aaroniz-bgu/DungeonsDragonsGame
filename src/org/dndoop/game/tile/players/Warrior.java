@@ -31,14 +31,16 @@ public class Warrior extends Player{
      */
 
     public Warrior(String name, int health, int attack, int defense, int abilityCoolDown, GameEventNotifier gameEventNotifier) {
-        super(name, health, attack, defense, null, gameEventNotifier);
+        super(name, health, attack, defense, null, gameEventNotifier,
+                HEALTH_POOL_MULTIPLIER, ATTACK_POINTS_MULTIPLIER, DEFENSE_POINTS_MULTIPLIER);
         abilityCD = abilityCoolDown;
         cdRemaining = 0;
     }
 
     public Warrior(String name, int health, int attack, int defense, Position position,
                    int abilityCoolDown, GameEventNotifier gameEventNotifier) {
-        super(name, health, attack, defense, position, gameEventNotifier);
+        super(name, health, attack, defense, position, gameEventNotifier,
+                HEALTH_POOL_MULTIPLIER, ATTACK_POINTS_MULTIPLIER, DEFENSE_POINTS_MULTIPLIER);
 
         abilityCD = abilityCoolDown;
         cdRemaining = 0;

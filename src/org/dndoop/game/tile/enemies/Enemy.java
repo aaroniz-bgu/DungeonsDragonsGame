@@ -35,7 +35,8 @@ public abstract class Enemy extends Unit {
     }
 
     @Override
-    public void onDeath() {
+    public void onDeath(Unit attacker) {
+        m.send(name+" died. "+attacker.getName()+" gained "+xp+" experience");
         notifier.notify(new GameEvent(GameEventName.ENEMY_DEATH_EVENT, position, this));
     }
 

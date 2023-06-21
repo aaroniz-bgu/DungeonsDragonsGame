@@ -17,7 +17,8 @@ public class Hunter extends Player {
     private final int RANGE;
 
     public Hunter(String name, int health, int attack, int defense, int range, GameEventNotifier gameEventNotifier) {
-        super(name, health, attack, defense, null, gameEventNotifier);
+        super(name, health, attack, defense, null, gameEventNotifier,
+                0, ATTACK_MULTIPLIER, DEFENSE_MULTIPLIER);
         this.RANGE = range;
         this.tickCount = 0;
         this.arrowCount = level * ARROW_MULTIPLIER;

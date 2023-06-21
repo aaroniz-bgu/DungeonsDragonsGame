@@ -4,8 +4,8 @@ package org.dndoop.game.tile.tile_utils;
  * Helper class to handle attack & defense points of a unit.
  */
 public class UnitStats {
-    private static final int ATTACK_MULTIPLIER = 4;
-    private static final int DEFENSE_MULTIPLIER = 1;
+    public static final int ATTACK_MULTIPLIER = 4;
+    public static final int DEFENSE_MULTIPLIER = 1;
 
     private int attackPoints;
     private int defensePoints;

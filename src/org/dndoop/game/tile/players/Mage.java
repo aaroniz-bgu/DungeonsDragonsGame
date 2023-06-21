@@ -14,6 +14,10 @@ import org.dndoop.game.utils.events.RangeAttackEvent;
 
 import java.util.ArrayList;
 
+import static org.dndoop.game.tile.tile_utils.Health.HEALTH_POOL_MULTIPLIER;
+import static org.dndoop.game.tile.tile_utils.UnitStats.ATTACK_MULTIPLIER;
+import static org.dndoop.game.tile.tile_utils.UnitStats.DEFENSE_MULTIPLIER;
+
 public class Mage extends Player {
     private int manaPool;
     private int currentMana;
@@ -35,7 +39,7 @@ public class Mage extends Player {
     public Mage(String name, int health, int attack, int defense, Position position,
                 int manaPool, int manaCost, int spellPower, int hitsCount, int abilityRange,
                 GameEventNotifier gameEventNotifier) {
-        super(name, health, attack, defense, position, gameEventNotifier);
+        super(name, health, attack, defense, position, gameEventNotifier, 0, 0 ,0);
         this.manaPool = manaPool;
         this.currentMana = manaPool/MANA_DIVISOR;
         this.manaCost = manaCost;
@@ -91,9 +95,12 @@ public class Mage extends Player {
      */
     @Override
     public void onLevelUp() {
-        manaPool += MANA_POOL_MULTIPLIER*level;
+        int manaToAdd = MANA_POOL_MULTIPLIER*level;
+        manaPool += manaToAdd;
         currentMana = Math.min(currentMana+manaPool/MANA_DIVISOR, manaPool);
-        spellPower += SPELL_POWER_MULTIPLIER*level;
+        int spellPowerToAdd = SPELL_POWER_MULTIPLIER*level;
+        spellPower += spellPowerToAdd;
+        m.send(fixedLengthString("", 15)+"+"+manaToAdd+" maximum mana, +"+spellPowerToAdd+" spell power");
     }
 
     /**
