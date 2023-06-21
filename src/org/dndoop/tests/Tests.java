@@ -18,8 +18,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class Tests {
     private static final int numOfPlayerCharacters = 7;
-    private final PrintStream standardOut = System.out;
-    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
     private String[] GenerateMapWithTileBelowPlayer(Character c) {
         String[] map = new String[] {
                 "####",
@@ -41,20 +39,6 @@ public class Tests {
             's','k','q','z','b','g','w','M','C','K'
     };
 
-    private void CheckIfGivenStringMatchesSystemOut(String outputExpected) {
-        assertEquals(outputExpected.trim(), outputStreamCaptor.toString().trim());
-    }
-
-    /**
-     * Generates a random number in a given range [min, max)
-     * @param min
-     * @param max
-     * @return the random number
-     */
-    private int generateNumber(int min, int max) {
-        return (int) ((Math.random() * (max - min)) + min);
-    }
-
     /**
      * Generates a random number in the given range [0, max)
      * @param max
@@ -62,16 +46,6 @@ public class Tests {
      */
     private int generateNumber(int max) {
         return (int) (Math.random() * (max));
-    }
-
-    @BeforeEach
-    public void setUp() {
-        System.setOut(new PrintStream(outputStreamCaptor));
-    }
-
-    @AfterEach
-    public void tearDown() {
-        System.setOut(standardOut);
     }
 
     @BeforeEach
