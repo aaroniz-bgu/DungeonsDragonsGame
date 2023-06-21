@@ -4,20 +4,16 @@ import org.dndoop.game.tile.Empty;
 import org.dndoop.game.tile.Unit;
 import org.dndoop.game.tile.players.Player;
 import org.dndoop.game.tile.tile_utils.Direction;
-import org.dndoop.game.tile.tile_utils.Health;
 import org.dndoop.game.tile.tile_utils.Position;
-import org.dndoop.game.tile.tile_utils.UnitStats;
 import org.dndoop.game.utils.GameRandomizer;
 import org.dndoop.game.utils.events.GameEvent;
 import org.dndoop.game.utils.events.GameEventName;
 import org.dndoop.game.utils.events.GameEventNotifier;
 
-import java.util.HashMap;
-
 public class Monster extends Enemy {
 
     private final int DEFAULT_RANGE = 8;
-    private final int RANGE;
+    protected final int RANGE;
 
     public Monster(Character character, String name, int health, int attack, int defense,
                    int experience, int range, GameEventNotifier gameEventNotifier) {
